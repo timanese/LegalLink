@@ -4,7 +4,6 @@ import { Card } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,10 +14,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import * as React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CardList from "../components/CardList";
 import CircularGauge from "../components/CircularGauge";
 import FileList from "../components/FileList";
+import MessageModal from "../components/MessageModal";
 
 const drawerWidth = 240;
 
@@ -45,6 +46,7 @@ const mdTheme = createTheme();
 
 function AttorneyCaseView() {
   const navigate = useNavigate();
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const files = [
     {
@@ -86,6 +88,7 @@ function AttorneyCaseView() {
 
   return (
     <ThemeProvider theme={mdTheme}>
+      <MessageModal isOpen={isOpenModal} setIsOpen={setIsOpenModal} />
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar position="absolute">
@@ -109,10 +112,19 @@ function AttorneyCaseView() {
               </IconButton>
               Case View
             </Typography>
+            <Button
+              variant="contained "
+              onClick={() => {
+                console.log("djfkdslj");
+                setIsOpenModal(true);
+              }}
+            >
+              Send Message to Client
+            </Button>
+
             <Button variant="contained ">Log Out</Button>
           </Toolbar>
         </AppBar>
-
         <Box
           component="main"
           sx={{
@@ -139,7 +151,7 @@ function AttorneyCaseView() {
                     overflow: "auto",
                   }}
                 >
-                  <Typography variant="h4">Description</Typography>
+                  <Typography variant="h4">Case Description</Typography>
                   <Card
                     sx={{ width: "100%", height: "100%", overflow: "auto" }}
                   >
@@ -189,7 +201,7 @@ function AttorneyCaseView() {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 300,
+                    height: 250,
                   }}
                 >
                   <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -219,7 +231,7 @@ function AttorneyCaseView() {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 100,
+                    height: 150,
                     mt: 4,
                   }}
                 >
@@ -230,18 +242,16 @@ function AttorneyCaseView() {
                     sx={{
                       display: "flex",
                       alignItems: "center",
+                      justifyContent: "center",
                       height: "100%",
                     }}
                   >
-                    <ButtonGroup
-                      disableElevation
-                      variant="contained"
-                      aria-label="Disabled elevation buttons"
-                      sx={{ display: "flex", gap: 1 }}
-                    >
-                      <Button>Accept</Button>
-                      <Button>Decline</Button>
-                    </ButtonGroup>
+                    <Button variant="contained" sx={{ mr: 2 }}>
+                      Accept
+                    </Button>
+                    <Button variant="contained" sx={{ ml: 2 }}>
+                      Decline
+                    </Button>
                   </Box>
                 </Paper>
               </Grid>
@@ -256,7 +266,7 @@ function AttorneyCaseView() {
                     overflow: "auto",
                   }}
                 >
-                  <Typography variant="h4">Green Flags / Red Flags</Typography>
+                  <Typography variant="h4">Grading Breakdown</Typography>
                   <CardList />
                 </Paper>
               </Grid>
