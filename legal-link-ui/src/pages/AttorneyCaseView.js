@@ -4,11 +4,7 @@ import { Card } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-<<<<<<< HEAD
-import ButtonGroup from "@mui/material/ButtonGroup";
-=======
 import CardContent from "@mui/material/CardContent";
->>>>>>> 790af27 (Fix accept/decline styling)
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
@@ -18,13 +14,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import * as React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CardList from "../components/CardList";
 import CircularGauge from "../components/CircularGauge";
 import FileList from "../components/FileList";
-import CardContent from "@mui/material/CardContent";
 import MessageModal from "../components/MessageModal";
-import { useState } from "react";
 
 const drawerWidth = 240;
 
