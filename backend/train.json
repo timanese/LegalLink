@@ -1,0 +1,526 @@
+[
+  {
+    "case": "While dining at a local restaurant, I bit into a piece of glass that was mixed in with my food. I suffered severe injuries to my mouth and had to undergo dental treatment. The restaurant staff were unapologetic and refused to take responsibility for the incident.",
+    "grade": 7
+  },
+  {
+    "case": "I was fired from my job after reporting sexual harassment by a coworker to the HR department. The company accused me of making false allegations and terminated my employment without conducting a proper investigation.",
+    "grade": 9
+  },
+  {
+    "case": "My neighbor's dog escaped from their yard and attacked me while I was walking down the street. I sustained severe injuries, including multiple bites and scratches. The dog's owner denies responsibility, claiming that I provoked the attack.",
+    "grade": 8
+  },
+  {
+    "case": "I purchased a used car from a dealership that falsely advertised the car's history and condition. After purchasing the car, I discovered it had been in a major accident and suffered from numerous mechanical issues. The dealership refuses to take any responsibility.",
+    "grade": 7
+  },
+  {
+    "case": "I rented an apartment that was infested with mold, which the landlord failed to disclose. As a result, I developed respiratory issues and had to seek medical treatment. The landlord has refused to address the mold problem or compensate me for my medical expenses.",
+    "grade": 8
+  },
+  {
+    "case": "I invested in a company based on the recommendation of a financial advisor who falsely claimed to have insider information about an upcoming merger. As a result, I suffered significant financial losses when the stock price plummeted.",
+    "grade": 4
+  },
+  {
+    "case": "During a cosmetic surgery procedure, the surgeon made a mistake, leaving me with permanent disfigurement. The surgeon claims that the results are within the range of acceptable outcomes and refuses to take responsibility.",
+    "grade": 7
+  },
+  {
+    "case": "I slipped and fell in a grocery store due to a wet floor with no warning signs. I suffered a concussion and a fractured hip. The store management denies any responsibility, claiming that they were not aware of the wet floor.",
+    "grade": 6
+  },
+  {
+    "case": "My employer failed to pay me overtime wages for working more than 40 hours per week. They claim that my position is exempt from overtime pay, but my job duties do not meet the criteria for exemption.",
+    "grade": 8
+  },
+  {
+    "case": "I discovered that my personal information was leaked by a major corporation due to a data breach, resulting in identity theft and financial losses. The corporation has not offered any compensation to affected customers.",
+    "grade": 6
+  },
+  {
+    "case": "I hired a contractor to renovate my home, but they failed to complete the work as agreed, leaving my home in disrepair. The contractor refuses to refund my money or finish the job.",
+    "grade": 7
+  },
+  {
+    "case": "I was a pedestrian crossing the street when I was struck by a car that ran a red light. I suffered a broken leg and a concussion. The driver was found to be under the influence of alcohol and was arrested at the scene.",
+    "grade": 10
+  },
+  {
+    "case": "I purchased a defective product that caused an electrical fire in my home, resulting in significant property damage. The manufacturer is aware of the defect but has not issued a recall or offered any compensation.",
+    "grade": 9
+  },
+  {
+    "case": "I was injured at my workplace due to faulty equipment that my employer failed to maintain properly. As a result, I had to undergo surgery and was unable to work for several months. My employer denies responsibility, claiming that I misused the equipment.",
+    "grade": 8
+  },
+  {
+    "case": "I was the victim of a hit-and-run accident while riding my bicycle. The driver of the vehicle was later identified and arrested. I suffered multiple injuries, including a fractured collarbone and a concussion.",
+    "grade": 9
+  },
+  {
+    "case": "I received a prescription for medication from my doctor that caused severe side effects due to an undisclosed interaction with another medication I was taking. The doctor claims that the side effects were a rare occurrence and that they were not negligent.",
+    "grade": 6
+  },
+  {
+    "case": "A construction company working on a project near my property caused damage to my home's foundation. The company claims that the damage was pre-existing and refuses to take responsibility.",
+    "grade": 7
+  },
+  {
+    "case": "I was fired from my job for taking medical leave to care for my sick child. My employer claims that they were not aware of my child's illness and that I was terminated for poor job performance.",
+    "grade": 7
+  },
+  {
+    "case": "I was involved in a car accident in which the other driver was clearly at fault. However, their insurance company refuses to pay for the damages to my vehicle, claiming that I was partially responsible for the accident.",
+    "grade": 8
+  },
+  {
+    "case": "My ex-spouse violated the terms of our custody agreement by moving out of state with our children without my consent. They claim that the move was necessary for their job and that it is in the best interest of the children.",
+    "grade": 7
+  },
+  {
+    "case": "I purchased a home and later discovered that the seller had concealed significant structural damage during the sale process. The seller denies responsibility, claiming that they were unaware of the damage.",
+    "grade": 8
+  },
+  {
+    "case": "I was injured by a defective product that was recalled by the manufacturer after my accident. The manufacturer claims that I was using the product improperly and that my injuries were not a result of the defect.",
+    "grade": 6
+  },
+  {
+    "case": "I was a victim of a scam by a fraudulent investment company, resulting in significant financial losses. The individuals responsible for the scam have been arrested, but the company's assets have been frozen and it is unclear if I will be able to recover any of my losses.",
+    "grade": 5
+  },
+  {
+    "case": "I visited a store and tripped on a poorly maintained staircase. I suffered a sprained ankle and bruises. The store owner claims they were not aware of the staircase's poor condition and refuses to take responsibility.",
+    "grade": 6
+  },
+  {
+    "case": "My personal information was stolen during a data breach at my bank, resulting in fraudulent charges on my account. The bank has reimbursed me for the charges but has not offered any compensation for the stress and inconvenience caused by the breach.",
+    "grade": 5
+  },
+  {
+    "case": "I underwent a medical procedure and contracted a serious infection due to unsanitary conditions at the hospital. The hospital claims that the infection was an isolated incident and that they followed all necessary protocols.",
+    "grade": 8
+  },
+  {
+    "case": "I hired a moving company to transport my belongings to my new home, and several valuable items were damaged during the move. The moving company denies responsibility, claiming that the damage was a result of improper packing.",
+    "grade": 5
+  },
+  {
+    "case": "My landlord failed to make necessary repairs to my apartment, resulting in water damage and mold growth. The landlord claims that they were unaware of the issue and that I should have reported it sooner.",
+    "grade": 7
+  },
+  {
+    "case": "I was injured at a theme park when a ride malfunctioned. The theme park claims that I ignored safety warnings and that the accident was my fault.",
+    "grade": 6
+  },
+  {
+    "case": "I purchased a defective appliance that caused a small fire in my home. The manufacturer has issued a recall for the product but refuses to compensate me for the damages caused by the fire.",
+    "grade": 7
+  },
+  {
+    "case": "I was discriminated against at my workplace due to my religious beliefs. My employer denies any discrimination and claims that my job performance was the reason for my negative treatment.",
+    "grade": 7
+  },
+  {
+    "case": "My insurance company refuses to cover the cost of medical treatment for a pre-existing condition, despite the fact that I was not aware of the condition when I purchased the policy. The company claims that I failed to disclose the information during the application process.",
+    "grade": 6
+  },
+  {
+    "case": "I was involved in a car accident caused by a distracted driver who was texting while driving. The driver's insurance company is disputing the extent of my injuries and offering a low settlement amount.",
+    "grade": 8
+  },
+  {
+    "case": "My home was damaged by a construction company that was working on a project adjacent to my property. The company claims that the damage was caused by natural wear and tear and refuses to take responsibility.",
+    "grade": 6
+  },
+  {
+    "case": "I was denied a promotion at work due to my age. My employer claims that the decision was based on my job performance, not my age.",
+    "grade": 7
+  },
+  {
+    "case": "I was injured at a gym when a piece of exercise equipment malfunctioned. The gym claims that I was using the equipment improperly and that the accident was my fault.",
+    "grade": 6
+  },
+  {
+    "case": "I was a passenger in a rideshare vehicle that was involved in an accident caused by the driver's negligence. I suffered a whiplash injury and missed several days of work. The rideshare company is offering a low settlement amount.",
+    "grade": 8
+  },
+  {
+    "case": "I hired a contractor to build an addition to my home, but the work was substandard and did not pass inspection. The contractor refuses to fix the issues or refund my money, claiming that the problems are due to the age of my home.",
+    "grade": 7
+  },
+  {
+    "case": "I was bitten by a dog at a public park. The dog's owner claims that I provoked the attack and refuses to take responsibility for my injuries.",
+    "grade": 6
+  },
+  {
+    "case": "I was denied a job opportunity because of my race. The employer claims that the decision was based on my qualifications, not my race.",
+    "grade": 7
+  },
+  {
+    "case": "I purchased a home and later discovered that the previous owner had removed valuable fixtures and appliances before the sale, which were not disclosed in the contract. The previous owner denies responsibility, claiming that the items were not included in the sale.",
+    "grade": 7
+  },
+  {
+    "case": "I underwent a medical procedure that resulted in permanent nerve damage. The doctor claims that the damage was an unavoidable risk of the procedure and refuses to take responsibility.",
+    "grade": 6
+  },
+  {
+    "case": "I was injured at a hotel when I slipped on a wet floor near the pool area. The hotel claims that they had placed warning signs in the area and that the accident was my fault.",
+    "grade": 5
+  },
+  {
+    "case": "My child was injured at school due to the negligence of a teacher who failed to supervise the children properly. The school claims that the injury was a result of normal playground activity and refuses to take responsibility.",
+    "grade": 7
+  },
+  {
+    "case": "I was defrauded by an online seller who never delivered the goods I purchased. The seller has disappeared, and it is unclear if I will be able to recover any of my money.",
+    "grade": 4
+  },
+  {
+    "case": "I was fired from my job after taking time off to care for my disabled spouse. My employer claims that my termination was due to poor job performance and not related to my time off.",
+    "grade": 7
+  },
+  {
+    "case": "I purchased a car from a private seller who misrepresented the vehicle's condition. The seller refuses to refund my money or take responsibility for the misrepresentation.",
+    "grade": 6
+  },
+  {
+    "case": "I was injured at a concert when a stage prop fell on me. The concert venue claims that the accident was an unforeseeable event and refuses to take responsibility for my injuries.",
+    "grade": 5
+  },
+  {
+    "case": "I tripped on an uneven sidewalk and suffered minor scrapes. There were no warning signs, but the sidewalk's condition was clearly visible, and I was using my phone while walking.",
+    "grade": 1
+  },
+  {
+    "case": "I experienced a long wait at a restaurant and did not receive an apology from the staff. I found the service to be unprofessional, but there were no other damages or financial losses.",
+    "grade": 1
+  },
+  {
+    "case": "I purchased a product that I later found cheaper at another store. I am unhappy with the price difference, but there was no false advertising or fraud involved in the original purchase.",
+    "grade": 1
+  },
+  {
+    "case": "I was fired from my job after multiple warnings about my poor job performance. I believe my employer was unfair, but there is documented evidence of my unsatisfactory work.",
+    "grade": 1
+  },
+  {
+    "case": "I visited a public park and encountered a swarm of mosquitoes that left me with several itchy bites. There were no signs warning about the mosquitoes, but it's a common issue in outdoor spaces.",
+    "grade": 1
+  },
+  {
+    "case": "I ordered food for delivery, but it arrived cold. The delivery person apologized and explained that they were delayed due to traffic. There were no other damages or losses.",
+    "grade": 1
+  },
+  {
+    "case": "I received a minor burn from touching a hot plate at a buffet restaurant. The plate was on a warming tray, and there were no signs warning about the hot surface, but it was reasonably foreseeable.",
+    "grade": 1
+  },
+  {
+    "case": "I was not satisfied with the haircut I received at a salon. The stylist followed my instructions, but the result did not meet my expectations. There was no damage or harm done to my hair.",
+    "grade": 1
+  },
+  {
+    "case": "I slipped on a wet floor in a store but did not suffer any injuries. There were no warning signs, but the floor had just been mopped by an employee who was still nearby.",
+    "grade": 1
+  },
+  {
+    "case": "I purchased a ticket for a concert that was later canceled due to bad weather. The event organizers offered a full refund, but I am unhappy that the concert did not take place.",
+    "grade": 1
+  },
+  {
+    "case": "I stayed at a hotel and found the bed to be uncomfortable, resulting in a poor night's sleep. The hotel was not responsible for my personal comfort preferences, and there were no other issues during my stay.",
+    "grade": 1
+  },
+  {
+    "case": "I was given a parking ticket for parking in a no-parking zone. I believe the signage was unclear, but there is photographic evidence showing the sign and my car parked in the restricted area.",
+    "grade": 1
+  },
+  {
+    "case": "I lost my job after my employer went out of business. I believe the company's poor management led to its downfall, but there is no legal wrongdoing or liability on the part of the employer.",
+    "grade": 1
+  },
+  {
+    "case": "I tripped over my own untied shoelace in a store and suffered a sprained wrist. There were no hazards on the floor, and the store was well-lit and clean.",
+    "grade": 2
+  },
+  {
+    "case": "I attended a loud concert and experienced temporary hearing loss afterward. There were no warnings about the volume, but it is common knowledge that concerts can be loud.",
+    "grade": 2
+  },
+  {
+    "case": "I purchased an item online that I later found to be of lower quality than I expected. The product's description was accurate, but my expectations were too high.",
+    "grade": 2
+  },
+  {
+    "case": "I was let go from my job after a company-wide downsizing. I believe I was more qualified than some colleagues who were retained, but the decision was made based on the employer's discretion.",
+    "grade": 2
+  },
+  {
+    "case": "I received a minor sunburn while sitting on a bench at a public park. There were no shaded areas or signs warning about sun exposure, but sunburns are a well-known risk of being outdoors.",
+    "grade": 2
+  },
+  {
+    "case": "My food delivery order was incorrect, and I received an item I did not order. The restaurant promptly corrected the mistake, but I experienced a delay in receiving my preferred meal.",
+    "grade": 2
+  },
+  {
+    "case": "I accidentally scratched my car while parking in a tight parking spot. There were no signs warning about the narrow spaces, but I was responsible for judging the available space.",
+    "grade": 2
+  },
+  {
+    "case": "My neighbor's dog barks loudly in the early morning, occasionally waking me up. The noise is annoying, but the dog is well-cared for and does not pose a threat or nuisance.",
+    "grade": 2
+  },
+  {
+    "case": "I received a package delivery that was left outside my door in the rain, causing the packaging to become wet. The contents of the package were not damaged, but I was unhappy with the delivery.",
+    "grade": 2
+  },
+  {
+    "case": "I purchased a pair of shoes that caused blisters after wearing them for a few hours. The shoes were the correct size and not defective, but they did not fit my feet comfortably.",
+    "grade": 2
+  },
+  {
+    "case": "I attended a party where I did not enjoy the food or the company. The host did not do anything wrong, but I did not have a good time.",
+    "grade": 2
+  },
+  {
+    "case": "I was stuck in an elevator for 10 minutes due to a temporary power outage. There were no warnings or signs about the outage, but it was a brief and isolated incident.",
+    "grade": 2
+  },
+  {
+    "case": "I visited a museum and found the exhibits to be uninteresting and poorly curated. The museum did not misrepresent the exhibits, but my personal preferences were not satisfied.",
+    "grade": 2
+  },
+  {
+    "case": "I slipped on a small puddle of water in a grocery store, but managed to catch myself and avoid injury. There were no warning signs, but the puddle was small and could have been easily overlooked.",
+    "grade": 3
+  },
+  {
+    "case": "I received a traffic ticket for running a red light, but I believe the light was yellow when I entered the intersection. The traffic camera evidence is inconclusive.",
+    "grade": 3
+  },
+  {
+    "case": "I experienced a brief power outage at my apartment, causing me to miss part of my favorite TV show. The power company had not announced any planned outages, but brief outages can occur without warning.",
+    "grade": 3
+  },
+  {
+    "case": "I hired a landscaper to trim my trees, but they accidentally cut a few branches too short. The trees are not permanently damaged, but the aesthetic is affected.",
+    "grade": 3
+  },
+  {
+    "case": "I purchased a concert ticket, but the view from my seat was partially obstructed. The ticket did not specify that the view would be obstructed, but I could still see most of the stage.",
+    "grade": 3
+  },
+  {
+    "case": "I rented a car and found the previous renter's trash left in the vehicle. The rental company apologized and offered a small discount on my rental, but I still had to clean the car myself.",
+    "grade": 3
+  },
+  {
+    "case": "I ate at a restaurant and found a small piece of plastic in my food. The restaurant apologized and offered a free dessert, but I was still disappointed with my meal.",
+    "grade": 3
+  },
+  {
+    "case": "I ordered an item online, and the shipping took longer than expected. The seller did not provide a specific delivery date, and there was no guarantee of a delivery time.",
+    "grade": 3
+  },
+  {
+    "case": "I was unhappy with the service I received from a cell phone provider, but there was no breach of contract or false advertising. I had the option to switch providers at any time.",
+    "grade": 3
+  },
+  {
+    "case": "I stayed at a hotel where the room temperature was difficult to regulate. The hotel staff attempted to fix the issue, but I experienced an uncomfortable night's sleep.",
+    "grade": 3
+  },
+  {
+    "case": "I received a product with minor cosmetic damage. The seller offered a partial refund, but I believe I deserve a full refund. The product is still functional and the damage does not affect its use.",
+    "grade": 3
+  },
+  {
+    "case": "I took a taxi and the driver took a longer route than necessary. The fare was higher than expected, but the driver claimed they were avoiding traffic.",
+    "grade": 3
+  },
+  {
+    "case": "I was not satisfied with a dental cleaning I received. The dentist did not cause any harm, but I believe they could have done a better job.",
+    "grade": 3
+  },
+  {
+    "case": "I bought a shirt that shrank after the first wash, despite following the care instructions. The shirt is still wearable, but the fit is not as comfortable.",
+    "grade": 3
+  },
+  {
+    "case": "I was served an undercooked meal at a restaurant. I didn't eat it and the restaurant offered a full refund, but I believe I should receive compensation for the inconvenience.",
+    "grade": 4
+  },
+  {
+    "case": "I rented a vacation home that was not as clean as I expected. The property manager offered to send a cleaning crew, but I had already started cleaning myself.",
+    "grade": 4
+  },
+  {
+    "case": "I had a minor fender bender in a parking lot. The other driver and I agreed to handle the damages without involving insurance, but they have not paid for my repairs as promised.",
+    "grade": 4
+  },
+  {
+    "case": "I purchased a gym membership but the gym later closed for renovations without notice. They offered to extend my membership for the duration of the closure, but I was unable to use the gym during that time.",
+    "grade": 4
+  },
+  {
+    "case": "I hired a contractor to paint my house, and they left a small section unfinished. The contractor claimed they ran out of paint, but I believe they should have purchased more.",
+    "grade": 4
+  },
+  {
+    "case": "I was charged an unexpected fee when checking out of a hotel. The fee was disclosed in the fine print of the booking, but I believe it should have been more prominently displayed.",
+    "grade": 4
+  },
+  {
+    "case": "I received a package with slight damage to the contents. The seller offered a partial refund, but I believe the shipping company should be held responsible for the damage.",
+    "grade": 4
+  },
+  {
+    "case": "I attended a sporting event and a fan sitting behind me spilled their drink on me. The venue staff helped me clean up, but I believe the fan should be held responsible for the incident.",
+    "grade": 4
+  },
+  {
+    "case": "I bought an electronic device that malfunctioned after a few months. The warranty covered the repair, but I believe I should receive a new replacement instead.",
+    "grade": 4
+  },
+  {
+    "case": "I was bitten by a dog while walking in my neighborhood. The bite was minor and the dog's owner apologized, but I believe they should be held responsible for the incident.",
+    "grade": 4
+  },
+  {
+    "case": "I took a flight that was delayed due to weather, causing me to miss a connecting flight. The airline rebooked me on another flight, but I believe I deserve compensation for the inconvenience.",
+    "grade": 4
+  },
+  {
+    "case": "I had a negative experience with a medical professional, but there was no malpractice or negligence. I believe I deserve compensation for the emotional distress I experienced.",
+    "grade": 4
+  },
+  {
+    "case": "I purchased a product that failed to meet my expectations, even though it was accurately described and not defective. I believe the manufacturer should be held responsible for my dissatisfaction.",
+    "grade": 4
+  },
+  {
+    "case": "My neighbor's tree branches are encroaching on my property, but they have not caused any damage or posed a hazard. I believe my neighbor should be responsible for trimming the branches.",
+    "grade": 4
+  },
+  {
+    "case": "I was involved in a car accident where both drivers may share responsibility. The other driver was speeding, but I failed to signal before changing lanes.",
+    "grade": 5
+  },
+  {
+    "case": "I slipped on a wet floor in a store, but there was a warning sign present. I believe the sign was not clearly visible and the store should be held responsible for my injury.",
+    "grade": 5
+  },
+  {
+    "case": "I experienced side effects from a medication that were not listed on the label. The side effects were not severe, but I believe the drug manufacturer should have provided a more comprehensive warning.",
+    "grade": 5
+  },
+  {
+    "case": "I hired a contractor who did not complete the job on time. The contractor had a valid reason for the delay, but I believe they should still be held responsible for the inconvenience.",
+    "grade": 5
+  },
+  {
+    "case": "My neighbor's tree fell on my property, causing damage to my fence. The tree appeared healthy before it fell, but I believe my neighbor should be held responsible for the damages.",
+    "grade": 5
+  },
+  {
+    "case": "I purchased a product that malfunctioned shortly after the warranty period ended. I believe the manufacturer should still be held responsible for the faulty product.",
+    "grade": 5
+  },
+  {
+    "case": "My internet service provider has frequent outages, causing disruptions to my work-from-home job. The provider acknowledges the issue, but I believe I should receive compensation for the inconvenience.",
+    "grade": 5
+  },
+  {
+    "case": "I was charged a cancellation fee for a service I never agreed to. The company claims I agreed to the service during a phone call, but I believe the representative did not properly explain the terms.",
+    "grade": 5
+  },
+  {
+    "case": "I received a parking ticket even though the parking sign was obscured by foliage. I believe the city should be held responsible for not maintaining the visibility of the sign.",
+    "grade": 5
+  },
+  {
+    "case": "I was injured while using a piece of exercise equipment at a gym. The equipment did not have any warning labels, but I may not have been using it properly.",
+    "grade": 5
+  },
+  {
+    "case": "I was let go from my job due to alleged poor performance, but I believe my termination was unjust. My employer did not provide clear performance guidelines or sufficient feedback.",
+    "grade": 5
+  },
+  {
+    "case": "I stayed at a hotel and experienced a bed bug infestation in my room. The hotel moved me to another room and refunded my stay, but I believe I deserve compensation for the inconvenience and potential health risks.",
+    "grade": 5
+  },
+  {
+    "case": "I purchased a used car that had undisclosed mechanical issues. The seller claims they were unaware of the problems, but I believe they should be held responsible for the repair costs.",
+    "grade": 5
+  },
+  {
+    "case": "My apartment building has ongoing issues with noise from a neighboring construction site. The construction company has permits to work during daytime hours, but I believe they should be held responsible for the disturbance.",
+    "grade": 5
+  },
+  {
+    "case": "I was injured in a car accident where the other driver failed to yield at an intersection. The other driver claims I was speeding, but there is no concrete evidence to support their claim.",
+    "grade": 6
+  },
+  {
+    "case": "I purchased a product that caused an allergic reaction, even though I carefully checked the ingredients for allergens. The manufacturer may have failed to disclose all ingredients.",
+    "grade": 6
+  },
+  {
+    "case": "I hired a contractor who failed to obtain proper permits for a home renovation project. The contractor claims it was my responsibility, but we never discussed this during the planning phase.",
+    "grade": 6
+  },
+  {
+    "case": "My landlord failed to repair a leaking pipe in my apartment, resulting in water damage to my personal belongings. The landlord claims they were not aware of the issue, but I have evidence of multiple complaints.",
+    "grade": 6
+  },
+  {
+    "case": "I was bitten by a dog while jogging in a public park. The dog was unleashed and not under the owner's control at the time of the incident.",
+    "grade": 6
+  },
+  {
+    "case": "I was charged for a service I did not receive. The service provider claims it was an administrative error, but they have not refunded my money after multiple requests.",
+    "grade": 6
+  },
+  {
+    "case": "I was unfairly passed over for a promotion at work. I believe my employer made the decision based on personal bias, rather than evaluating my performance and qualifications.",
+    "grade": 6
+  },
+  {
+    "case": "I experienced food poisoning after eating at a restaurant. The restaurant denies responsibility, but I have evidence that their food handling practices may have contributed to my illness.",
+    "grade": 6
+  },
+  {
+    "case": "My home was damaged during a storm due to a tree falling from my neighbor's property. The tree had visible signs of decay, but my neighbor failed to address the issue.",
+    "grade": 6
+  },
+  {
+    "case": "I had a medical procedure performed that resulted in complications. The healthcare provider did not adequately explain the potential risks before obtaining my consent.",
+    "grade": 6
+  },
+  {
+    "case": "I purchased an item online that arrived significantly different from the description and photos. The seller refuses to issue a refund or exchange.",
+    "grade": 6
+  },
+  {
+    "case": "My personal information was compromised in a data breach involving a company I had done business with. The company failed to adequately protect my information and notify me in a timely manner.",
+    "grade": 6
+  },
+  {
+    "case": "I was terminated from my job without just cause, and my employer failed to provide adequate notice or severance pay as required by law.",
+    "grade": 6
+  },
+  {
+    "case": "I rented an apartment that was infested with pests. The landlord claims the issue was not present before I moved in, but I have evidence that the problem existed prior to my tenancy.",
+    "grade": 6
+  },
+  {
+    "case": "I was injured on a poorly maintained sidewalk in my neighborhood. The city has neglected to repair the sidewalk despite multiple complaints from residents.",
+    "grade": 6
+  }
+]
