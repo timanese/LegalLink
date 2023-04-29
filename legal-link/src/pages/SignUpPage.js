@@ -42,10 +42,10 @@ export default function SignUpPage() {
         >
           <img
             src={logo}
-            style={{ height: 100, width: 300, paddingBottom: 0 }}
+            style={{ height: 100, width: 300, marginBottom: 30 }}
             alt="LegalLink Logo"
           />
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar sx={{ m: 1, bgcolor: "#2257bf" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -107,9 +107,9 @@ export default function SignUpPage() {
                 name="row-radio-buttons-group"
               >
                 <FormControlLabel
-                  value="lawyer"
+                  value="attorney"
                   control={<Radio />}
-                  label="Lawyer"
+                  label="Attorney"
                 />
                 <FormControlLabel
                   value="client"
