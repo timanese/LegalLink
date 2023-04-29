@@ -19,6 +19,8 @@ import MessageList from "../components/List";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ProgressMeter from "../components/ProgressMeter";
+import { MOCK_CASE_STEPS } from "../mock-data/mockData";
 
 const drawerWidth = 240;
 
@@ -170,7 +172,7 @@ function ClientCaseView() {
                   }}
                 >
                   <Typography variant="h4">Next Steps</Typography>
-                  <MessageList messages={undefined} />
+                  <ProgressMeter steps={MOCK_CASE_STEPS} />
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
