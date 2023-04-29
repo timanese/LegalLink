@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import SignInPage from "./pages/SignInPage";
 import MainPage from "./components/MainPage";
 import { AuthContext } from "./context/AuthContext";
+import SignInPage from "./pages/SignInPage";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
