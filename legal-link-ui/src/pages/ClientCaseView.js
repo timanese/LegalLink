@@ -12,16 +12,21 @@ import Paper from "@mui/material/Paper";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
+import axios from "axios";
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import FileList from "../components/FileList";
 import FileUploadManager from "../components/FileUploadManager";
-import MessageList from "../components/List";
+import ProgressMeter from "../components/ProgressMeter";
+import { MOCK_CASE_STEPS } from "../mock-data/mockData";
 
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
+  backgroundColor: "#2257bf",
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
@@ -41,6 +46,21 @@ const mdTheme = createTheme();
 
 function ClientCaseView() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [data, setData] = useState([]);
+
+  // location.state.value
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/api/cases/get/${location?.state?.value}`)
+      .then((res) => {
+        setData(res.data.data.getCase);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [location?.state?.value]);
+
   const [files, setFiles] = React.useState([]);
 
   const handleChange = (event) => {
@@ -68,7 +88,7 @@ function ClientCaseView() {
     const updatedFiles = files.filter((file, i) => i !== index);
     setFiles(updatedFiles);
   };
-
+  console.log(data);
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -92,9 +112,9 @@ function ClientCaseView() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              {data?.title} STATUS: {data?.status}
             </Typography>
-            <Button variant="contained " onClick={() => {}}>
+            <Button variant="contained" onClick={() => {}}>
               Log Out
             </Button>
           </Toolbar>
@@ -132,38 +152,10 @@ function ClientCaseView() {
                   >
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
-                        kdljdkjfks
+                        {data?.title}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum. Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis nostrud exercitation ullamco laboris
-                        nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                        dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est laborum. Lorem ipsum dolor
-                        sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut
-                        enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis
-                        aute irure dolor in reprehenderit in voluptate velit
-                        esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                        sint occaecat cupidatat non proident, sunt in culpa qui
-                        officia deserunt mollit anim id est laborum. Lorem ipsum
-                        dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        {data?.description}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -179,8 +171,10 @@ function ClientCaseView() {
                     overflow: "auto",
                   }}
                 >
-                  <Typography variant="h4">Next Steps</Typography>
-                  <MessageList messages={[]} />
+                  <Typography variant="h4">Case Progress</Typography>
+                  <Box sx={{ my: 2 }}>
+                    <ProgressMeter steps={MOCK_CASE_STEPS} activeStep={0} />
+                  </Box>
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
@@ -196,17 +190,13 @@ function ClientCaseView() {
                   <Box
                     sx={{
                       display: "flex",
-                      alignItems: "center",
                       flexDirection: "column",
                     }}
                   >
                     <Typography variant="h4" sx={{ mr: 1 }}>
                       Download Files
                     </Typography>
-                    <MessageList messages={[]}></MessageList>
-                    <Button variant="contained " onClick={() => {}}>
-                      Download
-                    </Button>
+                    <FileList files={[]} />
                   </Box>
                   <Box
                     sx={{

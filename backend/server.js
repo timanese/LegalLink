@@ -53,10 +53,4 @@ app.use("/api/mail", mailRoutes);
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, async () => {
   console.log(`Server started on port ${PORT}`);
-  // Replace 'caseDescription' with the actual description you want to use
-  const caseDescription =
-    "'I rented an apartment that was infested with mold, which the landlord failed to disclose. As a result, I developed respiratory issues and had to seek medical treatment. The landlord has refused to address the mold problem or compensate me for my medical expenses.";
-
-  const response = await generateText(caseDescription);
-  console.log("AI response:", response);
 });

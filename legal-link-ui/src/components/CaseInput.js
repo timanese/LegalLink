@@ -25,9 +25,9 @@ function InputAndUpload({ onSendMessage }) {
     setFiles([]);
   };
 
-  const handleFileChange = (event) => {
-    setFiles([...event.target.files]);
-  };
+  // const handleFileChange = (event) => {
+  //   setFiles([...event.target.files]);
+  // };
 
   const handleChange = (event) => {
     console.log(...event.target.files);

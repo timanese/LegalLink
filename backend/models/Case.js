@@ -1,6 +1,6 @@
 // models/Case.js
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const caseSchema = new mongoose.Schema({
     clientID: {
@@ -27,15 +27,18 @@ const caseSchema = new mongoose.Schema({
     },
     valueGrade: Number,
     mmProbability: Number,
+    gradeExplanation: String,
+    greenFlags: String,
+    redFlags: String,
     fileIds: {
         type: [String],
-        default: []
+        default: [],
     },
     createdAt: {
         type: Date,
-        default: Date.now
-    }
+        default: Date.now,
+    },
 });
 
-const Case = mongoose.model('Case', caseSchema);
+const Case = mongoose.model("Case", caseSchema);
 module.exports = Case;

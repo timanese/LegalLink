@@ -29,7 +29,7 @@ export default function FileUploadManager(props) {
                 <InsertDriveFileIcon />
               </ListItemIcon>
               <ListItemText>
-                {file.fullPath != undefined ? file.fullPath : file.file.name}
+                {file.fullPath !== undefined ? file.fullPath : file.file.name}
               </ListItemText>
             </ListItemButton>
           </ListItem>
