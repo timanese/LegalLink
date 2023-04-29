@@ -1,24 +1,23 @@
-import * as React from "react";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
+import "@github/file-attachment-element";
+import RefreshIcon from "@mui/icons-material/Refresh";
 import MuiAppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import CaseTable from "../components/Table";
-import Button from "@mui/material/Button";
-import MessageList from "../components/List";
-import MessageInput from "../components/CaseInput";
-import IconButton from "@mui/material/IconButton";
-import RefreshIcon from "@mui/icons-material/Refresh";
-import '@github/file-attachment-element'
-import { AuthContext } from "../context/AuthContext";
-import { useContext } from "react";
+import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import * as React from "react";
+import { useContext, useEffect, useState } from "react";
+import MessageInput from "../components/CaseInput";
+import MessageList from "../components/List";
+import CaseTable from "../components/Table";
+import { AuthContext } from "../context/AuthContext";
 
 const drawerWidth = 240;
 
@@ -43,7 +42,8 @@ const AppBar = styled(MuiAppBar, {
 const mdTheme = createTheme();
 
 function DashboardContent() {
-  const { setIsLoggedIn, setClientId, clientId, setUserType } = useContext(AuthContext);
+  const { setIsLoggedIn, setClientId, clientId, setUserType } =
+    useContext(AuthContext);
 
   // Grab all mail for a client
   const [mail, setMail] = useState([]);
@@ -75,11 +75,14 @@ function DashboardContent() {
             >
               Dashboard
             </Typography>
-            <Button variant="contained " onClick={() => {
-              setIsLoggedIn(false);
-              setClientId("");
-              setUserType("");
-            }}>
+            <Button
+              variant="contained "
+              onClick={() => {
+                setIsLoggedIn(false);
+                setClientId("");
+                setUserType("");
+              }}
+            >
               Log Out
             </Button>
           </Toolbar>
@@ -157,7 +160,7 @@ function DashboardContent() {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 400,
+                    height: 500,
                     overflow: "auto",
                   }}
                 >
