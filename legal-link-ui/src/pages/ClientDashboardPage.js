@@ -58,7 +58,7 @@ function DashboardContent() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [clientId]);
 
   return (
     <ThemeProvider theme={mdTheme}>
