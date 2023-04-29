@@ -190,5 +190,221 @@
   {
     "case": "I was injured at a concert when a stage prop fell on me. The concert venue claims that the accident was an unforeseeable event and refuses to take responsibility for my injuries.",
     "grade": 5
+  },
+  {
+    "case": "I tripped on an uneven sidewalk and suffered minor scrapes. There were no warning signs, but the sidewalk's condition was clearly visible, and I was using my phone while walking.",
+    "grade": 1
+  },
+  {
+    "case": "I experienced a long wait at a restaurant and did not receive an apology from the staff. I found the service to be unprofessional, but there were no other damages or financial losses.",
+    "grade": 1
+  },
+  {
+    "case": "I purchased a product that I later found cheaper at another store. I am unhappy with the price difference, but there was no false advertising or fraud involved in the original purchase.",
+    "grade": 1
+  },
+  {
+    "case": "I was fired from my job after multiple warnings about my poor job performance. I believe my employer was unfair, but there is documented evidence of my unsatisfactory work.",
+    "grade": 1
+  },
+  {
+    "case": "I visited a public park and encountered a swarm of mosquitoes that left me with several itchy bites. There were no signs warning about the mosquitoes, but it's a common issue in outdoor spaces.",
+    "grade": 1
+  },
+  {
+    "case": "I ordered food for delivery, but it arrived cold. The delivery person apologized and explained that they were delayed due to traffic. There were no other damages or losses.",
+    "grade": 1
+  },
+  {
+    "case": "I received a minor burn from touching a hot plate at a buffet restaurant. The plate was on a warming tray, and there were no signs warning about the hot surface, but it was reasonably foreseeable.",
+    "grade": 1
+  },
+  {
+    "case": "I was not satisfied with the haircut I received at a salon. The stylist followed my instructions, but the result did not meet my expectations. There was no damage or harm done to my hair.",
+    "grade": 1
+  },
+  {
+    "case": "I slipped on a wet floor in a store but did not suffer any injuries. There were no warning signs, but the floor had just been mopped by an employee who was still nearby.",
+    "grade": 1
+  },
+  {
+    "case": "I purchased a ticket for a concert that was later canceled due to bad weather. The event organizers offered a full refund, but I am unhappy that the concert did not take place.",
+    "grade": 1
+  },
+  {
+    "case": "I stayed at a hotel and found the bed to be uncomfortable, resulting in a poor night's sleep. The hotel was not responsible for my personal comfort preferences, and there were no other issues during my stay.",
+    "grade": 1
+  },
+  {
+    "case": "I was given a parking ticket for parking in a no-parking zone. I believe the signage was unclear, but there is photographic evidence showing the sign and my car parked in the restricted area.",
+    "grade": 1
+  },
+  {
+    "case": "I lost my job after my employer went out of business. I believe the company's poor management led to its downfall, but there is no legal wrongdoing or liability on the part of the employer.",
+    "grade": 1
+  },
+  {
+    "case": "I tripped over my own untied shoelace in a store and suffered a sprained wrist. There were no hazards on the floor, and the store was well-lit and clean.",
+    "grade": 2
+  },
+  {
+    "case": "I attended a loud concert and experienced temporary hearing loss afterward. There were no warnings about the volume, but it is common knowledge that concerts can be loud.",
+    "grade": 2
+  },
+  {
+    "case": "I purchased an item online that I later found to be of lower quality than I expected. The product's description was accurate, but my expectations were too high.",
+    "grade": 2
+  },
+  {
+    "case": "I was let go from my job after a company-wide downsizing. I believe I was more qualified than some colleagues who were retained, but the decision was made based on the employer's discretion.",
+    "grade": 2
+  },
+  {
+    "case": "I received a minor sunburn while sitting on a bench at a public park. There were no shaded areas or signs warning about sun exposure, but sunburns are a well-known risk of being outdoors.",
+    "grade": 2
+  },
+  {
+    "case": "My food delivery order was incorrect, and I received an item I did not order. The restaurant promptly corrected the mistake, but I experienced a delay in receiving my preferred meal.",
+    "grade": 2
+  },
+  {
+    "case": "I accidentally scratched my car while parking in a tight parking spot. There were no signs warning about the narrow spaces, but I was responsible for judging the available space.",
+    "grade": 2
+  },
+  {
+    "case": "My neighbor's dog barks loudly in the early morning, occasionally waking me up. The noise is annoying, but the dog is well-cared for and does not pose a threat or nuisance.",
+    "grade": 2
+  },
+  {
+    "case": "I received a package delivery that was left outside my door in the rain, causing the packaging to become wet. The contents of the package were not damaged, but I was unhappy with the delivery.",
+    "grade": 2
+  },
+  {
+    "case": "I purchased a pair of shoes that caused blisters after wearing them for a few hours. The shoes were the correct size and not defective, but they did not fit my feet comfortably.",
+    "grade": 2
+  },
+  {
+    "case": "I attended a party where I did not enjoy the food or the company. The host did not do anything wrong, but I did not have a good time.",
+    "grade": 2
+  },
+  {
+    "case": "I was stuck in an elevator for 10 minutes due to a temporary power outage. There were no warnings or signs about the outage, but it was a brief and isolated incident.",
+    "grade": 2
+  },
+  {
+    "case": "I visited a museum and found the exhibits to be uninteresting and poorly curated. The museum did not misrepresent the exhibits, but my personal preferences were not satisfied.",
+    "grade": 2
+  },
+  {
+    "case": "I slipped on a small puddle of water in a grocery store, but managed to catch myself and avoid injury. There were no warning signs, but the puddle was small and could have been easily overlooked.",
+    "grade": 3
+  },
+  {
+    "case": "I received a traffic ticket for running a red light, but I believe the light was yellow when I entered the intersection. The traffic camera evidence is inconclusive.",
+    "grade": 3
+  },
+  {
+    "case": "I experienced a brief power outage at my apartment, causing me to miss part of my favorite TV show. The power company had not announced any planned outages, but brief outages can occur without warning.",
+    "grade": 3
+  },
+  {
+    "case": "I hired a landscaper to trim my trees, but they accidentally cut a few branches too short. The trees are not permanently damaged, but the aesthetic is affected.",
+    "grade": 3
+  },
+  {
+    "case": "I purchased a concert ticket, but the view from my seat was partially obstructed. The ticket did not specify that the view would be obstructed, but I could still see most of the stage.",
+    "grade": 3
+  },
+  {
+    "case": "I rented a car and found the previous renter's trash left in the vehicle. The rental company apologized and offered a small discount on my rental, but I still had to clean the car myself.",
+    "grade": 3
+  },
+  {
+    "case": "I ate at a restaurant and found a small piece of plastic in my food. The restaurant apologized and offered a free dessert, but I was still disappointed with my meal.",
+    "grade": 3
+  },
+  {
+    "case": "I ordered an item online, and the shipping took longer than expected. The seller did not provide a specific delivery date, and there was no guarantee of a delivery time.",
+    "grade": 3
+  },
+  {
+    "case": "I was unhappy with the service I received from a cell phone provider, but there was no breach of contract or false advertising. I had the option to switch providers at any time.",
+    "grade": 3
+  },
+  {
+    "case": "I stayed at a hotel where the room temperature was difficult to regulate. The hotel staff attempted to fix the issue, but I experienced an uncomfortable night's sleep.",
+    "grade": 3
+  },
+  {
+    "case": "I received a product with minor cosmetic damage. The seller offered a partial refund, but I believe I deserve a full refund. The product is still functional and the damage does not affect its use.",
+    "grade": 3
+  },
+  {
+    "case": "I took a taxi and the driver took a longer route than necessary. The fare was higher than expected, but the driver claimed they were avoiding traffic.",
+    "grade": 3
+  },
+  {
+    "case": "I was not satisfied with a dental cleaning I received. The dentist did not cause any harm, but I believe they could have done a better job.",
+    "grade": 3
+  },
+  {
+    "case": "I bought a shirt that shrank after the first wash, despite following the care instructions. The shirt is still wearable, but the fit is not as comfortable.",
+    "grade": 3
+  },
+  {
+    "case": "I was served an undercooked meal at a restaurant. I didn't eat it and the restaurant offered a full refund, but I believe I should receive compensation for the inconvenience.",
+    "grade": 4
+  },
+  {
+    "case": "I rented a vacation home that was not as clean as I expected. The property manager offered to send a cleaning crew, but I had already started cleaning myself.",
+    "grade": 4
+  },
+  {
+    "case": "I had a minor fender bender in a parking lot. The other driver and I agreed to handle the damages without involving insurance, but they have not paid for my repairs as promised.",
+    "grade": 4
+  },
+  {
+    "case": "I purchased a gym membership but the gym later closed for renovations without notice. They offered to extend my membership for the duration of the closure, but I was unable to use the gym during that time.",
+    "grade": 4
+  },
+  {
+    "case": "I hired a contractor to paint my house, and they left a small section unfinished. The contractor claimed they ran out of paint, but I believe they should have purchased more.",
+    "grade": 4
+  },
+  {
+    "case": "I was charged an unexpected fee when checking out of a hotel. The fee was disclosed in the fine print of the booking, but I believe it should have been more prominently displayed.",
+    "grade": 4
+  },
+  {
+    "case": "I received a package with slight damage to the contents. The seller offered a partial refund, but I believe the shipping company should be held responsible for the damage.",
+    "grade": 4
+  },
+  {
+    "case": "I attended a sporting event and a fan sitting behind me spilled their drink on me. The venue staff helped me clean up, but I believe the fan should be held responsible for the incident.",
+    "grade": 4
+  },
+  {
+    "case": "I bought an electronic device that malfunctioned after a few months. The warranty covered the repair, but I believe I should receive a new replacement instead.",
+    "grade": 4
+  },
+  {
+    "case": "I was bitten by a dog while walking in my neighborhood. The bite was minor and the dog's owner apologized, but I believe they should be held responsible for the incident.",
+    "grade": 4
+  },
+  {
+    "case": "I took a flight that was delayed due to weather, causing me to miss a connecting flight. The airline rebooked me on another flight, but I believe I deserve compensation for the inconvenience.",
+    "grade": 4
+  },
+  {
+    "case": "I had a negative experience with a medical professional, but there was no malpractice or negligence. I believe I deserve compensation for the emotional distress I experienced.",
+    "grade": 4
+  },
+  {
+    "case": "I purchased a product that failed to meet my expectations, even though it was accurately described and not defective. I believe the manufacturer should be held responsible for my dissatisfaction.",
+    "grade": 4
+  },
+  {
+    "case": "My neighbor's tree branches are encroaching on my property, but they have not caused any damage or posed a hazard. I believe my neighbor should be responsible for trimming the branches.",
+    "grade": 4
   }
 ]
