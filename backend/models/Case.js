@@ -3,6 +3,11 @@
 const mongoose = require('mongoose');
 
 const caseSchema = new mongoose.Schema({
+    clientID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Client',
+        required: true
+    },
     title: {
         type: String,
         required: true
@@ -18,6 +23,10 @@ const caseSchema = new mongoose.Schema({
     },
     valueGrade: Number,
     mmProbability: Number,
+    fileIds: {
+        type: [String],
+        default: []
+    },
     createdAt: {
         type: Date,
         default: Date.now

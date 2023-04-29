@@ -2,7 +2,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const dotenv = require('dotenv');
+const dotenv = require( 'dotenv' );
+const { getImageDescription } = require('./utils/imageToText.js');
 
 // Load environment variables from .env file
 dotenv.config();
@@ -32,15 +33,15 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 // Define API routes
-// const caseRoutes = require('./routes/caseRoutes');
+const caseRoutes = require('./routes/caseRoutes');
 const clientRoutes = require('./routes/clientRoutes');
 // const intakeFormRoutes = require('./routes/intakeFormRoutes');
-// app.use('/api/cases', caseRoutes);
+app.use('/api/cases', caseRoutes);
 app.use('/api/clients', clientRoutes);
 // app.use('/api/intake-forms', intakeFormRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+    console.log( `Server started on port ${PORT}` );
 });
