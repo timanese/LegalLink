@@ -13,7 +13,7 @@ const caseSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Intake', 'Discovery', 'Closed'],
+        enum: ['Pre-Intake', 'Intake', 'Discovery', 'Closed', 'Archived'],
         default: 'Intake'
     },
     valueGrade: Number,

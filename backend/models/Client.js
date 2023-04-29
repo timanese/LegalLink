@@ -12,6 +12,9 @@ const clientSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    password: {
+        type: String,
+    },
     phone: String,
     createdAt: {
         type: Date,
