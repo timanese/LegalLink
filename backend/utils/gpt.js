@@ -36,7 +36,7 @@ Please only give the grade without an explanation`;
     });
 
     const gradeExplanationPrompt = `Using this grade '${gradeResponse.data.choices[0].message.content.trim()}',
-    please explain the grade that was provided for the following legal case on a scale from 1 to 10, 
+    please explain the grade that was provided for the following legal case as if you are a lawyer on a scale from 1 to 10, 
     where 1 signifies the least likelihood of winning a court case or receiving a small settlement, 
     and 10 represents the highest likelihood of winning a court case and obtaining a very large settlement.
 
