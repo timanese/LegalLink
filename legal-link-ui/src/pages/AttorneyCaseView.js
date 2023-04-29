@@ -10,14 +10,13 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import CaseTable from "../components/Table";
 import Button from "@mui/material/Button";
-import MessageList from "../components/List";
-import MessageInput from "../components/CaseInput";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import IconButton from "@mui/material/IconButton";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CircularGauge from "../components/CircularGauge";
 import { useNavigate } from "react-router-dom";
+import FileList from "../components/FileList";
 
 const drawerWidth = 240;
 
@@ -44,30 +43,41 @@ const mdTheme = createTheme();
 function AttorneyCaseView() {
   const navigate = useNavigate();
 
-  const testMessage = [
+  const files = [
     {
       id: 1,
-      title: "Test Message Title",
-      sender: "John Doe",
-      description: "This is a test message description.",
+      name: "Document 1",
+      url: "https://example.com/document1.pdf",
     },
     {
       id: 2,
-      title: "Test Message Title",
-      sender: "John Doe",
-      description: "This is a test message description.",
+      name: "Document 2",
+      url: "https://example.com/document2.pdf",
     },
     {
       id: 3,
-      title: "Test Message Title",
-      sender: "John Doe",
-      description: "This is a test message description.",
+      name: "Document 3",
+      url: "https://example.com/document3.pdf",
     },
     {
       id: 4,
-      title: "Test Message Title",
-      sender: "John Doe",
-      description: "This is a test message description.",
+      name: "Document 3",
+      url: "https://example.com/document3.pdf",
+    },
+    {
+      id: 5,
+      name: "Document 3",
+      url: "https://example.com/document3.pdf",
+    },
+    {
+      id: 6,
+      name: "Document 3",
+      url: "https://example.com/document3.pdf",
+    },
+    {
+      id: 7,
+      name: "Document 3",
+      url: "https://example.com/document3.pdf",
     },
   ];
 
@@ -218,6 +228,9 @@ function AttorneyCaseView() {
                   }}
                 >
                   <Typography variant="h4">Related Documentation</Typography>
+                  <Box sx={{ overflow: "auto" }}>
+                    <FileList files={files} />
+                  </Box>
                 </Paper>
               </Grid>
             </Grid>
