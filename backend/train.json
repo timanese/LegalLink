@@ -1,15 +1,15 @@
 [
   {
     "case": "While dining at a local restaurant, I bit into a piece of glass that was mixed in with my food. I suffered severe injuries to my mouth and had to undergo dental treatment. The restaurant staff were unapologetic and refused to take responsibility for the incident.",
-    "grade": 9
+    "grade": 7
   },
   {
     "case": "I was fired from my job after reporting sexual harassment by a coworker to the HR department. The company accused me of making false allegations and terminated my employment without conducting a proper investigation.",
-    "grade": 8
+    "grade": 9
   },
   {
     "case": "My neighbor's dog escaped from their yard and attacked me while I was walking down the street. I sustained severe injuries, including multiple bites and scratches. The dog's owner denies responsibility, claiming that I provoked the attack.",
-    "grade": 6
+    "grade": 8
   },
   {
     "case": "I purchased a used car from a dealership that falsely advertised the car's history and condition. After purchasing the car, I discovered it had been in a major accident and suffered from numerous mechanical issues. The dealership refuses to take any responsibility.",
@@ -21,7 +21,7 @@
   },
   {
     "case": "I invested in a company based on the recommendation of a financial advisor who falsely claimed to have insider information about an upcoming merger. As a result, I suffered significant financial losses when the stock price plummeted.",
-    "grade": 5
+    "grade": 4
   },
   {
     "case": "During a cosmetic surgery procedure, the surgeon made a mistake, leaving me with permanent disfigurement. The surgeon claims that the results are within the range of acceptable outcomes and refuses to take responsibility.",
@@ -105,7 +105,7 @@
   },
   {
     "case": "I hired a moving company to transport my belongings to my new home, and several valuable items were damaged during the move. The moving company denies responsibility, claiming that the damage was a result of improper packing.",
-    "grade": 6
+    "grade": 5
   },
   {
     "case": "My landlord failed to make necessary repairs to my apartment, resulting in water damage and mold growth. The landlord claims that they were unaware of the issue and that I should have reported it sooner.",

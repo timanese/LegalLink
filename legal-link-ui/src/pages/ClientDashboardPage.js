@@ -14,6 +14,7 @@ import MessageList from "../components/List";
 import MessageInput from "../components/CaseInput";
 import IconButton from "@mui/material/IconButton";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import '@github/file-attachment-element'
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import axios from "axios";
