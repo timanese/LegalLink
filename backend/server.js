@@ -2,7 +2,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const dotenv = require('dotenv');
+const dotenv = require( 'dotenv' );
+const { getImageDescription } = require('./utils/imageToText.js');
 
 // Load environment variables from .env file
 dotenv.config();
@@ -42,5 +43,5 @@ const openai = new OpenAIApi(configuration);
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+    console.log( `Server started on port ${PORT}` );
 });
