@@ -8,14 +8,10 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import CaseTable from "../components/Table";
 import Button from "@mui/material/Button";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import MessageList from "../components/List";
-import MessageInput from "../components/CaseInput";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import IconButton from "@mui/material/IconButton";
-import RefreshIcon from "@mui/icons-material/Refresh";
 import { useNavigate } from "react-router-dom";
 import CardContent from "@mui/material/CardContent";
 import { Card } from "@mui/material";
@@ -44,6 +40,33 @@ const mdTheme = createTheme();
 
 function ClientCaseView() {
   const navigate = useNavigate();
+  const [files, setFiles] = React.useState([]);
+
+  const handleChange = (event) => {
+    console.log(...event.target.files);
+    event.preventDefault();
+
+    const addFiles = [];
+
+    for (let i = 0; i < event.target.files.length; i++) {
+      const Attachment = {
+        file: event.target.files[i],
+      };
+      addFiles.push(Attachment);
+    }
+
+    if (event.target.files.length === 0) {
+      return;
+    }
+    console.log(addFiles);
+    setFiles([...files, ...addFiles]);
+  };
+
+  const handleDeleteFile = (index) => {
+    // remove the file at the given index from the uploadedFiles array
+    const updatedFiles = files.filter((file, i) => i !== index);
+    setFiles(updatedFiles);
+  };
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -169,10 +192,20 @@ function ClientCaseView() {
                     height: 400,
                   }}
                 >
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
                     <Typography variant="h4" sx={{ mr: 1 }}>
                       Download Files
                     </Typography>
+                    <MessageList messages={[]}></MessageList>
+                    <Button variant="contained " onClick={() => {}}>
+                      Download
+                    </Button>
                   </Box>
                   <Box
                     sx={{
@@ -195,6 +228,63 @@ function ClientCaseView() {
                   }}
                 >
                   <Typography variant="h4">Upload Files</Typography>
+
+                  <Box
+                    className="file-attachment"
+                    sx={{
+                      width: "auto",
+                      overflow: "auto",
+                      flexGrow: 1,
+                      flexShrink: 0,
+                      backgroundColor: "grey.200",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      padding: 2,
+                      borderRadius: 1,
+                    }}
+                  >
+                    <file-attachment
+                      className="GitHubFileAttach"
+                      input="file"
+                      directory
+                    >
+                      <Box
+                        className="file-attachment-text"
+                        sx={{ color: "grey.700", marginBottom: 1 }}
+                      >
+                        Drag and drop folders/files or click here to select
+                        files.
+                      </Box>
+                      <input
+                        className="inputUploadFiles"
+                        type="file"
+                        onChange={handleChange}
+                        multiple
+                        sx={{ display: "none" }}
+                      />
+                    </file-attachment>
+                    {files.length > 0 && (
+                      <div className="listUploadedFiles">
+                        {files.map((file, i) => (
+                          <div className="uploadedFile" key={i}>
+                            <h1>
+                              {file.fullPath !== undefined
+                                ? file.fullPath
+                                : file.file.name}
+                            </h1>
+                            <button onClick={() => handleDeleteFile(i)}>
+                              {/* <img src={deleteFile} alt="delete"/> */}
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </Box>
+                  <Button variant="contained " onClick={() => {}}>
+                    Upload
+                  </Button>
                 </Paper>
               </Grid>
             </Grid>
