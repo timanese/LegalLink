@@ -40,3 +40,6 @@
 .MuiDataGrid-cell:hover {
   cursor: pointer;
 }
+.table-row:hover {
+  cursor: pointer;
+}

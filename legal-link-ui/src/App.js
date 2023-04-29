@@ -7,6 +7,7 @@ import SignUpPage from "./pages/SignUpPage";
 import ClientDashBoardPage from "./pages/ClientDashboardPage";
 import AttorneyDashBoardPage from "./pages/AttorneyDashBoardPage";
 import AttorneyCaseView from "./pages/AttorneyCaseView";
+import ClientCaseView from "./pages/ClientCaseView";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,7 +15,14 @@ export default function App() {
   const [userType, setUserType] = useState("");
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, clientId, setIsLoggedIn, setClientId, userType, setUserType }}
+      value={{
+        isLoggedIn,
+        clientId,
+        setIsLoggedIn,
+        setClientId,
+        userType,
+        setUserType,
+      }}
     >
       <Routes>
         <Route
@@ -33,6 +41,8 @@ export default function App() {
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/attorneyCaseView" element={<AttorneyCaseView />} />
         <Route path="/attorneyDashBoard" element={<AttorneyDashBoardPage />} />
+        <Route path="/clientDashBoard" element={<ClientDashBoardPage />} />
+        <Route path="/clientCaseView" element={<ClientCaseView />} />
       </Routes>
     </AuthContext.Provider>
   );
