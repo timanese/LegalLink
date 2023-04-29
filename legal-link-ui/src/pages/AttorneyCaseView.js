@@ -4,7 +4,11 @@ import { Card } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+<<<<<<< HEAD
 import ButtonGroup from "@mui/material/ButtonGroup";
+=======
+import CardContent from "@mui/material/CardContent";
+>>>>>>> 790af27 (Fix accept/decline styling)
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
@@ -204,7 +208,7 @@ function AttorneyCaseView() {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 300,
+                    height: 250,
                   }}
                 >
                   <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -234,7 +238,7 @@ function AttorneyCaseView() {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 100,
+                    height: 150,
                     mt: 4,
                   }}
                 >
@@ -245,18 +249,16 @@ function AttorneyCaseView() {
                     sx={{
                       display: "flex",
                       alignItems: "center",
+                      justifyContent: "center",
                       height: "100%",
                     }}
                   >
-                    <ButtonGroup
-                      disableElevation
-                      variant="contained"
-                      aria-label="Disabled elevation buttons"
-                      sx={{ display: "flex", gap: 1 }}
-                    >
-                      <Button>Accept</Button>
-                      <Button>Decline</Button>
-                    </ButtonGroup>
+                    <Button variant="contained" sx={{ mr: 2 }}>
+                      Accept
+                    </Button>
+                    <Button variant="contained" sx={{ ml: 2 }}>
+                      Decline
+                    </Button>
                   </Box>
                 </Paper>
               </Grid>
