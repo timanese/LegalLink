@@ -5,26 +5,37 @@ const MessageList = ({ messages }) => {
   return (
     <Box sx={{ width: "100%", maxWidth: 360, overflow: "auto" }}>
       <List>
-        {messages.map((message) => (
-          <ListItem key={message.id} alignItems="flex-start">
-            <ListItemText
-              primary={message.title}
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    sx={{ display: "inline" }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                    {message.sender}
-                  </Typography>
-                  {` — ${message.description}`}
-                </React.Fragment>
-              }
-            />
-          </ListItem>
-        ))}
+        {messages === undefined ? (
+          <Typography
+            sx={{ display: "inline" }}
+            component="span"
+            variant="body2"
+            color="text.primary"
+          >
+            Nothing to do currently!
+          </Typography>
+        ) : (
+          messages.map((message) => (
+            <ListItem key={message._id} alignItems="flex-start">
+              <ListItemText
+                primary={message.title}
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      sx={{ display: "inline" }}
+                      component="span"
+                      variant="body2"
+                      color="text.primary"
+                    >
+                      {message.sender}
+                    </Typography>
+                    {` — ${message.description}`}
+                  </React.Fragment>
+                }
+              />
+            </ListItem>
+          ))
+        )}
       </List>
     </Box>
   );

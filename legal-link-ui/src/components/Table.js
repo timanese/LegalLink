@@ -35,7 +35,7 @@ export default function CaseTable() {
   const navigate = useNavigate();
 
   const [cases, setCases] = useState([]);
-
+  console.log(clientId);
   useEffect(() => {
     axios
       .get(`http://localhost:3001/api/cases/getAll/${clientId}`)
@@ -46,10 +46,10 @@ export default function CaseTable() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [clientId]);
 
-  const handleRowClick = (row) => {
-    navigate("/clientCaseView");
+  const handleRowClick = (row_id) => {
+    navigate("/clientCaseView", { state: { value: row_id } });
   };
 
   return (
@@ -66,9 +66,9 @@ export default function CaseTable() {
         <TableBody>
           {cases.map((row) => (
             <TableRow
-              key={row.title}
+              key={row._id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              onClick={() => handleRowClick(row)}
+              onClick={() => handleRowClick(row._id)}
               className="table-row"
             >
               <TableCell component="th" scope="row">

@@ -58,7 +58,7 @@ function DashboardContent() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [clientId]);
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -149,7 +149,6 @@ function DashboardContent() {
                       <RefreshIcon />
                     </IconButton>
                   </Box>
-
                   <MessageList messages={mail} />
                 </Paper>
               </Grid>
