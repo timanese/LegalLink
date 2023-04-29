@@ -10,6 +10,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 // function createData(name, calories, fat, carbs, protein) {
 //   return { name, calories, fat, carbs, protein };
@@ -29,24 +30,27 @@ import { AuthContext } from "../context/AuthContext";
 //   createData("Gingerbread", 356, 16.0, 49, 3.9),
 // ];
 
-
-
 export default function CaseTable() {
-
   const { clientId } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const [cases, setCases] = useState([]); 
+  const [cases, setCases] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/cases/getAll/${clientId}`)
-    .then((res) => {
-      console.log(res.data.data.cases);
-      setCases(res.data.data.cases);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    axios
+      .get(`http://localhost:3001/api/cases/getAll/${clientId}`)
+      .then((res) => {
+        console.log(res.data.data.cases);
+        setCases(res.data.data.cases);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
+
+  const handleRowClick = (row) => {
+    navigate("/clientCaseView");
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -64,6 +68,8 @@ export default function CaseTable() {
             <TableRow
               key={row.title}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              onClick={() => handleRowClick(row)}
+              className="table-row"
             >
               <TableCell component="th" scope="row">
                 {row.title}
