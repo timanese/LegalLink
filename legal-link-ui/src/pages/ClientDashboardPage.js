@@ -14,6 +14,8 @@ import MessageList from "../components/List";
 import MessageInput from "../components/CaseInput";
 import IconButton from "@mui/material/IconButton";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 
 const drawerWidth = 240;
 
@@ -38,6 +40,8 @@ const AppBar = styled(MuiAppBar, {
 const mdTheme = createTheme();
 
 function DashboardContent() {
+  const { setIsLoggedIn } = useContext(AuthContext);
+
   const testMessage = [
     {
       id: 1,
@@ -80,7 +84,7 @@ function DashboardContent() {
             >
               Dashboard
             </Typography>
-            <Button variant="contained ">Log Out</Button>
+            <Button variant="contained " onClick={() => setIsLoggedIn(false)}>Log Out</Button>
           </Toolbar>
         </AppBar>
 

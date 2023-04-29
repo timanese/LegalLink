@@ -14,19 +14,33 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const theme = createTheme();
 
 export default function SignInPage() {
   const navigate = useNavigate();
-
   const { setIsLoggedIn } = useContext(AuthContext);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get("email"),
       password: data.get("password"),
+    });
+    // Send a POST request to the API endpoint to validate the user
+    axios.post("http://localhost:3001/api/clients/login", {
+      email: data.get("email"),
+      password: data.get("password"),
+    })
+    .then((res) => {
+      console.log(res);
+      setIsLoggedIn(true);
+      navigate("/");
+    })
+    .catch((err) => {
+      console.log(err);
     });
   };
   return (
@@ -83,9 +97,6 @@ export default function SignInPage() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={() => {
-                setIsLoggedIn(true);
-              }}
             >
               Sign In
             </Button>

@@ -32,14 +32,14 @@ export default function SignUpPage() {
     });
 
     // Send a POST request to the API endpoint to create a new user
-    axios.post("/api/clients/create", {
+    axios.post("http://localhost:3001/api/clients/register", {
       name: data.get("first name") + " " + data.get("last name"),
       email: data.get("email"),
       password: data.get("password"),
-      phone: data.get("phone"),
     })
     .then((res) => {
       console.log(res);
+      navigate("/signin");
     })
     .catch((err) => {
       console.log(err);
@@ -67,7 +67,7 @@ export default function SignUpPage() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign up
           </Typography>
           <Box
             component="form"
@@ -81,8 +81,8 @@ export default function SignUpPage() {
               fullWidth
               name="first name"
               label="First Name"
-              type="password"
-              id="password"
+              type="text"
+              id="first name"
               autoComplete="current-password"
             />
             <TextField
@@ -91,8 +91,8 @@ export default function SignUpPage() {
               fullWidth
               name="last name"
               label="Last Name"
-              type="password"
-              id="password"
+              type="text"
+              id="last name"
               autoComplete="current-password"
             />
             <TextField
@@ -143,7 +143,7 @@ export default function SignUpPage() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Sign up
             </Button>
             <Grid container>
               <Grid item xs>

@@ -15,7 +15,6 @@ const clientSchema = new mongoose.Schema({
     password: {
         type: String,
     },
-    phone: String,
     mail: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: 'Mail',
