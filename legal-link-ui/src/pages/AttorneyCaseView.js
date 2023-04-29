@@ -14,10 +14,9 @@ import MessageList from "../components/List";
 import MessageInput from "../components/CaseInput";
 import IconButton from "@mui/material/IconButton";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import { AuthContext } from "../context/AuthContext";
-import { useContext } from "react";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+// import CircularGauge from "../components/CircularGauge";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -41,23 +40,35 @@ const AppBar = styled(MuiAppBar, {
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
-  const { setIsLoggedIn, clientId } = useContext(AuthContext);
+function AttorneyCaseView() {
+  const navigate = useNavigate();
 
-  // Grab all mail for a client
-  const [mail, setMail] = useState([]);
-  useEffect(() => {
-    // axios request to get all mail for a client
-    axios
-      .get(`http://localhost:3001/api/mail/getAllClientMail/${clientId}`)
-      .then((res) => {
-        setMail(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const testMessage = [
+    {
+      id: 1,
+      title: "Test Message Title",
+      sender: "John Doe",
+      description: "This is a test message description.",
+    },
+    {
+      id: 2,
+      title: "Test Message Title",
+      sender: "John Doe",
+      description: "This is a test message description.",
+    },
+    {
+      id: 3,
+      title: "Test Message Title",
+      sender: "John Doe",
+      description: "This is a test message description.",
+    },
+    {
+      id: 4,
+      title: "Test Message Title",
+      sender: "John Doe",
+      description: "This is a test message description.",
+    },
+  ];
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -72,11 +83,19 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              <IconButton
+                color="black"
+                aria-label="upload files"
+                component="span"
+                onClick={() => {
+                  navigate("/attorneyDashBoard");
+                }}
+              >
+                <ArrowBackIcon />
+              </IconButton>
+              Case View
             </Typography>
-            <Button variant="contained " onClick={() => setIsLoggedIn(false)}>
-              Log Out
-            </Button>
+            <Button variant="contained ">Log Out</Button>
           </Toolbar>
         </AppBar>
 
@@ -107,16 +126,7 @@ function DashboardContent() {
                 >
                   <Typography variant="h4">Ongoing Cases</Typography>
 
-                  <CaseTable
-                    rows={[
-                      {
-                        id: 4,
-                        caseName: "Test Case",
-                        caseType: "Test Case Type",
-                        caseStatus: "Test Case Status",
-                      },
-                    ]}
-                  />
+                  <CaseTable />
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
@@ -131,7 +141,7 @@ function DashboardContent() {
                 >
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Typography variant="h4" sx={{ mr: 1 }}>
-                      Updates
+                      Grade
                     </Typography>
                     <IconButton
                       color="primary"
@@ -141,11 +151,25 @@ function DashboardContent() {
                       <RefreshIcon />
                     </IconButton>
                   </Box>
-
-                  <MessageList messages={mail} />
+                  {/* <CircularGauge /> */}
                 </Paper>
               </Grid>
               {/* Recent Orders */}
+              <Grid item xs={12}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: 400,
+                    overflow: "auto",
+                  }}
+                >
+                  <Typography variant="h4">Create a New Case</Typography>
+
+                  <MessageInput />
+                </Paper>
+              </Grid>
               <Grid item xs={12}>
                 <Paper
                   sx={{
@@ -170,5 +194,5 @@ function DashboardContent() {
 }
 
 export default function Dashboard() {
-  return <DashboardContent />;
+  return <AttorneyCaseView />;
 }
