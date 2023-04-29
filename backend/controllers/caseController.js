@@ -14,6 +14,7 @@ const converter = new OfficeConverter();
 const { DocumentProcessorServiceClient } =
   require("@google-cloud/documentai").v1;
 const { processFile } = require("../utils/fileUtils");
+const Client = require("../models/Client");
 
 dotenv.config();
 
@@ -74,12 +75,15 @@ exports.createCase = async (req, res) => {
     const gradeExplanation = text.gradeExplanation;
     const greenFlags = text.greenFlags;
     const redFlags = text.redFlags;
+    const client = await Client.findById(new ObjectId(req.body.clientID));
+    body.clientName = client.name;
+    console.log(client);
 
     console.log(grade);
     body.valueGrade = parseInt(grade);
     body.gradeExplanation = gradeExplanation;
-    body.greenFlags = text.greenFlags;
-    body.redFlags = text.redFlags;
+    body.greenFlags = greenFlags;
+    body.redFlags = redFlags;
 
     const newCase = await Case.create(body);
     res.status(201).json({

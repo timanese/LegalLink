@@ -8,6 +8,7 @@ const caseSchema = new mongoose.Schema({
     ref: "Client",
     required: true,
   },
+  clientName: String,
   description: {
     type: String,
     required: true,
