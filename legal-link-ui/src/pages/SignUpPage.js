@@ -17,7 +17,7 @@ import Container from "@mui/material/Container";
 import logo from "../assets/logo-no-background.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 const theme = createTheme();
 
 export default function SignUpPage() {
@@ -29,6 +29,20 @@ export default function SignUpPage() {
     console.log({
       email: data.get("email"),
       password: data.get("password"),
+    });
+
+    // Send a POST request to the API endpoint to create a new user
+    axios.post("/api/clients/create", {
+      name: data.get("first name") + " " + data.get("last name"),
+      email: data.get("email"),
+      password: data.get("password"),
+      phone: data.get("phone"),
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
     });
   };
 
