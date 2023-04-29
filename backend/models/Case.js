@@ -18,6 +18,10 @@ const caseSchema = new mongoose.Schema({
     },
     valueGrade: Number,
     mmProbability: Number,
+    fileIds: {
+        type: [String],
+        default: []
+    },
     createdAt: {
         type: Date,
         default: Date.now
