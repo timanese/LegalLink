@@ -16,6 +16,11 @@ const clientSchema = new mongoose.Schema({
         type: String,
     },
     phone: String,
+    mail: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Mail',
+        default: []
+    },
     createdAt: {
         type: Date,
         default: Date.now

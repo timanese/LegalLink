@@ -36,9 +36,12 @@ const openai = new OpenAIApi(configuration);
 const caseRoutes = require('./routes/caseRoutes');
 const clientRoutes = require('./routes/clientRoutes');
 // const intakeFormRoutes = require('./routes/intakeFormRoutes');
+const mailRoutes = require('./routes/mailRoutes');
+
 app.use('/api/cases', caseRoutes);
 app.use('/api/clients', clientRoutes);
 // app.use('/api/intake-forms', intakeFormRoutes);
+app.use('/api/mail', mailRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3001;
