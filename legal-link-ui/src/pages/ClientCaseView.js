@@ -12,13 +12,12 @@ import Paper from "@mui/material/Paper";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
+import axios from "axios";
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import FileUploadManager from "../components/FileUploadManager";
 import MessageList from "../components/List";
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import ProgressMeter from "../components/ProgressMeter";
 import { MOCK_CASE_STEPS } from "../mock-data/mockData";
 
@@ -52,14 +51,14 @@ function ClientCaseView() {
   // location.state.value
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/cases/get/${location.state.value}`)
+      .get(`http://localhost:3001/api/cases/get/${location?.state?.value}`)
       .then((res) => {
         setData(res.data.data.getCase);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [location.state.value]);
+  }, [location?.state?.value]);
 
   const [files, setFiles] = React.useState([]);
 
@@ -171,8 +170,10 @@ function ClientCaseView() {
                     overflow: "auto",
                   }}
                 >
-                  <Typography variant="h4">Next Steps</Typography>
-                  <ProgressMeter steps={MOCK_CASE_STEPS} />
+                  <Typography variant="h4">Case Progress</Typography>
+                  <Box sx={{ my: 2 }}>
+                    <ProgressMeter steps={MOCK_CASE_STEPS} activeStep={0} />
+                  </Box>
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
