@@ -115,6 +115,24 @@ exports.getAllClientCases = async (req, res) => {
   }
 };
 
+exports.getAllCases = async (req, res) => {
+  try {
+    const cases = await Case.find({});
+    res.status(200).json({
+      status: "success",
+      results: cases.length,
+      data: {
+        cases,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
 // Get a case by ID
 exports.getCase = async (req, res) => {
   try {
