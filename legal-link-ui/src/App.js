@@ -5,10 +5,11 @@ import AttorneyView from "./components/AttorneyView";
 import ClientView from "./components/ClientView";
 import { AuthContext } from "./context/AuthContext";
 import SignInPage from "./pages/SignInPage";
+import ClientDashBoardPage from "./pages/ClientDashboardPage";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userType, setUserType] = useState("attorney");
+  const [userType, setUserType] = useState("client");
   return (
     <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       <Routes>
@@ -16,7 +17,7 @@ export default function App() {
           path="/"
           element={
             isLoggedIn && userType === "client" ? (
-              <ClientView />
+              <ClientDashBoardPage />
             ) : isLoggedIn && userType === "attorney" ? (
               <AttorneyView />
             ) : (
