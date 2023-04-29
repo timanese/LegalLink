@@ -11,7 +11,6 @@ exports.sendMail = async (req, res) => {
       title: title,
       description: description,
     });
-    console.log("CREATED");
     const savedMail = await newMail.save();
     res.status(201).json(savedMail);
   } catch (error) {

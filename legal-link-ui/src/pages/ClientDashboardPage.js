@@ -16,6 +16,8 @@ import IconButton from "@mui/material/IconButton";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const drawerWidth = 240;
 
@@ -40,7 +42,7 @@ const AppBar = styled(MuiAppBar, {
 const mdTheme = createTheme();
 
 function DashboardContent() {
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const { setIsLoggedIn, clientId } = useContext(AuthContext);
 
   const testMessage = [
     {
@@ -68,6 +70,21 @@ function DashboardContent() {
       description: "This is a test message description.",
     },
   ];
+
+  // Grab all mail for a client
+  const [mail, setMail] = useState([]);
+  useEffect(() => {
+    // axios request to get all mail for a client
+    axios.get(`http://localhost:3001/api/mail/getAllClientMail/${clientId}`)
+    .then((res) => {
+      setMail(res.data);
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }, []);
+    
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -115,7 +132,9 @@ function DashboardContent() {
                 >
                   <Typography variant="h4">Ongoing Cases</Typography>
 
-                  <CaseTable />
+                  <CaseTable 
+                    rows={[{id: 4, caseName: "Test Case", caseType: "Test Case Type", caseStatus: "Test Case Status"}]}
+                  />
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
@@ -141,7 +160,7 @@ function DashboardContent() {
                     </IconButton>
                   </Box>
 
-                  <MessageList messages={testMessage} />
+                  <MessageList messages={mail} />
                 </Paper>
               </Grid>
               {/* Recent Orders */}

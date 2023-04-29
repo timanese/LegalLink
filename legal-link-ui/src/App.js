@@ -8,9 +8,10 @@ import ClientDashBoardPage from "./pages/ClientDashboardPage";
 import AttorneyDashBoardPage from "./pages/AttorneyDashBoardPage";
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userType, setUserType] = useState("attorney");
+  const [clientId, setClientId] = useState(""); // TODO: Change to [userType, setUserType
+  const [userType, setUserType] = useState("client");
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+    <AuthContext.Provider value={{ isLoggedIn, clientId, setIsLoggedIn, setClientId }}>
       <Routes>
         <Route
           path="/"

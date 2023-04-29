@@ -20,7 +20,7 @@ const theme = createTheme();
 
 export default function SignInPage() {
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const { setIsLoggedIn, setClientId } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,6 +36,8 @@ export default function SignInPage() {
     })
     .then((res) => {
       console.log(res);
+      console.log(res.data.client._id);
+      setClientId(res.data.client._id);
       setIsLoggedIn(true);
       navigate("/");
     })
