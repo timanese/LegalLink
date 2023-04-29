@@ -15,7 +15,7 @@ function InputAndUpload({ onSendMessage }) {
   const MAX_ROWS = 5;
 
   const { clientId } = useContext(AuthContext);
-  console.log("Client id: ", clientId);
+  console.log("Text: ", text);
 
   const handleTextChange = (event) => {
     setText(event.target.value);
@@ -66,8 +66,7 @@ function InputAndUpload({ onSendMessage }) {
     axios
       .post("http://localhost:3001/api/cases/create", {
         clientID: clientId,
-        description:
-          "Someone broke into my house and killed my dog and stabbed me 5 times, I'm now paralyzed and can't work and my back is in pain.",
+        description: text,
       })
       .then((res) => {
         console.log(res.data);
