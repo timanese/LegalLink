@@ -55,8 +55,8 @@ export default function CaseTable() {
           <TableRow>
             <TableCell>Title</TableCell>
             <TableCell align="right">Status</TableCell>
-            <TableCell align="right">Value Grade(g)</TableCell>
-            <TableCell align="right">mmProbability(g)</TableCell>
+            <TableCell align="right">Value Grade</TableCell>
+            <TableCell align="right">mmProbability</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
