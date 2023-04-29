@@ -15,10 +15,6 @@ const client = new DocumentProcessorServiceClient({
   apiEndpoint: "us-documentai.googleapis.com",
 });
 
-// const client = new DocumentProcessorServiceClient();
-
-quickstart();
-
 async function quickstart() {
   // The full resource name of the processor, e.g.:
   // projects/project-id/locations/location/processor/processor-id
