@@ -1,17 +1,9 @@
-import ClearIcon from "@mui/icons-material/Clear";
-import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
-import {
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
 import { useState } from "react";
+import FileUploadManager from "./FileUploadManager";
 
 function InputAndUpload({ onSendMessage }) {
   const [message, setMessage] = React.useState("");
@@ -113,7 +105,6 @@ function InputAndUpload({ onSendMessage }) {
           alignItems: "center",
           padding: 2,
           borderRadius: 1,
-          // backgroundColor: "yellow",
         }}
       >
         <file-attachment className="GitHubFileAttach" input="file" directory>
@@ -132,35 +123,13 @@ function InputAndUpload({ onSendMessage }) {
           />
         </file-attachment>
       </Box>
+      {/* File Upload */}
       {files.length > 0 && (
         <Box sx={{ width: "90%", overflow: "auto", maxHeight: 150 }}>
-          <List>
-            {files.map((file, i) => (
-              <Box
-                key={i}
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                }}
-              >
-                <ListItem>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <InsertDriveFileIcon />
-                    </ListItemIcon>
-                    <ListItemText>
-                      {file.fullPath != undefined
-                        ? file.fullPath
-                        : file.file.name}
-                    </ListItemText>
-                  </ListItemButton>
-                </ListItem>
-                <Button onClick={() => handleDeleteFile(i)} color="inherit">
-                  <ClearIcon color="error" />
-                </Button>
-              </Box>
-            ))}
-          </List>
+          <FileUploadManager
+            files={files}
+            handleDeleteFile={handleDeleteFile}
+          />
         </Box>
       )}
     </div>

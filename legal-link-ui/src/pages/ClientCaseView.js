@@ -1,20 +1,21 @@
-import * as React from "react";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Card } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import CardContent from "@mui/material/CardContent";
+import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import MessageList from "../components/List";
-import IconButton from "@mui/material/IconButton";
+import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
+import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import CardContent from "@mui/material/CardContent";
-import { Card } from "@mui/material";
+import FileUploadManager from "../components/FileUploadManager";
+import MessageList from "../components/List";
 
 const drawerWidth = 240;
 
@@ -232,16 +233,14 @@ function ClientCaseView() {
                   <Box
                     className="file-attachment"
                     sx={{
-                      width: "auto",
+                      height: "25%",
                       overflow: "auto",
-                      flexGrow: 1,
-                      flexShrink: 0,
                       backgroundColor: "grey.200",
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "center",
                       alignItems: "center",
-                      padding: 2,
+                      my: 1,
                       borderRadius: 1,
                     }}
                   >
@@ -265,26 +264,34 @@ function ClientCaseView() {
                         sx={{ display: "none" }}
                       />
                     </file-attachment>
-                    {files.length > 0 && (
-                      <div className="listUploadedFiles">
-                        {files.map((file, i) => (
-                          <div className="uploadedFile" key={i}>
-                            <h1>
-                              {file.fullPath !== undefined
-                                ? file.fullPath
-                                : file.file.name}
-                            </h1>
-                            <button onClick={() => handleDeleteFile(i)}>
-                              {/* <img src={deleteFile} alt="delete"/> */}
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    )}
                   </Box>
-                  <Button variant="contained " onClick={() => {}}>
-                    Upload
-                  </Button>
+                  {/* File Upload */}
+                  {files.length > 0 && (
+                    <Box
+                      sx={{ width: "100%", overflow: "auto", maxHeight: 150 }}
+                    >
+                      <FileUploadManager
+                        files={files}
+                        handleDeleteFile={handleDeleteFile}
+                      />
+                    </Box>
+                  )}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      py: 2,
+                      width: "100%",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    <Button
+                      variant="outlined"
+                      onClick={() => {}}
+                      sx={{ height: 40, alignSelf: "flex-end" }}
+                    >
+                      Upload
+                    </Button>
+                  </Box>
                 </Paper>
               </Grid>
             </Grid>
