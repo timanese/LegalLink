@@ -42,7 +42,7 @@ const AppBar = styled(MuiAppBar, {
 const mdTheme = createTheme();
 
 function DashboardContent() {
-  const { setIsLoggedIn, clientId } = useContext(AuthContext);
+  const { setIsLoggedIn, setClientId, clientId, setUserType } = useContext(AuthContext);
 
   // Grab all mail for a client
   const [mail, setMail] = useState([]);
@@ -74,7 +74,11 @@ function DashboardContent() {
             >
               Dashboard
             </Typography>
-            <Button variant="contained " onClick={() => setIsLoggedIn(false)}>
+            <Button variant="contained " onClick={() => {
+              setIsLoggedIn(false);
+              setClientId("");
+              setUserType("");
+            }}>
               Log Out
             </Button>
           </Toolbar>

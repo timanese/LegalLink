@@ -20,7 +20,7 @@ const theme = createTheme();
 
 export default function SignInPage() {
   const navigate = useNavigate();
-  const { setIsLoggedIn, setClientId } = useContext(AuthContext);
+  const { setIsLoggedIn, setClientId, setUserType } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -38,11 +38,27 @@ export default function SignInPage() {
       console.log(res);
       console.log(res.data.client._id);
       setClientId(res.data.client._id);
+      setUserType("client");
       setIsLoggedIn(true);
       navigate("/");
     })
     .catch((err) => {
-      console.log(err);
+      // Attempt to sign in as an attorney
+      axios.post("http://localhost:3001/api/attorneys/login", {
+        email: data.get("email"),
+        password: data.get("password"),
+      })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.attorney._id);
+        setClientId(res.data.attorney._id);
+        setUserType("attorney");
+        setIsLoggedIn(true);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     });
   };
   return (

@@ -10,6 +10,8 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import DataGrid from "../components/DataGrid";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 
 const drawerWidth = 240;
 
@@ -34,6 +36,8 @@ const AppBar = styled(MuiAppBar, {
 const mdTheme = createTheme();
 
 function DashboardContent() {
+  const { setIsLoggedIn, setClientId, clientId, setUserType } = useContext(AuthContext);
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -49,7 +53,13 @@ function DashboardContent() {
             >
               Dashboard
             </Typography>
-            <Button variant="contained ">Log Out</Button>
+            <Button variant="contained " onClick={() => {
+              setIsLoggedIn(false);
+              setClientId("");
+              setUserType("");
+            }}>
+              Log Out
+            </Button>
           </Toolbar>
         </AppBar>
 

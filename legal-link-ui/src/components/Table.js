@@ -57,7 +57,6 @@ export default function CaseTable() {
             <TableCell align="right">Status</TableCell>
             <TableCell align="right">Value Grade(g)</TableCell>
             <TableCell align="right">mmProbability(g)</TableCell>
-            {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -69,7 +68,6 @@ export default function CaseTable() {
               <TableCell component="th" scope="row">
                 {row.title}
               </TableCell>
-              {/* <TableCell align="right">{row.title}</TableCell> */}
               <TableCell align="right">{row.status}</TableCell>
               <TableCell align="right">{row.valueGrade}</TableCell>
               <TableCell align="right">{row.mmProbability}</TableCell>

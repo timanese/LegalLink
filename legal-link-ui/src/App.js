@@ -11,10 +11,10 @@ import AttorneyCaseView from "./pages/AttorneyCaseView";
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [clientId, setClientId] = useState(""); // TODO: Change to [userType, setUserType
-  const [userType, setUserType] = useState("client");
+  const [userType, setUserType] = useState("");
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, clientId, setIsLoggedIn, setClientId }}
+      value={{ isLoggedIn, clientId, setIsLoggedIn, setClientId, userType, setUserType }}
     >
       <Routes>
         <Route
