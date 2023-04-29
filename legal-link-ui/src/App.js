@@ -9,25 +9,21 @@ import ClientDashBoardPage from "./pages/ClientDashboardPage";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userType, setUserType] = useState("attorney");
+  const [userType, setUserType] = useState("client");
   return (
     <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       <Routes>
         <Route
           path="/"
-<<<<<<< HEAD
-          element={isLoggedIn ? <ClientDashBoardPage /> : <SignInPage />}
-=======
           element={
             isLoggedIn && userType === "client" ? (
-              <ClientView />
+              <ClientDashBoardPage />
             ) : isLoggedIn && userType === "attorney" ? (
               <AttorneyView />
             ) : (
               <SignInPage />
             )
           }
->>>>>>> 9239682b65fd5ad36a29d553e635e5e847a1e8f2
         />
       </Routes>
     </AuthContext.Provider>
