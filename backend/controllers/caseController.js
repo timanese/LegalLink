@@ -73,8 +73,8 @@ exports.createCase = async (req, res) => {
     const text = await generateText(body.description);
     const grade = text.gradeValue;
     const gradeExplanation = text.gradeExplanation;
-    const greenFlags = text.greenFlags;
-    const redFlags = text.redFlags;
+    const greenFlags = text.greenFlags.replaceAll("- ", "").split("\n");
+    const redFlags = text.redFlags.replaceAll("- ", "").split("\n");
     const client = await Client.findById(new ObjectId(req.body.clientID));
     body.clientName = client.name;
     console.log(client);

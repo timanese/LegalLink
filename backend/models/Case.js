@@ -25,8 +25,14 @@ const caseSchema = new mongoose.Schema({
   valueGrade: Number,
   mmProbability: Number,
   gradeExplanation: String,
-  greenFlags: String,
-  redFlags: String,
+  greenFlags: {
+    type: [String],
+    default: [],
+  },
+  redFlags: {
+    type: [String],
+    default: [],
+  },
   fileIds: {
     type: [String],
     default: [],
