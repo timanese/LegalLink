@@ -22,8 +22,8 @@ async function generateText(prompt) {
 
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages,
-      temperature: 0.1,
+        messages,
+      temperature: 0.1
     });
 
     return response.data.choices[0].message.content.trim();
