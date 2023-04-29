@@ -1,6 +1,7 @@
 const Case = require('../models/Case');
 const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
+const { ObjectId } = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
 const GridFSBucket = require('mongodb').GridFSBucket;
 const dotenv = require('dotenv');
@@ -55,6 +56,7 @@ exports.uploadFile = (req, res) => {
   });
 };
 
+// Create a new case
 exports.createCase = async (req, res) => {
     try {
         const newCase = await Case.create(req.body);
@@ -71,3 +73,40 @@ exports.createCase = async (req, res) => {
         });
     }
 };
+
+// Get all cases for a client
+exports.getAllClientCases = async (req, res) => {
+    try {
+        const cases = await Case.find({ clientID: req.params.id });
+        res.status(200).json({
+        status: 'success',
+        results: cases.length,
+        data: {
+            cases,
+        },
+        });
+    } catch (err) {
+        res.status(404).json({
+        status: 'fail',
+        message: err,
+        });
+    }
+};
+
+// Get a case by ID
+exports.getCase = async (req, res) => {
+    try {
+        const getCase = await Case.findById(req.params.id);
+        res.status(200).json({
+        status: 'success',
+        data: {
+            getCase,
+        },
+        });
+    } catch (err) {
+        res.status(404).json({
+        status: 'fail',
+        message: err,
+        });
+    }
+}
