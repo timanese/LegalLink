@@ -33,14 +33,14 @@ const openai = new OpenAIApi(configuration);
 
 // Define API routes
 // const caseRoutes = require('./routes/caseRoutes');
-// const clientRoutes = require('./routes/clientRoutes');
+const clientRoutes = require('./routes/clientRoutes');
 // const intakeFormRoutes = require('./routes/intakeFormRoutes');
 // app.use('/api/cases', caseRoutes);
-// app.use('/api/clients', clientRoutes);
+app.use('/api/clients', clientRoutes);
 // app.use('/api/intake-forms', intakeFormRoutes);
 
 // Start the server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });
