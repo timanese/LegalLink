@@ -13,9 +13,13 @@ import logo from "../assets/logo-no-background.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 const theme = createTheme();
 
 export default function SignInPage() {
+  const navigate = useNavigate();
+
   const { setIsLoggedIn } = useContext(AuthContext);
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -92,7 +96,13 @@ export default function SignInPage() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link
+                  href="#"
+                  variant="body2"
+                  onClick={() => {
+                    navigate("/signup");
+                  }}
+                >
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

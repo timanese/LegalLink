@@ -16,9 +16,13 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import logo from "../assets/logo-no-background.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
+
 const theme = createTheme();
 
 export default function SignUpPage() {
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -134,8 +138,14 @@ export default function SignUpPage() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link
+                  href="#"
+                  variant="body2"
+                  onClick={() => {
+                    navigate("/signin");
+                  }}
+                >
+                  {"Already have an account? Sign In"}
                 </Link>
               </Grid>
             </Grid>
