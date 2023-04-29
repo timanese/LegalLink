@@ -35,7 +35,7 @@ Please only give the grade without an explanation`;
       temperature: 0.1,
     });
 
-      const gradeExplanationPrompt = `Using this grade '${gradeResponse.data.choices[ 0 ].message.content.trim()}',
+    const gradeExplanationPrompt = `Using this grade '${gradeResponse.data.choices[0].message.content.trim()}',
     please explain the grade that was provided for the following legal case on a scale from 1 to 10, 
     where 1 signifies the least likelihood of winning a court case or receiving a small settlement, 
     and 10 represents the highest likelihood of winning a court case and obtaining a very large settlement.
@@ -56,10 +56,46 @@ Please only give the grade without an explanation`;
       temperature: 0.1,
     });
 
+    const greenFlagsPrompt = `For the following legal case, provide a list of green flags (reasons why the case might win or have a larger settlement) only provide the list and nothing else for formatting, do not number or bullet the list:
+
+Case Description: '${caseDescription}'`;
+
+    const greenFlagsMessages = [
+      {
+        role: "user",
+        content: greenFlagsPrompt,
+      },
+    ];
+
+    const greenFlagsResponse = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: greenFlagsMessages,
+      temperature: 0.1,
+    });
+
+    const redFlagsPrompt = `For the following legal case, provide a list of red flags (reasons why the case might lose or have a small settlement) only provide the list and nothing else for format, do not number or bullet the list:
+
+Case Description: '${caseDescription}'`;
+
+    const redFlagsMessages = [
+      {
+        role: "user",
+        content: redFlagsPrompt,
+      },
+    ];
+
+    const redFlagsResponse = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: redFlagsMessages,
+      temperature: 0.1,
+    });
+
     return {
       gradeValue: gradeResponse.data.choices[0].message.content.trim(),
       gradeExplanation:
         gradeExplanationResponse.data.choices[0].message.content.trim(),
+      greenFlags: greenFlagsResponse.data.choices[0].message.content.trim(),
+      redFlags: redFlagsResponse.data.choices[0].message.content.trim(),
     };
   } catch (error) {
     console.log("Error generating text:", error);
