@@ -6,13 +6,13 @@ const CircularGauge = ({ value }) => {
   const percentage = value.toFixed(0);
 
   return (
-    <div style={{ width: "50%" }}>
+    <div style={{ width: "50%", maxWidth: "300px", margin: "0 auto" }}>
       <CircularProgressbar
         value={value}
         text={`${percentage}%`}
         styles={buildStyles({
           strokeLinecap: "butt",
-          textSize: "30px",
+          textSize: "1.2vw",
           pathTransitionDuration: 0.5,
           pathColor: `rgba(62, 152, 199, ${value / 100})`,
           textColor: "#f88",

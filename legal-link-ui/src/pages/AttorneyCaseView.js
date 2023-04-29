@@ -12,10 +12,11 @@ import CaseTable from "../components/Table";
 import Button from "@mui/material/Button";
 import MessageList from "../components/List";
 import MessageInput from "../components/CaseInput";
+import ButtonGroup from "@mui/material/ButtonGroup";
 import IconButton from "@mui/material/IconButton";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-// import CircularGauge from "../components/CircularGauge";
+import CircularGauge from "../components/CircularGauge";
 import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -121,10 +122,10 @@ function AttorneyCaseView() {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 400,
+                    height: 430,
                   }}
                 >
-                  <Typography variant="h4">Ongoing Cases</Typography>
+                  <Typography variant="h4">Description</Typography>
 
                   <CaseTable />
                 </Paper>
@@ -136,7 +137,7 @@ function AttorneyCaseView() {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 400,
+                    height: 300,
                   }}
                 >
                   <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -151,7 +152,45 @@ function AttorneyCaseView() {
                       <RefreshIcon />
                     </IconButton>
                   </Box>
-                  {/* <CircularGauge /> */}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      height: "100%",
+                    }}
+                  >
+                    <CircularGauge value={20} />
+                  </Box>
+                </Paper>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: 100,
+                    mt: 4,
+                  }}
+                >
+                  <Typography variant="h4" sx={{ mr: 1 }}>
+                    Accept/Decline
+                  </Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      height: "100%",
+                    }}
+                  >
+                    <ButtonGroup
+                      disableElevation
+                      variant="contained"
+                      aria-label="Disabled elevation buttons"
+                      sx={{ display: "flex", gap: 1 }}
+                    >
+                      <Button>Accept</Button>
+                      <Button>Decline</Button>
+                    </ButtonGroup>
+                  </Box>
                 </Paper>
               </Grid>
               {/* Recent Orders */}
@@ -165,9 +204,7 @@ function AttorneyCaseView() {
                     overflow: "auto",
                   }}
                 >
-                  <Typography variant="h4">Create a New Case</Typography>
-
-                  <MessageInput />
+                  <Typography variant="h4">Green Flags / Red Flags</Typography>
                 </Paper>
               </Grid>
               <Grid item xs={12}>
@@ -180,9 +217,7 @@ function AttorneyCaseView() {
                     overflow: "auto",
                   }}
                 >
-                  <Typography variant="h4">Create a New Case</Typography>
-
-                  <MessageInput />
+                  <Typography variant="h4">Related Documentation</Typography>
                 </Paper>
               </Grid>
             </Grid>
