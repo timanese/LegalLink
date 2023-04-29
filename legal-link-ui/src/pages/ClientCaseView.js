@@ -189,7 +189,6 @@ function ClientCaseView() {
                   <Box
                     sx={{
                       display: "flex",
-                      alignItems: "center",
                       flexDirection: "column",
                     }}
                   >
