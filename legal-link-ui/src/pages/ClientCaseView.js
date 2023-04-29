@@ -16,8 +16,8 @@ import axios from "axios";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import FileList from "../components/FileList";
 import FileUploadManager from "../components/FileUploadManager";
-import MessageList from "../components/List";
 import ProgressMeter from "../components/ProgressMeter";
 import { MOCK_CASE_STEPS } from "../mock-data/mockData";
 
@@ -195,10 +195,7 @@ function ClientCaseView() {
                     <Typography variant="h4" sx={{ mr: 1 }}>
                       Download Files
                     </Typography>
-                    <MessageList messages={data?.fileIds}></MessageList>
-                    <Button variant="contained " onClick={() => {}}>
-                      Download
-                    </Button>
+                    <FileList files={[]} />
                   </Box>
                   <Box
                     sx={{
