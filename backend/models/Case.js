@@ -22,6 +22,7 @@ const caseSchema = new mongoose.Schema({
         default: 'Intake'
     },
     valueGrade: Number,
+    gradeExplanation: String,
     mmProbability: Number,
     fileIds: {
         type: [String],

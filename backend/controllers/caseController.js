@@ -61,8 +61,12 @@ exports.uploadFile = (req, res) => {
 exports.createCase = async (req, res) => {
   try {
     const body = req.body;
-    const grade = generateText(body.description);
-    body.valueGrade = grade;
+    const text = await generateText( body.description );
+    const grade = text.gradeValue;
+    const gradeExplanation = text.gradeExplanation;
+    console.log(grade);
+    body.valueGrade = parseInt( grade );
+    body.gradeExplanation = gradeExplanation;
     const newCase = await Case.create(body);
     res.status(201).json({
       status: "success",
