@@ -17,6 +17,9 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CircularGauge from "../components/CircularGauge";
 import { useNavigate } from "react-router-dom";
 import FileList from "../components/FileList";
+import CardList from "../components/CardList";
+import CardContent from "@mui/material/CardContent";
+import { Card } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -133,11 +136,50 @@ function AttorneyCaseView() {
                     display: "flex",
                     flexDirection: "column",
                     height: 430,
+                    overflow: "auto",
                   }}
                 >
                   <Typography variant="h4">Description</Typography>
-
-                  <CaseTable />
+                  <Card
+                    sx={{ width: "100%", height: "100%", overflow: "auto" }}
+                  >
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        kdljdkjfks
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit
+                        anim id est laborum. Lorem ipsum dolor sit amet,
+                        consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        minim veniam, quis nostrud exercitation ullamco laboris
+                        nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor in reprehenderit in voluptate velit esse cillum
+                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                        cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum. Lorem ipsum dolor
+                        sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut
+                        enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis
+                        aute irure dolor in reprehenderit in voluptate velit
+                        esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                        sint occaecat cupidatat non proident, sunt in culpa qui
+                        officia deserunt mollit anim id est laborum. Lorem ipsum
+                        dolor sit amet, consectetur adipiscing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna
+                        aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                      </Typography>
+                    </CardContent>
+                  </Card>
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
@@ -215,6 +257,7 @@ function AttorneyCaseView() {
                   }}
                 >
                   <Typography variant="h4">Green Flags / Red Flags</Typography>
+                  <CardList />
                 </Paper>
               </Grid>
               <Grid item xs={12}>
