@@ -149,7 +149,6 @@ function DashboardContent() {
                       <RefreshIcon />
                     </IconButton>
                   </Box>
-
                   <MessageList messages={mail} />
                 </Paper>
               </Grid>

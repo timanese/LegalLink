@@ -16,6 +16,9 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import FileUploadManager from "../components/FileUploadManager";
 import MessageList from "../components/List";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const drawerWidth = 240;
 
@@ -41,6 +44,21 @@ const mdTheme = createTheme();
 
 function ClientCaseView() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [data, setData] = useState([]);
+
+  // location.state.value
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/api/cases/get/${location.state.value}`)
+      .then((res) => {
+        setData(res.data.data.getCase);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [location.state.value]);
+
   const [files, setFiles] = React.useState([]);
 
   const handleChange = (event) => {
@@ -68,7 +86,7 @@ function ClientCaseView() {
     const updatedFiles = files.filter((file, i) => i !== index);
     setFiles(updatedFiles);
   };
-
+  console.log(data);
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -92,9 +110,9 @@ function ClientCaseView() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              {data?.title} STATUS: {data?.status}
             </Typography>
-            <Button variant="contained " onClick={() => {}}>
+            <Button variant="contained" onClick={() => {}}>
               Log Out
             </Button>
           </Toolbar>
@@ -132,38 +150,10 @@ function ClientCaseView() {
                   >
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
-                        kdljdkjfks
+                        {data?.title}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum. Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis nostrud exercitation ullamco laboris
-                        nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                        dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est laborum. Lorem ipsum dolor
-                        sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut
-                        enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis
-                        aute irure dolor in reprehenderit in voluptate velit
-                        esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                        sint occaecat cupidatat non proident, sunt in culpa qui
-                        officia deserunt mollit anim id est laborum. Lorem ipsum
-                        dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        {data?.description}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -180,7 +170,7 @@ function ClientCaseView() {
                   }}
                 >
                   <Typography variant="h4">Next Steps</Typography>
-                  <MessageList messages={[]} />
+                  <MessageList messages={undefined} />
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
@@ -203,7 +193,7 @@ function ClientCaseView() {
                     <Typography variant="h4" sx={{ mr: 1 }}>
                       Download Files
                     </Typography>
-                    <MessageList messages={[]}></MessageList>
+                    <MessageList messages={data?.fileIds}></MessageList>
                     <Button variant="contained " onClick={() => {}}>
                       Download
                     </Button>
