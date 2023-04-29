@@ -109,4 +109,52 @@ exports.getCase = async (req, res) => {
         message: err,
         });
     }
-}
+};
+
+// Accept case and move up a stage
+exports.acceptCase = async (req, res) => {
+    const statuses = ['Pre-Intake', 'Intake', 'Discovery', 'Closed', 'Archived'];
+    try {
+        // Identify the current status and the next status
+        const currentCase = await Case.findById(req.params.id);
+        const currentStatus = currentCase.status;
+        const currentStatusIndex = statuses.indexOf(currentStatus);
+        const nextStatus = statuses[currentStatusIndex + 1];
+
+        // Change the status to the next stage in the process
+        const updatedCase = await Case.findByIdAndUpdate(req.params.id, {
+            status: nextStatus,
+        });
+        res.status(200).json({
+        status: 'success',
+        data: {
+            updatedCase,
+        },
+        });
+    } catch (err) {
+        res.status(404).json({
+        status: 'fail',
+        message: err,
+        });
+    }
+};
+
+// Reject case and move to archived
+exports.rejectCase = async (req, res) => {
+    try {
+        const updatedCase = await Case.findByIdAndUpdate(req.params.id, {
+        status: 'Closed',
+        });
+        res.status(200).json({
+        status: 'success',
+        data: {
+            updatedCase,
+        },
+        });
+    } catch (err) {
+        res.status(404).json({
+        status: 'fail',
+        message: err,
+        });
+    }
+};
