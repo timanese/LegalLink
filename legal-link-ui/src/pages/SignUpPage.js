@@ -18,10 +18,14 @@ import logo from "../assets/logo-no-background.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useState } from "react";
+
 const theme = createTheme();
 
 export default function SignUpPage() {
   const navigate = useNavigate();
+  const [selectedValue, setSelectedValue] = useState('');
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,10 +33,21 @@ export default function SignUpPage() {
     console.log({
       email: data.get("email"),
       password: data.get("password"),
+      attorney: data.get("attorney"),
+      client: data.get("client"),
     });
 
+    var userType = "";
+
+    if (selectedValue === "attorney") {
+      userType = "attorneys";
+    } else if (selectedValue === "client") {
+      userType = "clients";
+    }
+
+
     // Send a POST request to the API endpoint to create a new user
-    axios.post("http://localhost:3001/api/clients/register", {
+    axios.post("http://localhost:3001/api/" + userType + "/register", {
       name: data.get("first name") + " " + data.get("last name"),
       email: data.get("email"),
       password: data.get("password"),
@@ -123,6 +138,7 @@ export default function SignUpPage() {
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
+                onChange={(event) => setSelectedValue(event.target.value)}
               >
                 <FormControlLabel
                   value="attorney"

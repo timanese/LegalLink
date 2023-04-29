@@ -10,14 +10,16 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import CaseTable from "../components/Table";
 import Button from "@mui/material/Button";
-import MessageList from "../components/List";
-import MessageInput from "../components/CaseInput";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import IconButton from "@mui/material/IconButton";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CircularGauge from "../components/CircularGauge";
 import { useNavigate } from "react-router-dom";
+import FileList from "../components/FileList";
+import CardList from "../components/CardList";
+import CardContent from "@mui/material/CardContent";
+import { Card } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -44,30 +46,41 @@ const mdTheme = createTheme();
 function AttorneyCaseView() {
   const navigate = useNavigate();
 
-  const testMessage = [
+  const files = [
     {
       id: 1,
-      title: "Test Message Title",
-      sender: "John Doe",
-      description: "This is a test message description.",
+      name: "Document 1",
+      url: "https://example.com/document1.pdf",
     },
     {
       id: 2,
-      title: "Test Message Title",
-      sender: "John Doe",
-      description: "This is a test message description.",
+      name: "Document 2",
+      url: "https://example.com/document2.pdf",
     },
     {
       id: 3,
-      title: "Test Message Title",
-      sender: "John Doe",
-      description: "This is a test message description.",
+      name: "Document 3",
+      url: "https://example.com/document3.pdf",
     },
     {
       id: 4,
-      title: "Test Message Title",
-      sender: "John Doe",
-      description: "This is a test message description.",
+      name: "Document 3",
+      url: "https://example.com/document3.pdf",
+    },
+    {
+      id: 5,
+      name: "Document 3",
+      url: "https://example.com/document3.pdf",
+    },
+    {
+      id: 6,
+      name: "Document 3",
+      url: "https://example.com/document3.pdf",
+    },
+    {
+      id: 7,
+      name: "Document 3",
+      url: "https://example.com/document3.pdf",
     },
   ];
 
@@ -123,11 +136,50 @@ function AttorneyCaseView() {
                     display: "flex",
                     flexDirection: "column",
                     height: 430,
+                    overflow: "auto",
                   }}
                 >
                   <Typography variant="h4">Description</Typography>
-
-                  <CaseTable />
+                  <Card
+                    sx={{ width: "100%", height: "100%", overflow: "auto" }}
+                  >
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        kdljdkjfks
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit
+                        anim id est laborum. Lorem ipsum dolor sit amet,
+                        consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        minim veniam, quis nostrud exercitation ullamco laboris
+                        nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor in reprehenderit in voluptate velit esse cillum
+                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                        cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum. Lorem ipsum dolor
+                        sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut
+                        enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis
+                        aute irure dolor in reprehenderit in voluptate velit
+                        esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                        sint occaecat cupidatat non proident, sunt in culpa qui
+                        officia deserunt mollit anim id est laborum. Lorem ipsum
+                        dolor sit amet, consectetur adipiscing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna
+                        aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                      </Typography>
+                    </CardContent>
+                  </Card>
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
@@ -205,6 +257,7 @@ function AttorneyCaseView() {
                   }}
                 >
                   <Typography variant="h4">Green Flags / Red Flags</Typography>
+                  <CardList />
                 </Paper>
               </Grid>
               <Grid item xs={12}>
@@ -218,6 +271,9 @@ function AttorneyCaseView() {
                   }}
                 >
                   <Typography variant="h4">Related Documentation</Typography>
+                  <Box sx={{ overflow: "auto" }}>
+                    <FileList files={files} />
+                  </Box>
                 </Paper>
               </Grid>
             </Grid>
