@@ -16,6 +16,8 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import FileUploadManager from "../components/FileUploadManager";
 import MessageList from "../components/List";
+import ProgressMeter from "../components/ProgressMeter";
+import { MOCK_CASE_STEPS } from "../mock-data/mockData";
 
 const drawerWidth = 240;
 
@@ -180,7 +182,7 @@ function ClientCaseView() {
                   }}
                 >
                   <Typography variant="h4">Next Steps</Typography>
-                  <MessageList messages={[]} />
+                  <ProgressMeter steps={MOCK_CASE_STEPS} />
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
