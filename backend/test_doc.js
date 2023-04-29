@@ -43,7 +43,6 @@ async function quickstart() {
 
   // Get all of the document text as one big string
   const { text } = document;
-  console.log("TESTING");
 
   // Extract shards from the text field
   const getText = (textAnchor) => {

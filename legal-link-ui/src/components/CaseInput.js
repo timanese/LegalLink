@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import * as React from "react";
 import { useState } from "react";
 import FileUploadManager from "./FileUploadManager";
+import axios from "axios";
 
 function InputAndUpload({ onSendMessage }) {
   const [message, setMessage] = React.useState("");
@@ -54,6 +55,34 @@ function InputAndUpload({ onSendMessage }) {
     setFiles(updatedFiles);
   };
 
+
+  const createCase = () => {
+    // Create form data object to send files and metadata to the server
+    const formData = new FormData();
+
+    // Add files to form data object
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i].file);
+    }
+
+    // Upload the files to the server
+    axios.post("http://localhost:3001/api/cases/uploadFile", formData).then((res) => {
+      console.log(res.data);
+    }).catch((err) => {
+      console.log(err);
+    });
+
+    // For each file, convert to plain text based on its file type
+    // Store the plain text in an array, this will later be used to feed the model
+    // to generate a grade for the case
+    const plainTextList = [];
+    axios.post("http://localhost:3001/api/cases/getFileAsPlainText", formData).then((res) => {
+      console.log(res.data);
+    }).catch((err) => {
+      console.log("FOUND ERROR: " + err);
+    });
+  }
+
   return (
     <div style={{ height: "100vh" }}>
       <Box
@@ -86,7 +115,7 @@ function InputAndUpload({ onSendMessage }) {
             justifyContent: "center",
           }}
         >
-          <Button variant="contained" onClick={handleSend} sx={{ m: 1 }}>
+          <Button variant="contained" onClick={() => createCase()} sx={{ m: 1 }}>
             Send
           </Button>
         </Box>

@@ -21,6 +21,10 @@ const caseSchema = new mongoose.Schema({
         enum: ['Pre-Intake', 'Intake', 'Discovery', 'Closed', 'Archived'],
         default: 'Intake'
     },
+    activeStep: {
+        type: Number,
+        default: 0
+    },
     valueGrade: Number,
     mmProbability: Number,
     fileIds: {
