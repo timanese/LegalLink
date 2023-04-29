@@ -46,7 +46,7 @@ const mdTheme = createTheme();
 
 function AttorneyCaseView() {
   const navigate = useNavigate();
-  const [openModal, setOpenModal] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const files = [
     {
@@ -85,12 +85,10 @@ function AttorneyCaseView() {
       url: "https://example.com/document3.pdf",
     },
   ];
-  console.log(openModal);
 
   return (
     <ThemeProvider theme={mdTheme}>
-      {openModal ? <MessageModal /> : <></>}
-
+      <MessageModal isOpen={isOpenModal} setIsOpen={setIsOpenModal} />
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar position="absolute">
@@ -118,7 +116,7 @@ function AttorneyCaseView() {
               variant="contained "
               onClick={() => {
                 console.log("djfkdslj");
-                setOpenModal(true);
+                setIsOpenModal(true);
               }}
             >
               Send Message to Client
