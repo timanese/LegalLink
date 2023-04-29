@@ -8,12 +8,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import CaseTable from "../components/Table";
 import Button from "@mui/material/Button";
-import MessageList from "../components/List";
-import MessageInput from "../components/CaseInput";
-import IconButton from "@mui/material/IconButton";
-import RefreshIcon from "@mui/icons-material/Refresh";
+import DataGrid from "../components/DataGrid";
 
 const drawerWidth = 240;
 
@@ -37,7 +33,7 @@ const AppBar = styled(MuiAppBar, {
 
 const mdTheme = createTheme();
 
-function AttorneyDashBoard() {
+function DashboardContent() {
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -56,11 +52,44 @@ function AttorneyDashBoard() {
             <Button variant="contained ">Log Out</Button>
           </Toolbar>
         </AppBar>
+
+        <Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === "light"
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: "100vh",
+            overflow: "auto",
+          }}
+        >
+          <Toolbar />
+          <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+            <Grid container spacing={1}>
+              {/* Ongoing case Table */}
+              <Grid item xs={12} md={8} lg={12}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: 900,
+                  }}
+                >
+                  <Typography variant="h4">Prospective Cases</Typography>
+                  <DataGrid />
+                </Paper>
+              </Grid>
+            </Grid>
+          </Container>
+        </Box>
       </Box>
     </ThemeProvider>
   );
 }
 
 export default function Dashboard() {
-  return <AttorneyDashBoard />;
+  return <DashboardContent />;
 }
