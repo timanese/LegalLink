@@ -11,9 +11,12 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import logo from "../assets/logo-no-background.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 const theme = createTheme();
 
 export default function SignInPage() {
+  const { setIsLoggedIn } = useContext(AuthContext);
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -22,7 +25,6 @@ export default function SignInPage() {
       password: data.get("password"),
     });
   };
-
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -77,6 +79,9 @@ export default function SignInPage() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={() => {
+                setIsLoggedIn(true);
+              }}
             >
               Sign In
             </Button>
