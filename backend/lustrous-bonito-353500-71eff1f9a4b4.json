@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "lustrous-bonito-353500",
+  "private_key_id": "71eff1f9a4b4e94de834be2aacdc00798fd168b8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDAQxqei4sogbay\nQIiFSne2w6N68HEamZITkS/c36nl8VrgW/5IXuKreWq/c/RoD0nL13Z7YN63+o3u\nUud60xyL5m6mQSjRbo1Uaxd9N3w7BfUsfFWX0pzJ3VRCvjK/iUdLGtDC7i3xU3VE\nzQ+T0Ly+oCpZW23gA0KOtbM5J4nBb44q619IqASgqaeo0chfHqtEyo0KQxb597KR\naL3ViNLD8cGSp8JdI7qLam3rmIWxPus01yuCsjoDs4wEE1+JjzEbrJaHecTGTPo8\ncxGD/abzf3v52CMVbUCgVUW20HcYvQ7oXOrvSL+Fl2QFuwxaEMCGNqoO6TodmIYA\nNnHUhtglAgMBAAECggEAHLmJ3xkrK9yhbqVcoEl9dFVrdeE5jMdX/0toUsAp8pxq\nPu4PokFm7UahL8SDxg5OsMFaxtk0vVkWXn6NbhjfgXlmm7lNf2jcfbnYUxF4oprj\nxAc5hIrnePNz9NrU2zAH8k0p1o3eWFlnQmW+x49eu75TRXF3C4qBJbA4/DePidI9\nyBiSJxSj4l234shHT8ekZ8GPzPixE0vM9YaahigKsafak/mvGVb7Kjy+cbbSO/MW\nccmKzvYOEjwVcyDaQQahN1QKs7fPKygq1Hcxsuvn8ZJVyqYCQg58FtXH2o5vi7FJ\ngXW+7gN6dSRWmVhSt4PyBdzUFlW+BGAIZ9StrC91OwKBgQD22vEG3KBsFq+vFKUU\nAXI9zUzYuBEjLHfgQCNybL3spd6HbflpOpKcAG3dvn6vy61Fpdgvh8z2dMOcVWk+\nVaL2xTJGA3zwhtZV32STf3/t1/p/L7Y9jdTik4QBJ1OJ6+0pqk/GCdCFCLlMGZkE\naJi/XpVR8Ze2o3TpSNeP0kTBDwKBgQDHYm1Z7zffrgByy092SGSCtlucEhMMLvIH\npR3QanbR8PyQ9m/BOzGIWLY9uoaqfR+yKe6xgW3K+4boDjDifzXwD4NffWzFvP2Q\ndq2eyZVZRetqIQE7D84Qzxrz8j5fIA7BmaGSqO7Zgykpsj/pzVhUJPr77CuHUT8w\nHO3e1fOriwKBgExs6GZZdAlC1M19tMYG1Jmxr/MAub2MDOkOsmrAo+RaThTbxXYA\nvlcyAtG+InbGtjRz7gR5JMnAyLbj8ptr4/JGhxQKDGpjNISNjxPjS3YVgeZSnTdd\na+ViCmJZDJIMyvY1VlFXxIkLdGLNIgStZW0KGWyvQWs4HAAFn0dVsBedAoGAQNme\nv5WzEqnBs5S1L7+0EV/GxCiM0XWjeyEVZWh7ZSWAwJWnG65pGfPgsossqd8wo/5H\niKyUTWUqJ+gVtlWx8XbaQADHlDk4L/ip1++xB+xZ+Zbqk488cvMpzRaJet8ubYHO\nr6kKpuymQs2bRCxqAlRU3gOe1NB0QO3n4IauTqkCgYB8nu5FfUT0WvEnAKjPfO5r\nN4utuh/w5OcYLqRQR/rCiCuXLFnV/jpEgsz4v60DuTfpdpFd3Fcq2HYyL+ERxjkr\nRPuNp19hkVaS1F3N1lenVZOdyw3vuaRzFvylzYnJxtTOn9qXX2+EDvIYBUC/Zisx\ns+scuEklVBiUgzBLUfneJg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "legallink@lustrous-bonito-353500.iam.gserviceaccount.com",
+  "client_id": "100611616055170662208",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/legallink%40lustrous-bonito-353500.iam.gserviceaccount.com"
+}

@@ -31,7 +31,7 @@ const fileStorage = new GridFsStorage({
   url: process.env.MONGODB_URI,
   file: (req, file) => {
     // Extract the file information from the originalname string
-    const filename = 'test';
+    const filename = file.originalname;
 
     return new Promise((resolve, reject) => {
       const fileInfo = {

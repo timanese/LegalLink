@@ -1,19 +1,29 @@
 const { getDocument } = require('pdfjs-dist');
 const mammoth = require('mammoth');
+const multer = require('multer');
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 
 exports.getFilesAsPlainTextController = async (req, res) => {
-    const { fileIds } = req.body;
-    const plainTextList = await getFilesAsPlainText(fileIds);
+    const { files } = req.body;
+    console.log(req);
+    const plainTextList = await getFilesAsPlainText(files);
     res.json({ plainTextList });
 };
 
-async function getFilesAsPlainText(fileIds)
+async function getFilesAsPlainText(file)
 {
-    
+    // Given the list of files, return a list of plain text strings
+    const plainTextList = "";
 
+    // Isolate the file names ending to determine the file type using regex
+    const fileType = file.originalname.split('.').pop();
 
+    console.log(fileType);
 
+    return plainTextList;
 }
 
 
