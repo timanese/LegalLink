@@ -1,10 +1,11 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import * as React from "react";
-import { useState } from "react";
-import FileUploadManager from "./FileUploadManager";
 import axios from "axios";
+import * as React from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import FileUploadManager from "./FileUploadManager";
 
 function InputAndUpload({ onSendMessage }) {
   const [message, setMessage] = React.useState("");
@@ -12,6 +13,9 @@ function InputAndUpload({ onSendMessage }) {
   const [text, setText] = useState("");
   const [rows, setRows] = useState(1);
   const MAX_ROWS = 5;
+
+  const { clientId } = useContext(AuthContext);
+  console.log("Client id: ", clientId);
 
   const handleTextChange = (event) => {
     setText(event.target.value);
@@ -55,33 +59,50 @@ function InputAndUpload({ onSendMessage }) {
     setFiles(updatedFiles);
   };
 
-
   const createCase = () => {
     // Create form data object to send files and metadata to the server
     const formData = new FormData();
-
+    // Case description
+    axios
+      .post("http://localhost:3001/api/cases/create", {
+        clientID: clientId,
+        description:
+          "Someone broke into my house and killed my dog and stabbed me 5 times, I'm now paralyzed and can't work and my back is in pain.",
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // Add files to form data object
     for (let i = 0; i < files.length; i++) {
       formData.append("files", files[i].file);
     }
 
     // Upload the files to the server
-    axios.post("http://localhost:3001/api/cases/uploadFile", formData).then((res) => {
-      console.log(res.data);
-    }).catch((err) => {
-      console.log(err);
-    });
+    axios
+      .post("http://localhost:3001/api/cases/uploadFile", formData)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     // For each file, convert to plain text based on its file type
     // Store the plain text in an array, this will later be used to feed the model
     // to generate a grade for the case
     const plainTextList = [];
-    axios.post("http://localhost:3001/api/cases/getFileAsPlainText", formData).then((res) => {
-      console.log(res.data);
-    }).catch((err) => {
-      console.log("FOUND ERROR: " + err);
-    });
-  }
+    axios
+      .post("http://localhost:3001/api/cases/getFileAsPlainText", formData)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log("FOUND ERROR: " + err);
+      });
+  };
 
   return (
     <div style={{ height: "100vh" }}>
@@ -115,7 +136,11 @@ function InputAndUpload({ onSendMessage }) {
             justifyContent: "center",
           }}
         >
-          <Button variant="contained" onClick={() => createCase()} sx={{ m: 1 }}>
+          <Button
+            variant="contained"
+            onClick={() => createCase()}
+            sx={{ m: 1 }}
+          >
             Send
           </Button>
         </Box>
