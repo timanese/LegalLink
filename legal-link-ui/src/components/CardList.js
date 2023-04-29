@@ -7,11 +7,11 @@ import Typography from "@mui/material/Typography";
 export default function CardList() {
   const cards = [
     {
-      title: "Green",
+      title: "Description",
       items: ["Item 1", "Item 2", "Item 3"],
     },
     {
-      title: "Yellow",
+      title: "Green",
       items: ["Item 4", "Item 5", "Item 6"],
     },
     {

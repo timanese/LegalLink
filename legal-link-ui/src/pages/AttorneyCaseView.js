@@ -5,7 +5,6 @@ import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
@@ -19,6 +18,9 @@ import { useNavigate } from "react-router-dom";
 import CardList from "../components/CardList";
 import CircularGauge from "../components/CircularGauge";
 import FileList from "../components/FileList";
+import CardContent from "@mui/material/CardContent";
+import MessageModal from "../components/MessageModal";
+import { useState } from "react";
 
 const drawerWidth = 240;
 
@@ -45,6 +47,7 @@ const mdTheme = createTheme();
 
 function AttorneyCaseView() {
   const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
 
   const files = [
     {
@@ -83,9 +86,12 @@ function AttorneyCaseView() {
       url: "https://example.com/document3.pdf",
     },
   ];
+  console.log(openModal);
 
   return (
     <ThemeProvider theme={mdTheme}>
+      {openModal ? <MessageModal /> : <></>}
+
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar position="absolute">
@@ -109,10 +115,19 @@ function AttorneyCaseView() {
               </IconButton>
               Case View
             </Typography>
+            <Button
+              variant="contained "
+              onClick={() => {
+                console.log("djfkdslj");
+                setOpenModal(true);
+              }}
+            >
+              Send Message to Client
+            </Button>
+
             <Button variant="contained ">Log Out</Button>
           </Toolbar>
         </AppBar>
-
         <Box
           component="main"
           sx={{
@@ -139,7 +154,7 @@ function AttorneyCaseView() {
                     overflow: "auto",
                   }}
                 >
-                  <Typography variant="h4">Description</Typography>
+                  <Typography variant="h4">Case Description</Typography>
                   <Card
                     sx={{ width: "100%", height: "100%", overflow: "auto" }}
                   >
@@ -256,7 +271,7 @@ function AttorneyCaseView() {
                     overflow: "auto",
                   }}
                 >
-                  <Typography variant="h4">Green Flags / Red Flags</Typography>
+                  <Typography variant="h4">Grading Breakdown</Typography>
                   <CardList />
                 </Paper>
               </Grid>

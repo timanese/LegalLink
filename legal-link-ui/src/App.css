@@ -43,3 +43,12 @@
 .table-row:hover {
   cursor: pointer;
 }
+.message-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 9999; /* set a value greater than the z-index of all other components */
+}
