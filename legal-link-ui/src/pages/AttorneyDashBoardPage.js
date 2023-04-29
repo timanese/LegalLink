@@ -1,23 +1,24 @@
-import * as React from "react";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
+import * as React from "react";
+import { useContext } from "react";
 import DataGrid from "../components/DataGrid";
 import { AuthContext } from "../context/AuthContext";
-import { useContext } from "react";
 
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
+  backgroundColor: "#2257bf",
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
@@ -36,7 +37,8 @@ const AppBar = styled(MuiAppBar, {
 const mdTheme = createTheme();
 
 function DashboardContent() {
-  const { setIsLoggedIn, setClientId, clientId, setUserType } = useContext(AuthContext);
+  const { setIsLoggedIn, setClientId, clientId, setUserType } =
+    useContext(AuthContext);
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -53,11 +55,14 @@ function DashboardContent() {
             >
               Dashboard
             </Typography>
-            <Button variant="contained " onClick={() => {
-              setIsLoggedIn(false);
-              setClientId("");
-              setUserType("");
-            }}>
+            <Button
+              variant="contained "
+              onClick={() => {
+                setIsLoggedIn(false);
+                setClientId("");
+                setUserType("");
+              }}
+            >
               Log Out
             </Button>
           </Toolbar>
