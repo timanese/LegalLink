@@ -522,5 +522,301 @@
   {
     "case": "I was injured on a poorly maintained sidewalk in my neighborhood. The city has neglected to repair the sidewalk despite multiple complaints from residents.",
     "grade": 6
-  }
+  },
+  {
+    "case": "I was driving on a highway when a truck driver, who was clearly intoxicated, swerved into my lane and hit my car. My car was badly damaged, and I suffered multiple injuries. I have witnesses who saw the truck driver drinking at a bar shortly before the accident.",
+    "grade": 9
+  },
+  {
+    "case": "I slipped and fell at a grocery store due to a puddle of water on the floor. There were no caution signs, and the store employees were aware of the issue but did not take any action. I fractured my wrist and have medical bills.",
+    "grade": 7
+  },
+  {
+    "case": "My employer has been systematically underpaying me and my colleagues for overtime work. The company's records show that they've been manipulating our timecards to avoid paying overtime wages.",
+    "grade": 8
+  },
+  {
+    "case": "My neighbor's tree fell on my property during a storm, damaging my fence and car. My neighbor knew the tree was rotting but did not take any action to remove it or warn me.",
+    "grade": 6
+  },
+  {
+    "case": "I bought a brand-new car, and within two months, it started having serious engine problems. The manufacturer refused to honor the warranty, claiming that I voided it by not following proper maintenance.",
+    "grade": 6
+  },
+  {
+    "case": "I was bitten by a dog while walking in my neighborhood. The dog was unleashed and unsupervised. I have medical bills and have had to miss work due to my injuries.",
+    "grade": 8
+  },
+  {
+    "case": "My landlord has failed to make necessary repairs to my apartment, including fixing a leaking roof and a malfunctioning heating system. Despite multiple requests, no action has been taken.",
+    "grade": 7
+  },
+  {
+    "case": "I was fired from my job due to my age, despite having an excellent performance record. My employer has a history of firing older employees and replacing them with younger ones.",
+    "grade": 6
+  },
+  {
+    "case": "I was injured by a defective product that I purchased. The product was not properly labeled, and there were no warnings about the risks associated with its use.",
+    "grade": 7
+  },
+  {
+    "case": "I was in a car accident, and the other driver was at fault. They were texting while driving and ran a red light, causing the collision. The other driver is disputing their responsibility.",
+    "grade": 8
+  },
+  {
+    "case": "I was discriminated against at my workplace based on my race. My employer consistently gave me less desirable assignments and denied me promotions in favor of less qualified colleagues.",
+    "grade": 5
+  },
+  {
+    "case": "I am suing a contractor who failed to complete a home renovation project as agreed upon in our contract. They left the work unfinished and demanded additional payment to complete the project.",
+    "grade": 7
+  },
+  {
+    "case": "My doctor misdiagnosed my medical condition, causing me to undergo unnecessary treatments and incur significant medical expenses. I later received the correct diagnosis from another doctor.",
+    "grade": 5
+  },
+  {
+    "case": "I am a tenant in a building with a no-pets policy. My landlord is threatening to evict me for having a service animal, despite providing proper documentation of my disability and the animal's role.",
+    "grade": 8
+  },
+  {
+"case": "I purchased a gym membership but the gym later closed for renovations without notice. They offered to extend my membership for the duration of the closure, but I was unable to use the gym during that time.",
+"grade": 4
+},
+{
+"case": "I hired a wedding photographer who did not show up to the event. They refused to refund my deposit, claiming they had equipment issues and could not find a replacement.",
+"grade": 6
+},
+{
+"case": "A debt collection agency is harassing me for a debt that I have already paid. Despite providing proof of payment, they continue to call and send letters, affecting my credit score.",
+"grade": 8
+},
+{
+"case": "I was injured at a construction site due to inadequate safety measures. The construction company failed to install proper barricades and signage, leading to my accident.",
+"grade": 7
+},
+{
+"case": "My ex-spouse is refusing to pay child support as ordered by the court. They claim they cannot afford the payments, but their social media shows them taking expensive vacations and making luxury purchases.",
+"grade": 8
+},
+{
+"case": "A restaurant served me food that contained a foreign object, causing me to chip my tooth. The restaurant denies responsibility and refuses to pay for my dental expenses.",
+"grade": 5
+},
+{
+"case": "I purchased a used car from a dealership, and within a week, the transmission failed. The dealer is unwilling to repair or replace the vehicle, claiming it was sold 'as is'.",
+"grade": 4
+},
+{
+"case": "My insurance company is denying a legitimate claim for damages to my home caused by a storm. They claim that the damage is due to poor maintenance, despite evidence to the contrary.",
+"grade": 6
+},
+{
+"case": "I was injured in a slip and fall accident at a hotel. The hotel had failed to clear ice from the walkway, and there were no warning signs.",
+"grade": 7
+},
+{
+"case": "I was sold a counterfeit product online. The seller refuses to provide a refund, and the online marketplace has not taken any action to resolve the issue.",
+"grade": 4
+},
+{
+"case": "My employer fired me after I reported unsafe working conditions to OSHA. They claim my termination was due to poor performance, but I believe it was in retaliation for my report.",
+"grade": 7
+},
+{
+"case": "I hired a moving company that damaged several of my belongings during the move. They have denied responsibility and refuse to reimburse me for the damages.",
+"grade": 5
+},
+{
+"case": "I was a passenger in a rideshare vehicle that was involved in an accident. The driver was at fault, and I suffered injuries that required medical attention. The rideshare company is denying liability.",
+"grade": 6
+},
+{
+"case": "A contractor I hired to work on my property failed to obtain the necessary permits, resulting in fines from the city. They refuse to pay the fines or reimburse me for the additional costs.",
+"grade": 7
+},
+{
+"case": "I loaned money to a friend, and they have refused to pay me back. I have a written agreement and text messages proving the loan, but they are now claiming it was a gift.",
+"grade": 6
+},
+{
+"case": "My neighbor built a fence that encroaches on my property. Despite providing a survey showing the property line, they refuse to move the fence and claim the land is theirs.",
+"grade": 6
+},
+{
+"case": "I was a victim of a hit and run accident, and the other driver was never identified. My insurance company is refusing to cover the damages, claiming I cannot prove the accident occurred.",
+"grade": 4
+},
+{
+"case": "I purchased a home, and shortly after moving in, discovered major undisclosed defects. The seller and their agent knowingly withheld this information, and now I'm facing costly repairs.",
+"grade": 7
+},
+{
+"case": "I was injured by a product that malfunctioned during normal use. The manufacturer claims the product was misused, despite following the instructions provided.",
+"grade": 6
+},
+{
+"case": "I was denied a promotion at work due to my gender. My employer claims there were more qualified candidates, but the person who received the promotion has less experience and qualifications.",
+"grade": 5
+},
+{
+"case": "My bank charged me excessive fees for overdrafts, even though I never opted into overdraft protection. They refuse to refund the fees, claiming I should have been more careful with my account.",
+"grade": 4
+},
+{
+"case": "I hired a company to install solar panels on my home, but they failed to obtain the proper permits, resulting in fines and the need to remove the panels.",
+"grade": 7
+},
+{
+"case": "I was evicted from my apartment without proper notice, and my landlord refuses to return my security deposit, claiming I owe for the last month's rent.",
+"grade": 6
+},
+{
+"case": "I was sexually harassed by a coworker, and my employer failed to take appropriate action when I reported the incident. The coworker continues to harass me, and my work environment has become hostile.",
+"grade": 7
+},
+{
+"case": "I purchased a vacation package, but the travel company went out of business before I could take the trip. They have not refunded my money and are not responding to my inquiries.",
+"grade": 4
+},
+{
+"case": "I was a pedestrian hit by a bicyclist who ran a red light. The bicyclist refuses to accept responsibility for my injuries, claiming I should have been more careful.",
+"grade": 5
+},
+{
+"case": "I was denied a loan modification by my bank, despite providing all required documentation and meeting the eligibility criteria. The bank claims they lost my paperwork and did not receive it in time.",
+"grade": 6
+},
+{
+"case": "I was injured during a recreational activity due to the negligence of the staff. They failed to provide proper safety equipment and instructions, leading to my injury.",
+"grade": 7
+},
+{
+"case": "A hospital overcharged me for a medical procedure, and my insurance company refuses to cover the cost. The hospital claims the charges are correct, despite evidence showing they are not.",
+"grade": 5
+},
+{
+"case": "My neighbor is playing loud music late at night, disturbing my sleep. Despite repeated requests to lower the volume, they continue to play loud music and refuse to cooperate.",
+"grade": 3
+},
+{
+"case": "I invested in a start-up company, and the founders misused the funds for personal expenses. Despite having evidence of their fraud, they deny any wrongdoing and refuse to return my investment.",
+"grade": 7
+},
+{
+"case": "I was wrongfully accused of shoplifting and detained by store security. The store refuses to apologize or compensate me for the humiliation and distress caused by the incident.",
+"grade": 5
+},
+{
+"case": "I hired an attorney to represent me in a legal matter, but they failed to file the necessary paperwork, resulting in the dismissal of my case. They refuse to refund my fees or acknowledge their negligence.",
+"grade": 6
+},
+{
+"case": "I was denied a reasonable accommodation for my disability at work, resulting in increased difficulty performing my job duties. My employer claims they cannot afford to make the necessary changes.",
+"grade": 7
+},
+{
+"case": "I purchased an expensive electronic device that stopped working shortly after the warranty expired. The manufacturer refuses to repair or replace the device, claiming it is no longer their responsibility.",
+"grade": 3
+},
+{
+"case": "I was defrauded by an online scammer who sold me counterfeit goods. Despite reporting the incident to the authorities and the online platform, the scammer has not been caught and continues to operate.",
+"grade": 4
+},
+{
+"case": "I was fired from my job after taking a legally protected leave of absence. My employer claims that my position was eliminated due to budget cuts, but I believe it was in retaliation for my leave.",
+"grade": 6
+},
+{
+"case": "I was charged an exorbitant fee by a towing company after my car was towed from a private parking lot. The fee is much higher than the legal limit, but the company refuses to negotiate a lower amount.",
+"grade": 7
+},
+{
+"case": "My apartment building has a persistent mold problem that the landlord has failed to address. Despite repeated requests, the landlord refuses to remediate the issue, and my health has been affected.",
+"grade": 6
+},
+{
+"case": "I purchased a defective appliance that caught fire and caused damage to my home. The manufacturer refuses to accept responsibility, claiming I failed to follow proper safety precautions.",
+"grade": 5
+},
+{
+"case": "I was denied a job opportunity based on a background check that contains inaccurate information. The background check company refuses to correct the error, and I have lost the job opportunity.",
+"grade": 6
+},
+{
+"case": "I rented a car that broke down during my trip, causing me to miss an important event. The rental company refuses to refund my money, claiming I should have purchased additional insurance.",
+"grade": 4
+},
+{
+"case": "I was a victim of medical malpractice, resulting in severe complications and additional medical expenses. The doctor denies any wrongdoing and refuses to settle the case.",
+"grade": 5
+},
+{
+"case": "I was not paid the correct amount for a freelance project I completed. The client claims they are unsatisfied with the work and refuses to pay the full amount agreed upon.",
+"grade": 6
+},
+{
+"case": "My child's school failed to provide appropriate services for their special education needs. The school claims they do not have the resources to accommodate my child's needs, despite their legal obligation to do so.",
+"grade": 7
+},
+{
+"case": "I was the victim of a dog bite in my neighborhood. The dog owner refuses to take responsibility for the incident, claiming that I provoked their dog.",
+"grade": 6
+},
+{
+"case": "I purchased a defective product that caused property damage. The retailer refuses to accept responsibility, directing me to contact the manufacturer, who is unresponsive.",
+"grade": 4
+},
+{
+"case": "I was injured in a car accident caused by another driver, who was texting while driving. Their insurance company is offering a low settlement that does not cover my medical expenses and lost wages.",
+"grade": 7
+},
+{
+"case": "I was a victim of identity theft, and my bank refuses to refund the fraudulent charges made on my account, claiming I was negligent with my personal information.",
+"grade": 5
+},
+{
+"case": "I purchased a timeshare property, and the salesperson misrepresented the terms and fees involved. I now want to cancel the contract, but the company refuses to allow me to do so.",
+"grade": 4
+},
+{
+"case": "I was exposed to toxic chemicals at work, resulting in serious health issues. My employer denies responsibility and claims they were unaware of the hazardous materials.",
+"grade": 6
+},
+{
+"case": "I hired a contractor to renovate my kitchen, and they did a subpar job. They refuse to fix the issues or refund my money, claiming the work was done according to the contract.",
+"grade": 5
+},
+{
+"case": "I was a victim of a phishing scam and lost money as a result. My bank refuses to refund the lost funds, claiming I should have been more cautious with my account information.",
+"grade": 3
+},
+{
+"case": "I was charged for a subscription service that I never signed up for. The company refuses to refund the charges, claiming I agreed to the terms when I made a one-time purchase.",
+"grade": 4
+},
+{
+"case": "I was discriminated against at work due to my race, resulting in a hostile work environment and missed career opportunities. My employer denies any discrimination and claims my performance is the issue.",
+"grade": 6
+},
+{
+"case": "I was injured at a public event due to poor crowd control and a lack of security. The event organizer refuses to accept responsibility, claiming they were not at fault.",
+"grade": 5
+},
+{
+"case": "I rented a property through a short-term rental platform, and the host canceled my reservation last minute. The platform refuses to refund my payment or assist with finding alternative accommodations.",
+"grade": 4
+},
+{
+"case": "I was assaulted by a coworker, and my employer failed to take appropriate action. The coworker continues to work with me, and my work environment has become unsafe.",
+"grade": 7
+},
+{
+"case": "I hired a home inspector who failed to identify major issues with a property I purchased. The inspector refuses to refund their fee or compensate me for the costly repairs.",
+"grade": 4
+},
+{
+"case": "My landlord failed to make necessary repairs to my rental property, resulting in damage to my personal belongings. They refuse to reimburse me for the damaged items, claiming it is not their responsibility.",
+"grade": 5
+}
 ]

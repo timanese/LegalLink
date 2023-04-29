@@ -40,13 +40,13 @@ const openai = new OpenAIApi(configuration);
 const caseRoutes = require('./routes/caseRoutes');
 const clientRoutes = require('./routes/clientRoutes');
 const attorneyRoutes = require('./routes/attorneyRoutes');
-// const intakeFormRoutes = require('./routes/intakeFormRoutes');
+const intakeFormRoutes = require('./routes/intakeFormRoutes');
 const mailRoutes = require("./routes/mailRoutes");
 
 app.use('/api/cases', caseRoutes);
 app.use('/api/clients', clientRoutes);
 app.use('/api/attorneys', attorneyRoutes);
-// app.use('/api/intake-forms', intakeFormRoutes);
+app.use('/api/intake-forms', intakeFormRoutes);
 app.use("/api/mail", mailRoutes);
 
 // Start the server
