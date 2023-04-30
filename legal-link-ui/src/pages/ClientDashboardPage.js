@@ -13,11 +13,12 @@ import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import axios from "axios";
 import * as React from "react";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 import MessageInput from "../components/CaseInput";
 import MessageList from "../components/List";
 import CaseTable from "../components/Table";
 import { AuthContext } from "../context/AuthContext";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -50,17 +51,27 @@ function DashboardContent() {
 
   // Grab all mail for a client
   const [mail, setMail] = useState([]);
-  useEffect(() => {
+  const [reloadUpdates, setReloadUpdates] = useState(false);
+  const [updateLoading, setUpdateLoading] = useState(true);
+
+  const getUpdates = useCallback(() => {
     // axios request to get all mail for a client
+    setUpdateLoading(true);
     axios
       .get(`http://localhost:3001/api/mail/getAllClientMail/${clientId}`)
       .then((res) => {
         setMail(res.data);
+        setUpdateLoading(false);
       })
       .catch((err) => {
+        setUpdateLoading(false);
         console.log(err);
       });
   }, [clientId]);
+
+  useEffect(() => {
+    getUpdates();
+  }, [getUpdates]);
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -68,6 +79,14 @@ function DashboardContent() {
     setUserType("");
     navigate("/signin");
   };
+
+  const handleReloadUpdate = useCallback(() => {
+    setReloadUpdates(true);
+  }, []);
+  useEffect(() => {
+    getUpdates();
+    setReloadUpdates(false);
+  }, [getUpdates, handleReloadUpdate, reloadUpdates]);
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -136,13 +155,22 @@ function DashboardContent() {
                     </Typography>
                     <IconButton
                       color="primary"
-                      aria-label="upload files"
+                      aria-label="Refresh updates"
                       component="span"
+                      onClick={() => {
+                        handleReloadUpdate();
+                      }}
                     >
                       <RefreshIcon />
                     </IconButton>
                   </Box>
-                  <MessageList messages={mail} />
+                  {updateLoading ? (
+                    <Box sx={{ display: "flex" }}>
+                      <CircularProgress />
+                    </Box>
+                  ) : (
+                    <MessageList messages={mail} />
+                  )}
                 </Paper>
               </Grid>
               {/* Recent Orders */}

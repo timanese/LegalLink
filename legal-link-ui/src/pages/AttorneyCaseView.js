@@ -336,13 +336,6 @@ function AttorneyCaseView() {
                     <Typography variant="h4" sx={{ mr: 1 }}>
                       Grade
                     </Typography>
-                    <IconButton
-                      color="primary"
-                      aria-label="upload files"
-                      component="span"
-                    >
-                      <RefreshIcon />
-                    </IconButton>
                   </Box>
                   <Box
                     sx={{
