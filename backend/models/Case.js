@@ -23,7 +23,7 @@ const caseSchema = new mongoose.Schema({
     default: 0,
   },
   valueGrade: Number,
-  mmProbability: Number,
+  MNMProbability: Number,
   gradeExplanation: String,
   greenFlags: {
     type: [String],

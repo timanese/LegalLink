@@ -76,7 +76,7 @@ export default function CaseTable() {
               </TableCell>
               <TableCell align="right">{row.status}</TableCell>
               <TableCell align="right">{row.valueGrade}</TableCell>
-              <TableCell align="right">{row.mmProbability}</TableCell>
+              <TableCell align="right">{row.MNMProbability}</TableCell>
             </TableRow>
           ))}
         </TableBody>

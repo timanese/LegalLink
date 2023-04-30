@@ -85,7 +85,7 @@ function InputAndUpload({ onSendMessage }) {
         // Case description
         axios
           .post("http://localhost:3001/api/cases/create", {
-            clientID: clientId,
+            clientID: '644ce98fec9f69bb663bc57a',
             description: text,
             fileIds: fileIds,
           })

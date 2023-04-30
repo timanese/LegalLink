@@ -50,18 +50,20 @@ function DashboardContent() {
 
   // Grab all mail for a client
   const [mail, setMail] = useState([]);
-  useEffect(() => {
-    // axios request to get all mail for a client
-    axios
-      .get(`http://localhost:3001/api/mail/getAllClientMail/${clientId}`)
-      .then((res) => {
-        setMail(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [clientId]);
+  // useEffect(() => {
+  //   // axios request to get all mail for a client
+  //   axios
+  //     .get(`http://localhost:3001/api/mail/getAllClientMail/${clientId}`)
+  //     .then((res) => {
+  //       setMail(res.data);
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [clientId]);
+
+  console.log("Client ID: " + clientId);
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -85,7 +87,7 @@ function DashboardContent() {
             >
               Dashboard
             </Typography>
-            <Button variant="contained " onClick={handleLogout}>
+            <Button variant="contained " onClick={() => handleLogout()}>
               Log Out
             </Button>
           </Toolbar>

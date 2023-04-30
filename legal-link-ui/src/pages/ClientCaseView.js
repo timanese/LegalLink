@@ -81,10 +81,10 @@ function ClientCaseView() {
             const fileRes = await axios.get(
               `http://localhost:3001/api/cases/getFile/${fileIds[i]}`
             );
-            console.log(fileRes.data);
+            console.log(fileRes.data.data.file.filename);
             filesInfo.push({
               _id: fileIds[i],
-              filename: fileRes.data.fileName,
+              filename: fileRes.data.data.file.filename,
             });
           } catch (err) {
             console.log(err);
@@ -92,6 +92,7 @@ function ClientCaseView() {
         }
 
         setFileNames(filesInfo);
+        console.log(filesInfo);
       } catch (err) {
         console.log(err);
       }
@@ -102,7 +103,7 @@ function ClientCaseView() {
 
   const handleDownload = async (file) => {
     const response = await axios.get(
-      `http://localhost:3001/downloadFile/${file._id}/${file.filename}`
+      `http://localhost:3001/api/cases/downloadFile/${file._id}/${file.filename}`
     );
     // Convert the hex string to a buffer
     const buffer = Buffer.from(response.data.fileContents.data, "hex");
@@ -302,7 +303,7 @@ function ClientCaseView() {
                     <Typography variant="h4" sx={{ mr: 1 }}>
                       Download Files
                     </Typography>
-                    <FileList files={[]} />
+                    <FileList files={fileNames} />
                   </Box>
                   <Box
                     sx={{

@@ -13,27 +13,11 @@ export default function CardList(props) {
     },
     {
       title: "Green",
-      items: ["Item 4", "Item 5", "Item 6"],
+      items: rowData.greenFlags,
     },
     {
       title: "Red",
-      items: [
-        "Item 7",
-        "Item 8",
-        "Item 9",
-        "Item 9",
-        "Item 9",
-        "Item 9",
-        "Item 9",
-        "Item 9",
-        "Item 9",
-        "Item 9",
-        "Item 9",
-        "Item 9",
-        "Item 9",
-        "Item 9",
-        "Item 9",
-      ],
+      items: rowData.redFlags,
     },
   ];
 

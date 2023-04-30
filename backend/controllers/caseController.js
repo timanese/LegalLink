@@ -104,15 +104,18 @@ exports.createCase = async (req, res) => {
     const gradeExplanation = text.gradeExplanation;
     const greenFlags = text.greenFlags.replaceAll("- ", "").split("\n");
     const redFlags = text.redFlags.replaceAll("- ", "").split("\n");
+    const MNMProbability = text.MNMProbability;
     const client = await Client.findById(new ObjectId(req.body.clientID));
     body.clientName = client.name;
     console.log(client);
 
+    console.log(text);
     console.log(grade);
     body.valueGrade = parseInt(grade);
     body.gradeExplanation = gradeExplanation;
     body.greenFlags = greenFlags;
     body.redFlags = redFlags;
+    body.MNMProbability = parseInt(MNMProbability);
 
     const newCase = await Case.create(body);
     res.status(201).json({
@@ -301,7 +304,7 @@ exports.downloadFile = async (req, res) => {
 
     const file = await files.find({ _id: new ObjectId(file_id) }).next();
     const encoding = file.contentType;
-
+    console.log("FILE: " + file.contentType);
     const fileContents = await new Promise((resolve, reject) => {
       bucket.openDownloadStream(new ObjectId(file_id))
         .on('data', (chunk) => {
@@ -318,6 +321,10 @@ exports.downloadFile = async (req, res) => {
     res.set('Content-Type', encoding);
     res.set('Content-Disposition', `attachment; filename="${file.filename}"`);
     res.status(200).send(fileContents);
+    // res.set('Content-Type', 'application/octet-stream');
+    // res.set('Content-Disposition', `attachment; filename="${file.filename}"`);
+    // res.status(200).send(fileContents.toString('binary'));
+
   } catch (err) {
     console.log(err);
     res.status(404).json({

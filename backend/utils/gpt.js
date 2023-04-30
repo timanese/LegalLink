@@ -90,12 +90,28 @@ Case Description: '${caseDescription}'`;
       temperature: 0.1,
     });
 
+    const MNMProbabilityPrompt = `For the following legal case, provide a probability score (0-100) of how confident you are that the law firm Morgan & Morgan SHOULD take on this case.  This should account for the likelihood of winning the case, the likelihood of a large settlement, and the likelihood of the client being able to pay the firm's fees.  Please only provide the probability score and nothing else. Case Description: '${caseDescription}'`;
+
+    const MNMProbabilityMessages = [
+      {
+        role: "user",
+        content: MNMProbabilityPrompt,
+      },
+    ];
+
+    const MNMProbabilityResponse = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: MNMProbabilityMessages,
+      temperature: 0.1,
+    });
+    console.log(MNMProbabilityResponse.data.choices[0].message.content.trim());
     return {
       gradeValue: gradeResponse.data.choices[0].message.content.trim(),
       gradeExplanation:
         gradeExplanationResponse.data.choices[0].message.content.trim(),
       greenFlags: greenFlagsResponse.data.choices[0].message.content.trim(),
       redFlags: redFlagsResponse.data.choices[0].message.content.trim(),
+      MNMProbability: MNMProbabilityResponse.data.choices[0].message.content.trim(),
     };
   } catch (error) {
     console.log("Error generating text:", error);
