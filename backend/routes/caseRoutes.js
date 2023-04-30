@@ -13,5 +13,6 @@ router.post("/getFileAsPlainText", caseController.getFileAsPlainText);
 router.put("/fileIds/:caseID", caseController.pushFile);
 router.get("/getFile/:id", caseController.getFile);
 router.get("/downloadFile/:id/:filename", caseController.downloadFile);
+router.post("/reevaluateCase", caseController.reevaluateCase);
 
 module.exports = router;

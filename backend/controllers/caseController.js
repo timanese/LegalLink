@@ -5,7 +5,7 @@ const {ObjectId}  = require("mongodb");
 const MongoClient = require("mongodb").MongoClient;
 const GridFSBucket = require("mongodb").GridFSBucket;
 const dotenv = require("dotenv");
-const { generateText } = require("../utils/gpt.js");
+const { generateText, reevaluateCase } = require("../utils/gpt.js");
 
 const fs = require("fs").promises;
 const path = require("path");
@@ -135,6 +135,69 @@ exports.createCase = async (req, res) => {
   }
 };
 
+// Reevaluate case process and update the case
+exports.reevaluateCase = async (req, res) => {
+  try {
+    const transcript = req.body.text;
+    const originalCase = req.body.case;
+
+    // Given the current case information, prompt gpt to reevaluate the case given the new document text
+    const text = await reevaluateCase(originalCase, transcript);
+    console.log("SUCCESSFUL REEVALUATION");
+    // Update the case information
+    const grade = text.gradeValue;
+    const gradeExplanation = text.gradeExplanation;
+    const greenFlags = text.greenFlags.replaceAll("- ", "").split("\n");
+    const redFlags = text.redFlags.replaceAll("- ", "").split("\n");
+    const MNMProbability = text.MNMProbability;
+    const generatedCaseDescription = text.generatedCaseDescription;
+    
+    console.log("UPDATED CASE INFORMATION");
+
+    console.log(grade);
+    console.log(gradeExplanation);
+    console.log(greenFlags);
+    console.log(redFlags);
+    console.log(MNMProbability);
+    console.log(generatedCaseDescription);
+
+
+    // Find the case by ID and update the fields
+    const updatedCase = await Case.findByIdAndUpdate(
+      new ObjectId(req.body.case._id),
+      {
+        valueGrade: parseInt(grade),
+        gradeExplanation: gradeExplanation,
+        greenFlags: text.greenFlags.replaceAll("- ", "").split("\n"),
+        redFlags: text.redFlags.replaceAll("- ", "").split("\n"),
+        MNMProbability: parseInt(MNMProbability),
+        generatedCaseDescription: generatedCaseDescription,
+      },
+      { new: true } // Return the updated document
+    );
+
+    console.log("UPDATED CASE");
+
+    // console.log(updatedCase);
+    // res.status(200).json({
+    //   status: "success",
+    //   // data: {
+    //   //   case: updatedCase,
+    //   //   explanation: text.reevaluationExplanation,
+    //   // },
+    // });
+  }
+  catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+
+
+
 // Get all cases for a client
 exports.getAllClientCases = async (req, res) => {
   try {
@@ -253,6 +316,7 @@ const storage = multer.diskStorage({
 });
 
 const uploadFiles = multer({ storage: storage });
+
 
 exports.getFileAsPlainText = async (req, res) => {
   var plainTextList = [];

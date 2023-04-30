@@ -162,6 +162,9 @@ function ClientCaseView() {
       formData.append("files", files[i].file);
     }
 
+    var text = "";
+
+
     // Upload the files to the server
     axios
       .post("http://localhost:3001/api/cases/uploadFile", formData)
@@ -175,11 +178,37 @@ function ClientCaseView() {
         console.log(fileIds);
         // Add the file ids to the case
         axios
-          .put(`http://localhost:3001/api/cases/fileIds/${data._id}`, {
+          .put(`http://localhost:3001/api/cases/fileIds/644e36ff70b35e36acef52c7`, {
             fileIds: fileIds,
           })
           .then((res) => {
             console.log(res.data);
+
+            // Part of the reevaluation process
+            // We need to parse these new documents and update the case in regards to the value grade, M&M probability, green/red flags and the generative description
+            axios
+              .post("http://localhost:3001/api/cases/getFileAsPlainText", formData)
+              .then((res) => {
+                console.log(res.data);
+                text = res.data;
+                // Now that we have the text, we need to send it to be used to reevaluate the case and patch it
+                axios
+                  .post(`http://localhost:3001/api/cases/reevaluateCase`, {
+                    text: text,
+                    case: data,
+                })
+                .then((res) => {
+                  console.log(res.data);
+                  // Now that we have the updated case, we need to update the view
+                  fetchData();
+                })
+              })
+              .catch((err) => {
+                console.log("FOUND ERROR: " + err);
+              });
+
+
+
           })
           .catch((err) => {
             console.log(err);
