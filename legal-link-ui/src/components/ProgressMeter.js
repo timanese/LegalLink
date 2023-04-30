@@ -8,14 +8,15 @@ import React from "react";
 
 export default function ProgressMeter(props) {
   const { steps, activeStep } = props;
+  console.log("PROPS: ", props);
 
   return (
     <Box sx={{ width: "100%" }}>
       <Stepper activeStep={activeStep}>
         {steps.map((step) => {
           return (
-            <Step key={step.label}>
-              <StepLabel>{step.label}</StepLabel>
+            <Step key={step?.label}>
+              <StepLabel>{step?.label}</StepLabel>
             </Step>
           );
         })}
