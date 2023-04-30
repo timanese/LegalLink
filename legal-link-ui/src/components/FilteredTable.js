@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import * as React from "react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const columns = [
   {
@@ -41,7 +42,7 @@ const columns = [
 
 export default function FilteredTable() {
   const [rows, setRows] = useState();
-  console.log("rows: ", rows);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -67,6 +68,7 @@ export default function FilteredTable() {
         <DataGrid
           rows={rows}
           columns={columns}
+          onRowClick={() => navigate("/attorneyCaseView")}
           checkboxSelection
           initialState={{
             pagination: {
