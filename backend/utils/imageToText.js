@@ -1,8 +1,10 @@
 // utils/imageToText.js
-
-const { ComputerVisionClient } = require('@azure/cognitiveservices-computervision');
-const { CognitiveServicesCredentials } = require( '@azure/ms-rest-azure-js' );
-const dotenv = require( 'dotenv' );
+const fs = require("fs");
+const {
+  ComputerVisionClient,
+} = require("@azure/cognitiveservices-computervision");
+const { CognitiveServicesCredentials } = require("@azure/ms-rest-azure-js");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
@@ -15,22 +17,29 @@ const computerVisionClient = new ComputerVisionClient(
   process.env.AZURE_COMPUTER_VISION_ENDPOINT
 );
 
-async function getImageDescription(imageUrl) {
+async function getImageDescription(imagePath) {
   try {
+    const imageFileStream = fs.createReadStream(imagePath);
     const options = {
-      maxCandidates: 1,
-      language: 'en',
+      visualFeatures: ["Description"],
+      language: "en",
     };
 
-    const descriptionResult = await computerVisionClient.describeImage(imageUrl, options);
+    const descriptionResult = await computerVisionClient.analyzeImageInStream(
+      () => imageFileStream,
+      options
+    );
 
-    if (descriptionResult && descriptionResult.captions.length > 0) {
-      return descriptionResult.captions[0].text;
+    if (
+      descriptionResult &&
+      descriptionResult.description.captions.length > 0
+    ) {
+      return descriptionResult.description.captions[0].text;
     } else {
-      return 'No description available';
+      return "No description available";
     }
   } catch (error) {
-    console.error('Error getting image description:', error);
+    console.error("Error getting image description:", error);
     return null;
   }
 }
