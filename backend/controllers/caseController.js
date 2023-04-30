@@ -66,6 +66,27 @@ exports.uploadFile = (req, res) => {
   });
 };
 
+exports.pushFile = async (req, res) => {
+  try {
+    const { body } = req;
+    const caseID = req.params.caseID;
+    const fileId = body.fileId;
+
+    const case1 = Case.findByIdAndUpdate(new ObjectId(caseID), {
+      $push: { fileIds: fileId },
+    });
+
+    res.status(200).json({
+      status: "success",
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
 // Create a new case
 exports.createCase = async (req, res) => {
   try {

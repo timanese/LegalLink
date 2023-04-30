@@ -10,5 +10,6 @@ router.get("/get/:id", caseController.getCase);
 router.patch("/acceptCase/:id", caseController.acceptCase);
 router.patch("/rejectCase/:id", caseController.rejectCase);
 router.post("/getFileAsPlainText", caseController.getFileAsPlainText);
+router.put("/fileIds/:caseID", caseController.pushFile);
 
 module.exports = router;
