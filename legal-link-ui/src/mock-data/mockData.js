@@ -14,4 +14,8 @@ export const MOCK_CASE_STEPS = [
     label: "Discovery",
     description: "Provide more detailed info about your case.",
   },
+  {
+    label: "Complete",
+    description: "Your case has been completed",
+  },
 ];
