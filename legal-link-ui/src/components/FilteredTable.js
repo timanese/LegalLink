@@ -68,7 +68,9 @@ export default function FilteredTable() {
         <DataGrid
           rows={rows}
           columns={columns}
-          onRowClick={() => navigate("/attorneyCaseView")}
+          onRowClick={(params) =>
+            navigate("/attorneyCaseView", { state: { rowData: params.row } })
+          }
           checkboxSelection
           initialState={{
             pagination: {

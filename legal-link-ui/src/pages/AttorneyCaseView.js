@@ -14,14 +14,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import * as React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import CardList from "../components/CardList";
 import CircularGauge from "../components/CircularGauge";
 import FileList from "../components/FileList";
 import MessageModal from "../components/MessageModal";
 import { AuthContext } from "../context/AuthContext";
-import { useContext } from "react";
 
 const drawerWidth = 240;
 
@@ -96,6 +95,10 @@ function AttorneyCaseView() {
     },
   ];
 
+  const location = useLocation();
+  const { rowData } = location.state;
+  console.log("Row data: ", rowData);
+
   return (
     <ThemeProvider theme={mdTheme}>
       <MessageModal isOpen={isOpenModal} setIsOpen={setIsOpenModal} />
@@ -169,38 +172,10 @@ function AttorneyCaseView() {
                   >
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
-                        kdljdkjfks
+                        {rowData.clientName}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum. Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis nostrud exercitation ullamco laboris
-                        nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                        dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est laborum. Lorem ipsum dolor
-                        sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut
-                        enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis
-                        aute irure dolor in reprehenderit in voluptate velit
-                        esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                        sint occaecat cupidatat non proident, sunt in culpa qui
-                        officia deserunt mollit anim id est laborum. Lorem ipsum
-                        dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        {rowData.description}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -235,7 +210,7 @@ function AttorneyCaseView() {
                       height: "100%",
                     }}
                   >
-                    <CircularGauge value={20} />
+                    <CircularGauge value={rowData.valueGrade * 10} />
                   </Box>
                 </Paper>
                 <Paper

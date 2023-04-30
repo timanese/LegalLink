@@ -3,19 +3,19 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 const CircularGauge = ({ value }) => {
-  const percentage = value.toFixed(0);
+  const grade = value.toFixed(0) / 10;
 
   return (
     <div style={{ width: "50%", maxWidth: "300px", margin: "0 auto" }}>
       <CircularProgressbar
-        value={value}
-        text={`${percentage}%`}
+        value={grade * 10}
+        text={`${grade} / 10`}
         styles={buildStyles({
           strokeLinecap: "butt",
-          textSize: "1.2vw",
+          textSize: "1vw",
           pathTransitionDuration: 0.5,
-          pathColor: `rgba(62, 152, 199, ${value / 100})`,
-          textColor: "#f88",
+          pathColor: grade >= 8 ? "green" : grade >= 5 ? "orange" : "red",
+          textColor: grade >= 8 ? "green" : grade >= 5 ? "orange" : "red",
           trailColor: "#d6d6d6",
           backgroundColor: "#3e98c7",
         })}
