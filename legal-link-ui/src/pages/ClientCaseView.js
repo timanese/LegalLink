@@ -245,32 +245,51 @@ function ClientCaseView() {
           <Toolbar />
           <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper
                   sx={{
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 400,
+                    height: 200,
                     overflow: "auto",
                   }}
                 >
-                  <Typography variant="h4">Description</Typography>
+                  <Typography variant="h4">Initial Claim</Typography>
                   <Card
                     sx={{ width: "100%", height: "100%", overflow: "auto" }}
                   >
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {data?.title}
-                      </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        {data?.description}
+                        {data?.initialClaim}
                       </Typography>
                     </CardContent>
                   </Card>
                 </Paper>
               </Grid>
+              <Grid item xs={12}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: 200,
+                    overflow: "auto",
+                  }}
+                >
+                  <Typography variant="h4">Generative Description</Typography>
+                  <Card
+                    sx={{ width: "100%", height: "100%", overflow: "auto" }}
+                  >
+                    <CardContent>
+                      <Typography variant="body2" color="text.secondary">
+                        {data?.generatedCaseDescription}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Paper>
+              </Grid>
+
               <Grid item xs={12}>
                 <Paper
                   sx={{
@@ -287,7 +306,6 @@ function ClientCaseView() {
                   </Box>
                 </Paper>
               </Grid>
-              {/* Recent Deposits */}
               <Grid item xs={12} md={4} lg={6}>
                 <Paper
                   sx={{
@@ -306,15 +324,17 @@ function ClientCaseView() {
                     <Typography variant="h4" sx={{ mr: 1 }}>
                       Download Files
                     </Typography>
-                    <FileList files={fileNames} />
                   </Box>
                   <Box
                     sx={{
                       display: "flex",
                       alignItems: "center",
                       height: "100%",
+                      overflow: "auto",
                     }}
-                  ></Box>
+                  >
+                    <FileList files={fileNames} />
+                  </Box>
                 </Paper>
               </Grid>
               {/* Ongoing case Table */}
