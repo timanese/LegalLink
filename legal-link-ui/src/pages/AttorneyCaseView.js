@@ -22,8 +22,8 @@ import FileList from "../components/FileList";
 import MessageModal from "../components/MessageModal";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
+import FileUploadManager from "../components/FileUploadManager";
 import { useEffect } from "react";
-
 
 const drawerWidth = 240;
 
@@ -55,6 +55,9 @@ function AttorneyCaseView() {
   const [data, setData] = useState([]);
   const [fileIds, setFileIds] = useState([]);
   const [fileNames, setFileNames] = useState([]);
+  const [files, setFiles] = useState([]);
+  const location = useLocation();
+
   // const [files, setFiles] = React.useState([]);
 
   const handleLogout = () => {
@@ -66,34 +69,51 @@ function AttorneyCaseView() {
 
   const handleAccept = async () => {
     try {
-      const res = await axios.patch(
-        `http://localhost:3001/api/cases/acceptCase/${data._id}`
-      )
-      .then((res) => {
-        console.log(res.data);
-        // Send mail to client notifying them that their case has been accepted
-        axios
-          .post("http://localhost:3001/api/mail/sendMail", {
-            caseId: data._id,
-            clientId: data.clientID,
-            title: "Case Advanced",
-            description: "Your case has been approved and moved forward by an attorney.",
-          })
-          .then((res) => {
-            console.log(res.data);
-            navigate("/attorneyDashBoard");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+      const res = await axios
+        .patch(`http://localhost:3001/api/cases/acceptCase/${data._id}`)
+        .then((res) => {
+          console.log(res.data);
+          // Send mail to client notifying them that their case has been accepted
+          axios
+            .post("http://localhost:3001/api/mail/sendMail", {
+              caseId: data._id,
+              clientId: data.clientID,
+              title: "Case Advanced",
+              description:
+                "Your case has been approved and moved forward by an attorney.",
+            })
+            .then((res) => {
+              console.log(res.data);
+              navigate("/attorneyDashBoard");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         })
         .catch((err) => {
           console.log(err);
         });
-    
     } catch (err) {
       console.log(err);
     }
+  };
+  const handleChange = (event) => {
+    console.log(...event.target.files);
+    event.preventDefault();
+
+    const addFiles = [];
+
+    for (let i = 0; i < event.target.files.length; i++) {
+      const Attachment = {
+        file: event.target.files[i],
+      };
+      addFiles.push(Attachment);
+    }
+
+    if (event.target.files.length === 0) {
+      return;
+    }
+    setFiles([...files, ...addFiles]);
   };
 
   const handleReject = async () => {
@@ -108,47 +128,56 @@ function AttorneyCaseView() {
     }
   };
 
-//   useEffect(() => {
-//   const fetchData = async () => {
-//     try {
-//       const caseRes = await axios.get(`http://localhost:3001/api/cases/get/${location?.state?.value}`);
-//       const caseData = caseRes.data.data.getCase;
-//       console.log(caseData);
-//       setData(caseData);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const caseRes = await axios.get(
+          `http://localhost:3001/api/cases/get/${location?.state?.value}`
+        );
+        const caseData = caseRes.data.data.getCase;
+        console.log(caseData);
+        setData(caseData);
 
-//       const fileIds = caseData.fileIds;
-//       setFileIds(fileIds);
+        const fileIds = caseData.fileIds;
+        setFileIds(fileIds);
 
-//       const filesInfo = [];
+        const filesInfo = [];
 
-//       for (let i = 0; i < fileIds.length; i++) {
-//         console.log("File " + i + " ID: ", fileIds[i]);
-//         try {
-//           const fileRes = await axios.get(`http://localhost:3001/api/cases/getFile/${fileIds[i]}`);
-//           console.log(fileRes.data);
-//           filesInfo.push({ _id: fileIds[i], filename: fileRes.data.fileName });
-//         } catch (err) {
-//           console.log(err);
-//         }
-//       }
+        for (let i = 0; i < fileIds.length; i++) {
+          console.log("File " + i + " ID: ", fileIds[i]);
+          try {
+            const fileRes = await axios.get(
+              `http://localhost:3001/api/cases/getFile/${fileIds[i]}`
+            );
+            console.log(fileRes.data);
+            filesInfo.push({
+              _id: fileIds[i],
+              filename: fileRes.data.fileName,
+            });
+          } catch (err) {
+            console.log(err);
+          }
+        }
 
-//       setFileNames(filesInfo);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
+        setFileNames(filesInfo);
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-//   fetchData();
-// }, [location?.state?.value]);
+    fetchData();
+  }, [location?.state?.value]);
 
-  const handleDownload = async(file) => {
-    const response = await axios.get(`http://localhost:3001/downloadFile/${file._id}/${file.filename}`);
+  const handleDownload = async (file) => {
+    const response = await axios.get(
+      `http://localhost:3001/downloadFile/${file._id}/${file.filename}`
+    );
     // Convert the hex string to a buffer
-    const buffer = Buffer.from(response.data.fileContents.data, 'hex')
+    const buffer = Buffer.from(response.data.fileContents.data, "hex");
     // Convert the buffer to a Blob object
-    const blob = new Blob([buffer], {type: 'application/octet-stream'});
+    const blob = new Blob([buffer], { type: "application/octet-stream" });
     // Create a link element
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     // Set the href attribute of the link element to the URL for the Blob
     a.href = URL.createObjectURL(blob);
     // Set the download attribute of the link element
@@ -159,50 +188,57 @@ function AttorneyCaseView() {
     a.click();
     // Remove the link element from the document
     document.body.removeChild(a);
-}
+  };
 
-
-  const files = [
-    {
-      id: 1,
-      name: "Document 1",
-      url: "https://example.com/document1.pdf",
-    },
-    {
-      id: 2,
-      name: "Document 2",
-      url: "https://example.com/document2.pdf",
-    },
-    {
-      id: 3,
-      name: "Document 3",
-      url: "https://example.com/document3.pdf",
-    },
-    {
-      id: 4,
-      name: "Document 3",
-      url: "https://example.com/document3.pdf",
-    },
-    {
-      id: 5,
-      name: "Document 3",
-      url: "https://example.com/document3.pdf",
-    },
-    {
-      id: 6,
-      name: "Document 3",
-      url: "https://example.com/document3.pdf",
-    },
-    {
-      id: 7,
-      name: "Document 3",
-      url: "https://example.com/document3.pdf",
-    },
-  ];
-
-  const location = useLocation();
   const { rowData } = location.state;
-  console.log("Row data: ", rowData);
+
+  const handleUploadFiles = () => {
+    // Create form data object to send files and metadata to the server
+    const formData = new FormData();
+
+    const fileIds = [];
+
+    // Add files to form data object
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i].file);
+    }
+
+    // Upload the files to the server
+    axios
+      .post("http://localhost:3001/api/cases/uploadFile", formData)
+      .then((res) => {
+        // Iterate over each file response that was uploaded to the server
+        // Add each id to the fileIds array
+        for (let i = 0; i < res.data.files.length; i++) {
+          console.log("File " + i + " ID: ", res.data.files[i].id);
+          fileIds.push(res.data.files[i].id);
+        }
+        console.log(fileIds);
+        // Add the file ids to the case
+        axios
+          .put(`http://localhost:3001/api/cases/fileIds/${data._id}`, {
+            fileIds: fileIds,
+          })
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    // Clear the files array
+    setFiles([]);
+  };
+
+  const handleDeleteFile = (index) => {
+    // remove the file at the given index from the uploadedFiles array
+    const updatedFiles = files.filter((file, i) => i !== index);
+    setFiles(updatedFiles);
+  };
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -338,15 +374,15 @@ function AttorneyCaseView() {
                       height: "100%",
                     }}
                   >
-                    <Button 
-                      variant="contained" 
+                    <Button
+                      variant="contained"
                       sx={{ mr: 2 }}
                       onClick={() => handleAccept()}
-                      >
+                    >
                       Accept
                     </Button>
-                    <Button 
-                      variant="contained" 
+                    <Button
+                      variant="contained"
                       sx={{ ml: 2 }}
                       onClick={() => handleReject()}
                     >
@@ -355,7 +391,6 @@ function AttorneyCaseView() {
                   </Box>
                 </Paper>
               </Grid>
-              {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper
                   sx={{
@@ -370,7 +405,7 @@ function AttorneyCaseView() {
                   <CardList rowData={rowData} />
                 </Paper>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <Paper
                   sx={{
                     p: 2,
@@ -383,6 +418,81 @@ function AttorneyCaseView() {
                   <Typography variant="h4">Related Documentation</Typography>
                   <Box sx={{ overflow: "auto" }}>
                     <FileList files={files} />
+                  </Box>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: 400,
+                  }}
+                >
+                  <Typography variant="h4">Upload Files</Typography>
+
+                  <Box
+                    className="file-attachment"
+                    sx={{
+                      height: "25%",
+                      overflow: "auto",
+                      backgroundColor: "grey.200",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      my: 1,
+                      borderRadius: 1,
+                    }}
+                  >
+                    <file-attachment
+                      className="GitHubFileAttach"
+                      input="file"
+                      directory
+                    >
+                      <Box
+                        className="file-attachment-text"
+                        sx={{ color: "grey.700", marginBottom: 1 }}
+                      >
+                        Drag and drop folders/files or click here to select
+                        files.
+                      </Box>
+                      <input
+                        className="inputUploadFiles"
+                        type="file"
+                        onChange={handleChange}
+                        multiple
+                        sx={{ display: "none" }}
+                      />
+                    </file-attachment>
+                  </Box>
+                  {/* File Upload */}
+                  {files.length > 0 && (
+                    <Box
+                      sx={{ width: "100%", overflow: "auto", maxHeight: 150 }}
+                    >
+                      <FileUploadManager
+                        files={files}
+                        handleDeleteFile={handleDeleteFile}
+                      />
+                    </Box>
+                  )}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      py: 2,
+                      width: "100%",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    <Button
+                      variant="outlined"
+                      onClick={() => handleUploadFiles()}
+                      sx={{ height: 40, alignSelf: "flex-end" }}
+                    >
+                      Upload
+                    </Button>
                   </Box>
                 </Paper>
               </Grid>

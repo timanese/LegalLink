@@ -62,7 +62,6 @@ function ClientCaseView() {
   };
 
   const fetchData = useCallback(() => {
-    console.log("popop");
     axios
       .get(`http://localhost:3001/api/cases/get/${location?.state?.value}`)
       .then((res) => {
@@ -74,7 +73,7 @@ function ClientCaseView() {
       });
   }, [location?.state?.value]);
 
-  const getFiles = useCallback(async() => {
+  const getFiles = useCallback(async () => {
     const fileIds = data.fileIds;
     setFileIds(fileIds);
 
@@ -174,7 +173,7 @@ function ClientCaseView() {
         axios
           .put(`http://localhost:3001/api/cases/fileIds/${data._id}`, {
             fileIds: fileIds,
-            })
+          })
           .then((res) => {
             console.log(res.data);
           })
@@ -223,7 +222,7 @@ function ClientCaseView() {
             <Button
               variant="contained"
               onClick={() => {
-                // handleLogout();
+                handleLogout();
               }}
             >
               Log Out
