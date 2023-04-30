@@ -129,6 +129,48 @@ function ClientCaseView() {
     setFiles([...files, ...addFiles]);
   };
 
+  const handleUploadFiles = () => {
+    // Create form data object to send files and metadata to the server
+    const formData = new FormData();
+
+    const fileIds = [];
+
+    // Add files to form data object
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i].file);
+    }
+
+    // Upload the files to the server
+    axios
+      .post("http://localhost:3001/api/cases/uploadFile", formData)
+      .then((res) => {
+        // Iterate over each file response that was uploaded to the server
+        // Add each id to the fileIds array
+        for (let i = 0; i < res.data.files.length; i++) {
+          console.log("File " + i + " ID: ", res.data.files[i].id);
+          fileIds.push(res.data.files[i].id);
+        }
+        console.log(fileIds);
+        // Add the file ids to the case
+        axios
+          .put(`http://localhost:3001/api/cases/fileIds/${data._id}`, {
+            fileIds: fileIds,
+            })
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    // Clear the files array
+    setFiles([]);
+  };
+
   const handleDeleteFile = (index) => {
     // remove the file at the given index from the uploadedFiles array
     const updatedFiles = files.filter((file, i) => i !== index);
@@ -163,7 +205,7 @@ function ClientCaseView() {
             <Button
               variant="contained"
               onClick={() => {
-                handleLogout();
+                // handleLogout();
               }}
             >
               Log Out
@@ -327,7 +369,7 @@ function ClientCaseView() {
                   >
                     <Button
                       variant="outlined"
-                      onClick={() => {}}
+                      onClick={() => handleUploadFiles()}
                       sx={{ height: 40, alignSelf: "flex-end" }}
                     >
                       Upload

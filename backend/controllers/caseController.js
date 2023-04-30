@@ -70,14 +70,22 @@ exports.pushFile = async (req, res) => {
   try {
     const { body } = req;
     const caseID = req.params.caseID;
-    const fileId = body.fileId;
+    const fileIds = body.fileIds; // Assuming fileIds is an array of fileId strings
 
-    const case1 = Case.findByIdAndUpdate(new ObjectId(caseID), {
-      $push: { fileIds: fileId },
-    });
+    // Add 'await' to the function call and use $each modifier
+    const updatedCase = await Case.findByIdAndUpdate(
+      new ObjectId(caseID),
+      {
+        $push: { fileIds: { $each: fileIds } },
+      },
+      { new: true } // Return the updated document
+    );
 
     res.status(200).json({
       status: "success",
+      data: {
+        case: updatedCase,
+      },
     });
   } catch (err) {
     res.status(400).json({

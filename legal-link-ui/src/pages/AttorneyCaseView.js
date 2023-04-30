@@ -21,6 +21,9 @@ import CircularGauge from "../components/CircularGauge";
 import FileList from "../components/FileList";
 import MessageModal from "../components/MessageModal";
 import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
+import { useEffect } from "react";
+
 
 const drawerWidth = 240;
 
@@ -49,6 +52,10 @@ function AttorneyCaseView() {
   const navigate = useNavigate();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { setIsLoggedIn, setClientId, setUserType } = useContext(AuthContext);
+  const [data, setData] = useState([]);
+  const [fileIds, setFileIds] = useState([]);
+  const [fileNames, setFileNames] = useState([]);
+  // const [files, setFiles] = React.useState([]);
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -56,6 +63,104 @@ function AttorneyCaseView() {
     setUserType("");
     navigate("/signin");
   };
+
+  const handleAccept = async () => {
+    try {
+      const res = await axios.patch(
+        `http://localhost:3001/api/cases/acceptCase/${data._id}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        // Send mail to client notifying them that their case has been accepted
+        axios
+          .post("http://localhost:3001/api/mail/sendMail", {
+            caseId: data._id,
+            clientId: data.clientID,
+            title: "Case Advanced",
+            description: "Your case has been approved and moved forward by an attorney.",
+          })
+          .then((res) => {
+            console.log(res.data);
+            navigate("/attorneyDashBoard");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleReject = async () => {
+    try {
+      const res = await axios.patch(
+        `http://localhost:3001/api/cases/rejectCase/${data._id}`
+      );
+      console.log(res.data);
+      navigate("/attorneyDashBoard");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+//   useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+//       const caseRes = await axios.get(`http://localhost:3001/api/cases/get/${location?.state?.value}`);
+//       const caseData = caseRes.data.data.getCase;
+//       console.log(caseData);
+//       setData(caseData);
+
+//       const fileIds = caseData.fileIds;
+//       setFileIds(fileIds);
+
+//       const filesInfo = [];
+
+//       for (let i = 0; i < fileIds.length; i++) {
+//         console.log("File " + i + " ID: ", fileIds[i]);
+//         try {
+//           const fileRes = await axios.get(`http://localhost:3001/api/cases/getFile/${fileIds[i]}`);
+//           console.log(fileRes.data);
+//           filesInfo.push({ _id: fileIds[i], filename: fileRes.data.fileName });
+//         } catch (err) {
+//           console.log(err);
+//         }
+//       }
+
+//       setFileNames(filesInfo);
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+
+//   fetchData();
+// }, [location?.state?.value]);
+
+  const handleDownload = async(file) => {
+    const response = await axios.get(`http://localhost:3001/downloadFile/${file._id}/${file.filename}`);
+    // Convert the hex string to a buffer
+    const buffer = Buffer.from(response.data.fileContents.data, 'hex')
+    // Convert the buffer to a Blob object
+    const blob = new Blob([buffer], {type: 'application/octet-stream'});
+    // Create a link element
+    const a = document.createElement('a');
+    // Set the href attribute of the link element to the URL for the Blob
+    a.href = URL.createObjectURL(blob);
+    // Set the download attribute of the link element
+    a.download = file.filename;
+    // Append the link element to the document
+    document.body.appendChild(a);
+    // Click the link element to initiate the download
+    a.click();
+    // Remove the link element from the document
+    document.body.removeChild(a);
+}
+
 
   const files = [
     {
@@ -233,10 +338,18 @@ function AttorneyCaseView() {
                       height: "100%",
                     }}
                   >
-                    <Button variant="contained" sx={{ mr: 2 }}>
+                    <Button 
+                      variant="contained" 
+                      sx={{ mr: 2 }}
+                      onClick={() => handleAccept()}
+                      >
                       Accept
                     </Button>
-                    <Button variant="contained" sx={{ ml: 2 }}>
+                    <Button 
+                      variant="contained" 
+                      sx={{ ml: 2 }}
+                      onClick={() => handleReject()}
+                    >
                       Decline
                     </Button>
                   </Box>
