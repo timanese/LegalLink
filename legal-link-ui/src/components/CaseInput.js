@@ -86,11 +86,17 @@ function InputAndUpload({ onSendMessage }) {
         axios
           .post("http://localhost:3001/api/cases/create", {
             clientID: '644ce98fec9f69bb663bc57a',
-            description: text,
+            initialClaim: text,
             fileIds: fileIds,
           })
           .then((res) => {
             console.log(res.data);
+            // Clear all the fields
+            setText("");
+            setFiles([]);
+
+            // Reload the case list
+
           })
           .catch((err) => {
             console.log(err);

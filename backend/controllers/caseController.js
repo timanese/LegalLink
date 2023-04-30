@@ -99,7 +99,7 @@ exports.pushFile = async (req, res) => {
 exports.createCase = async (req, res) => {
   try {
     const body = req.body;
-    const text = await generateText(body.description);
+    const text = await generateText(body.initialClaim);
     const grade = text.gradeValue;
     const gradeExplanation = text.gradeExplanation;
     const greenFlags = text.greenFlags.replaceAll("- ", "").split("\n");
