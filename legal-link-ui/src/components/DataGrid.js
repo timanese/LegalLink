@@ -50,8 +50,8 @@ const rows = [
 export default function DataGrid() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [entries, setEntries] = useState();
-  console.log("Entries: ", entries);
+  const [rows, setRows] = useState();
+  console.log("rows: ", rows);
 
   const navigate = useNavigate();
   const handleCellClick = (params, event) => {
@@ -72,7 +72,7 @@ export default function DataGrid() {
       .get("http://localhost:3001/api/cases/getAll")
       .then((res) => {
         console.log(res.data);
-        setEntries(res.data.data.cases);
+        setRows(res.data.data.cases);
       })
       .catch((err) => {
         console.log(err);
@@ -97,7 +97,7 @@ export default function DataGrid() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {entries
+            {rows
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((entry) => {
                 return (
