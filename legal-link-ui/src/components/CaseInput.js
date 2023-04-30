@@ -15,7 +15,8 @@ function InputAndUpload({ onSendMessage }) {
   const MAX_ROWS = 5;
 
   const { clientId } = useContext(AuthContext);
-  console.log("Text: ", text);
+  // console.log("Text: ", text);
+  // console.log("ClientId: ", clientId);
 
   const handleTextChange = (event) => {
     setText(event.target.value);
@@ -62,18 +63,9 @@ function InputAndUpload({ onSendMessage }) {
   const createCase = () => {
     // Create form data object to send files and metadata to the server
     const formData = new FormData();
-    // Case description
-    axios
-      .post("http://localhost:3001/api/cases/create", {
-        clientID: clientId,
-        description: text,
-      })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+    const fileIds = [];
+
     // Add files to form data object
     for (let i = 0; i < files.length; i++) {
       formData.append("files", files[i].file);
@@ -83,11 +75,32 @@ function InputAndUpload({ onSendMessage }) {
     axios
       .post("http://localhost:3001/api/cases/uploadFile", formData)
       .then((res) => {
-        console.log(res.data);
+        // Iterate over each file response that was uploaded to the server
+        // Add each id to the fileIds array
+        for (let i = 0; i < res.data.files.length; i++) {
+          console.log("File " + i + " ID: ", res.data.files[i].id);
+          fileIds.push(res.data.files[i].id);
+        }
+
+        // Case description
+        axios
+          .post("http://localhost:3001/api/cases/create", {
+            clientID: clientId,
+            description: text,
+            fileIds: fileIds,
+          })
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
       });
+
+    
 
     // For each file, convert to plain text based on its file type
     // Store the plain text in an array, this will later be used to feed the model

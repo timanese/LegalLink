@@ -1,7 +1,7 @@
 const Case = require("../models/Case");
 const multer = require("multer");
 const { GridFsStorage } = require("multer-gridfs-storage");
-const { ObjectId } = require("mongodb");
+const {ObjectId}  = require("mongodb");
 const MongoClient = require("mongodb").MongoClient;
 const GridFSBucket = require("mongodb").GridFSBucket;
 const dotenv = require("dotenv");
@@ -33,7 +33,7 @@ client.connect((err) => {
 });
 
 // Establish the database
-const database = client.db("LegalLink");
+const database = client.db("test");
 
 const bucket = new GridFSBucket(database, { bucketName: "files" });
 
@@ -62,7 +62,7 @@ exports.uploadFile = (req, res) => {
       return res.status(500).json({ message: "Error uploading files" });
     }
     console.log(req.files);
-    res.status(200).send({ message: "File uploaded" });
+    res.status(200).send({ message: "File uploaded", files: req.files });
   });
 };
 
@@ -224,6 +224,11 @@ exports.rejectCase = async (req, res) => {
   }
 };
 
+
+/////////////////////////////
+// FILE HANDLING           //
+/////////////////////////////
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./"); // Set the destination folder for uploaded files
@@ -253,3 +258,81 @@ exports.getFileAsPlainText = async (req, res) => {
     res.json({ plainTextList });
   });
 };
+
+
+// Files collection
+const files = database.collection("files.files");
+
+// Get file by ID from MongoDB
+exports.getFile = async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log(id);
+    const file = await files.find({ _id: new ObjectId(id) }).next();
+    console.log(file);
+    res.status(200).json({
+      status: "success",
+      data: {
+        file,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+// Download file by ID from MongoDB
+exports.downloadFile = async (req, res) => {
+  try {
+    const file_id = req.params.id;
+    const chunks = [];
+
+    const file = await files.find({ _id: new ObjectId(file_id) }).next();
+    const encoding = file.contentType;
+
+    const fileContents = await new Promise((resolve, reject) => {
+      bucket.openDownloadStream(new ObjectId(file_id))
+        .on('data', (chunk) => {
+          chunks.push(chunk);
+        })
+        .on('error', (error) => {
+          reject(error);
+        })
+        .on('end', () => {
+          resolve(Buffer.concat(chunks));
+        });
+    });
+
+    res.set('Content-Type', encoding);
+    res.set('Content-Disposition', `attachment; filename="${file.filename}"`);
+    res.status(200).send(fileContents);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+// // Function to get a single file from the files collection by id and return the file
+// async function getFile(req, callback) {
+//   const file_id = req.query.file_id;
+//   const chunks = [];
+
+//   const file = await bucket.find({ _id: ObjectId(file_id) }).next();
+//   const encoding = file.contentType;
+
+//   bucket.openDownloadStream(ObjectId(file_id)).on('data', (chunk) => {
+//     chunks.push(chunk);
+//   }).on('error', (error) => {
+//     return callback(error);
+//   }).on('end', async() => {
+//     const fileContents = Buffer.concat(chunks);
+//     return callback(null, fileContents, encoding);
+//   });
+// }
