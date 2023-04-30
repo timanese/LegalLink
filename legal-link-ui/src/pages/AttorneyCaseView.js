@@ -254,7 +254,7 @@ function AttorneyCaseView() {
                   }}
                 >
                   <Typography variant="h4">Grading Breakdown</Typography>
-                  <CardList />
+                  <CardList rowData={rowData} />
                 </Paper>
               </Grid>
               <Grid item xs={12}>

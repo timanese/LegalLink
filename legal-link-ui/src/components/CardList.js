@@ -1,14 +1,15 @@
-import * as React from "react";
-import Stack from "@mui/material/Stack";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import * as React from "react";
 
-export default function CardList() {
+export default function CardList(props) {
+  const { rowData } = props;
   const cards = [
     {
       title: "Description",
-      items: ["Item 1", "Item 2", "Item 3"],
+      items: [rowData.gradeExplanation],
     },
     {
       title: "Green",
