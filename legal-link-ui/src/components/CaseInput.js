@@ -3,15 +3,17 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 import * as React from "react";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import FileUploadManager from "./FileUploadManager";
+import LinearProgress from "@mui/material/LinearProgress";
 
 function InputAndUpload({ onSendMessage }) {
   const [message, setMessage] = React.useState("");
   const [files, setFiles] = React.useState([]);
   const [text, setText] = useState("");
   const [rows, setRows] = useState(1);
+  const [created, setCreated] = useState(true);
   const MAX_ROWS = 5;
 
   const { clientId } = useContext(AuthContext);
@@ -61,6 +63,7 @@ function InputAndUpload({ onSendMessage }) {
   };
 
   const createCase = () => {
+    setCreated(false);
     // Create form data object to send files and metadata to the server
     const formData = new FormData();
 
@@ -94,19 +97,18 @@ function InputAndUpload({ onSendMessage }) {
             // Clear all the fields
             setText("");
             setFiles([]);
+            setCreated(true);
 
             // Reload the case list
-
           })
           .catch((err) => {
             console.log(err);
+            setCreated(true);
           });
       })
       .catch((err) => {
         console.log(err);
       });
-
-    
 
     // For each file, convert to plain text based on its file type
     // Store the plain text in an array, this will later be used to feed the model
@@ -158,6 +160,7 @@ function InputAndUpload({ onSendMessage }) {
             variant="contained"
             onClick={() => createCase()}
             sx={{ m: 1 }}
+            disabled={!created}
           >
             Send
           </Button>
@@ -202,6 +205,13 @@ function InputAndUpload({ onSendMessage }) {
             files={files}
             handleDeleteFile={handleDeleteFile}
           />
+        </Box>
+      )}
+      {created ? (
+        <></>
+      ) : (
+        <Box sx={{ width: "90%", pt: 2 }}>
+          <LinearProgress />
         </Box>
       )}
     </div>

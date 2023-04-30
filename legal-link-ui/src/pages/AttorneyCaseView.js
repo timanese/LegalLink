@@ -51,7 +51,8 @@ const mdTheme = createTheme();
 function AttorneyCaseView() {
   const navigate = useNavigate();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const { setIsLoggedIn, clientId, setClientId, setUserType } = useContext(AuthContext);
+  const { setIsLoggedIn, clientId, setClientId, setUserType } =
+    useContext(AuthContext);
   const [data, setData] = useState([]);
   const [fileIds, setFileIds] = useState([]);
   const [fileNames, setFileNames] = useState([]);
@@ -74,9 +75,7 @@ function AttorneyCaseView() {
   const handleAccept = async () => {
     try {
       const res = await axios
-        .patch(
-          `http://localhost:3001/api/cases/acceptCase/${rowData._id}`
-        )
+        .patch(`http://localhost:3001/api/cases/acceptCase/${rowData._id}`)
         .then((res) => {
           console.log(res.data);
           // Send mail to client notifying them that their case has been accepted
@@ -196,8 +195,6 @@ function AttorneyCaseView() {
     document.body.removeChild(a);
   };
 
-
-
   // useEffect (() => {
   //   const fetchData = async () => {
   //     try {
@@ -210,7 +207,6 @@ function AttorneyCaseView() {
   //   }
   //   fetchData();
   // }, [rowData.id]);
-
 
   const handleUploadFiles = () => {
     // Create form data object to send files and metadata to the server
@@ -284,7 +280,7 @@ function AttorneyCaseView() {
               >
                 <ArrowBackIcon />
               </IconButton>
-              Case View
+              Case View - STATUS: {rowData?.status}
             </Typography>
             <Button
               variant="contained "
@@ -390,20 +386,28 @@ function AttorneyCaseView() {
                       height: "100%",
                     }}
                   >
-                    <Button
-                      variant="contained"
-                      sx={{ mr: 2 }}
-                      onClick={() => handleAccept()}
-                    >
-                      Accept
-                    </Button>
-                    <Button
-                      variant="contained"
-                      sx={{ ml: 2 }}
-                      onClick={() => handleReject()}
-                    >
-                      Decline
-                    </Button>
+                    {rowData?.status === "Closed" ? (
+                      <Typography variant="h5" sx={{ mr: 1 }}>
+                        Case Closed{" "}
+                      </Typography>
+                    ) : (
+                      <>
+                        <Button
+                          variant="contained"
+                          sx={{ mr: 2 }}
+                          onClick={() => handleAccept()}
+                        >
+                          Accept
+                        </Button>
+                        <Button
+                          variant="contained"
+                          sx={{ ml: 2 }}
+                          onClick={() => handleReject()}
+                        >
+                          Decline
+                        </Button>
+                      </>
+                    )}
                   </Box>
                 </Paper>
               </Grid>
