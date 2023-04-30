@@ -105,7 +105,7 @@ Case Description: '${caseDescription}'`;
       temperature: 0.1,
     });
 
-    const generatedCaseDescription = `For the following legal case, prrovide a more in depth yet understandable description of the case.  This should include the facts of the case, the legal issues, and the legal arguments.  Please only provide the description and nothing else. Case Description: '${caseDescription}'`;
+    const generatedCaseDescription = `For the following legal case, prrovide a more in depth yet understandable description of the initial claim provided that describes it in a legal case sense.  This should include the facts of the case, the legal issues, and the legal arguments.  Please only provide the description and nothing else. If you feel that there was not enough information provided, never respond with unfortunately as an AI model sequence, instead say 'Not enough information provided'. Initial Claim: '${caseDescription}'`;
 
     const generatedCaseDescriptionMessages = [
       {

@@ -118,6 +118,7 @@ exports.createCase = async (req, res) => {
     body.greenFlags = greenFlags;
     body.redFlags = redFlags;
     body.MNMProbability = parseInt(MNMProbability);
+    body.generatedCaseDescription = generatedCaseDescription;
 
     const newCase = await Case.create(body);
     res.status(201).json({

@@ -60,7 +60,7 @@ export default function CaseTable() {
             <TableCell>Title</TableCell>
             <TableCell align="right">Status</TableCell>
             <TableCell align="right">Value Grade</TableCell>
-            <TableCell align="right">mmProbability</TableCell>
+            <TableCell align="right">M&M Probability</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

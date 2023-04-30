@@ -315,11 +315,14 @@ function AttorneyCaseView() {
                   >
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
-                        {rowData?.clientName}
+                        Client Name: {rowData?.clientName}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        {rowData?.description}
+                        Initial Claim: {rowData.description}
                       </Typography>
+                      {/* <Typography variant="body2" color="text.secondary">
+                        Generative Description: {rowData.generatedCaseDescription}
+                      </Typography> */}
                     </CardContent>
                   </Card>
                 </Paper>
