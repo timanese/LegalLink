@@ -17,7 +17,7 @@ const MessageList = ({ messages }) => {
           </Typography>
         ) : (
           sortedMessages.map((message) => (
-            <ListItem key={message._id} alignItems="flex-start">
+            <ListItem key={message.title} alignItems="flex-start">
               <ListItemText
                 primary={message.title}
                 secondary={
@@ -28,9 +28,9 @@ const MessageList = ({ messages }) => {
                       variant="body2"
                       color="text.primary"
                     >
-                      {message.sender}
+                      {`Ticket ID: ${message.caseId}`}
                     </Typography>
-                    {` — ${message.description}`}
+                    {`\n\n${message.description}`}
                   </React.Fragment>
                 }
               />
