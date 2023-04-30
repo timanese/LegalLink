@@ -21,12 +21,7 @@ import MessageInput from "../components/CaseInput";
 import InputAndUpload from "../components/List";
 import CaseTable from "../components/Table";
 import { AuthContext } from "../context/AuthContext";
-<<<<<<< Updated upstream
-import CircularProgress from "@mui/material/CircularProgress";
-import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo-black-no-background.png";
-=======
->>>>>>> Stashed changes
 
 const drawerWidth = 240;
 
