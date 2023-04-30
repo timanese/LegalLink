@@ -15,7 +15,7 @@ import axios from "axios";
 import * as React from "react";
 import { useContext, useEffect, useState, useCallback } from "react";
 import MessageInput from "../components/CaseInput";
-import MessageList from "../components/List";
+import InputAndUpload from "../components/List";
 import CaseTable from "../components/Table";
 import { AuthContext } from "../context/AuthContext";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -169,7 +169,7 @@ function DashboardContent() {
                       <CircularProgress />
                     </Box>
                   ) : (
-                    <MessageList messages={mail} />
+                    <InputAndUpload messages={mail} />
                   )}
                 </Paper>
               </Grid>
@@ -185,7 +185,6 @@ function DashboardContent() {
                   }}
                 >
                   <Typography variant="h4">Create a New Case</Typography>
-
                   <MessageInput />
                 </Paper>
               </Grid>
