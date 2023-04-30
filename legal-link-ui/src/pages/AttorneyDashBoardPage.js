@@ -10,9 +10,9 @@ import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import * as React from "react";
 import { useContext } from "react";
-import DataGrid from "../components/DataGrid";
-import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import FilteredTable from "../components/FilteredTable";
+import { AuthContext } from "../context/AuthContext";
 
 const drawerWidth = 240;
 
@@ -100,7 +100,7 @@ function DashboardContent() {
                   }}
                 >
                   <Typography variant="h4">Prospective Cases</Typography>
-                  <DataGrid />
+                  <FilteredTable />
                 </Paper>
               </Grid>
             </Grid>
