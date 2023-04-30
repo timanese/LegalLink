@@ -69,7 +69,7 @@ export default function FilteredTable() {
           rows={rows}
           columns={columns}
           onRowClick={(params) =>
-            navigate("/attorneyCaseView", { state: { rowData: params.row } })
+            navigate("/attorneyCaseView", { state: { value: params.row } })
           }
           checkboxSelection
           initialState={{

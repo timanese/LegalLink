@@ -18,9 +18,9 @@ export default function App() {
       value={{
         isLoggedIn,
         clientId,
+        userType,
         setIsLoggedIn,
         setClientId,
-        userType,
         setUserType,
       }}
     >

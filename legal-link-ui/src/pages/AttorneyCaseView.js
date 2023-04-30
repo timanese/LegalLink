@@ -70,14 +70,16 @@ function AttorneyCaseView() {
   const handleAccept = async () => {
     try {
       const res = await axios
-        .patch(`http://localhost:3001/api/cases/acceptCase/644dc69085b6b936f56b2c1f`)
+        .patch(
+          `http://localhost:3001/api/cases/acceptCase/644dc69085b6b936f56b2c1f`
+        )
         .then((res) => {
           console.log(res.data);
           // Send mail to client notifying them that their case has been accepted
           axios
             .post("http://localhost:3001/api/mail/send", {
-              caseId: '644dc69085b6b936f56b2c1f',
-              clientId: '644ce98fec9f69bb663bc57a',
+              caseId: "644dc69085b6b936f56b2c1f",
+              clientId: "644ce98fec9f69bb663bc57a",
               title: "Case Advanced",
               description:
                 "Your case has been approved and moved forward by an attorney.",
@@ -190,7 +192,7 @@ function AttorneyCaseView() {
     document.body.removeChild(a);
   };
 
-  const { rowData } = location.state;
+  const { rowData } = location.state.value;
 
   const handleUploadFiles = () => {
     // Create form data object to send files and metadata to the server
