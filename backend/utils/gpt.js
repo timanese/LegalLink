@@ -165,7 +165,12 @@ async function reevaluateCase(originalCase, newInformation) {
     });
 
     const reevaluationExplanationPrompt = `Using this new case evaluation '${reevaluationResponse.data.choices[0].message.content.trim()}',
-    please explain the evaluation that was provided based on the new information provided and remember to include the original case information as well.'`;
+    please explain the evaluation that was provided based on the new information provided and remember to include the original case information as well. 
+    Write as if you are a lawyer, on a scale from 1 to 10, 
+    where 1 signifies the least likelihood of winning a court case or receiving a small settlement, 
+    and 10 represents the highest likelihood of winning a court case and obtaining a very large settlement.
+    If there is insufficient information never respond with 'As an AI language model...
+    Instead respond with the original cases generated description'`;
 
     const reevaluationExplanationMessages = [
       {
@@ -180,7 +185,7 @@ async function reevaluateCase(originalCase, newInformation) {
       temperature: 0.1,
     });
 
-    const gradePrompt = `Based on the original case provided, and the new information, please grade the following legal case on a scale from 1 to 10, where 1 signifies the least likelihood of winning a court case or receiving a small settlement, and 10 represents the highest likelihood of winning a court case and obtaining a very large settlement.
+    const gradePrompt = `Based on the original case provided, and the new information, please grade the case on a scale from 1 to 10, where 1 signifies the least likelihood of winning a court case or receiving a small settlement, and 10 represents the highest likelihood of winning a court case and obtaining a very large settlement.
 
 Original Case: '${originalCase}'
 New Information: '${newInformation}'
@@ -208,6 +213,8 @@ If there is not enough infrormation to provide an accurate grade then just give 
     please explain the grade that was provided for the case reevaluation after reviewing the original case and the new information as if you are a lawyer on a scale from 1 to 10, 
     where 1 signifies the least likelihood of winning a court case or receiving a small settlement, 
     and 10 represents the highest likelihood of winning a court case and obtaining a very large settlement.
+    If you believe there is insufficient information to give a proper explanation never respond with 'As an AI language model...',
+    Instead respond with the original case's grade explanation.
 
     Original Case: '${originalCase}'
     New Information: '${newInformation}
