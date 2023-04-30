@@ -58,11 +58,10 @@ function AttorneyCaseView() {
   const [fileNames, setFileNames] = useState([]);
   const [files, setFiles] = useState([]);
   const location = useLocation();
+  const [updateMessage, setUpdateMessage] = useState("");
 
   const rowData = location?.state?.value;
-
-  console.log(rowData.id);
-
+  console.log(data);
   // const [files, setFiles] = React.useState([]);
 
   const handleLogout = () => {
@@ -77,12 +76,11 @@ function AttorneyCaseView() {
       const res = await axios
         .patch(`http://localhost:3001/api/cases/acceptCase/${rowData._id}`)
         .then((res) => {
-          console.log(res.data);
           // Send mail to client notifying them that their case has been accepted
           axios
             .post("http://localhost:3001/api/mail/send", {
               caseId: rowData.id,
-              clientId: clientId,
+              clientId: data?.clientID,
               title: "Case Advanced",
               description:
                 "Your case has been approved and moved forward by an attorney.",
@@ -102,6 +100,35 @@ function AttorneyCaseView() {
       console.log(err);
     }
   };
+
+  const handleSendingMail = async () => {
+    try {
+      const res = await axios
+        .patch(`http://localhost:3001/api/cases/acceptCase/${rowData._id}`)
+        .then((res) => {
+          // Send mail to client notifying them that their case has been accepted
+          axios
+            .post("http://localhost:3001/api/mail/send", {
+              caseId: rowData.id,
+              clientId: data?.clientID,
+              title: "Alert from M&M",
+              description: updateMessage,
+            })
+            .then((res) => {
+              console.log(res.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleChange = (event) => {
     console.log(...event.target.files);
     event.preventDefault();
@@ -140,7 +167,6 @@ function AttorneyCaseView() {
           `http://localhost:3001/api/cases/get/${rowData.id}`
         );
         const caseData = caseRes.data.data.getCase;
-        console.log(caseData);
         setData(caseData);
 
         const fileIds = caseData.fileIds;
@@ -255,10 +281,15 @@ function AttorneyCaseView() {
     const updatedFiles = files.filter((file, i) => i !== index);
     setFiles(updatedFiles);
   };
-
   return (
     <ThemeProvider theme={mdTheme}>
-      <MessageModal isOpen={isOpenModal} setIsOpen={setIsOpenModal} />
+      <MessageModal
+        isOpen={isOpenModal}
+        setIsOpen={setIsOpenModal}
+        setUpdateMessage={setUpdateMessage}
+        updateMessage={updateMessage}
+        handleSendingMail={handleSendingMail}
+      />
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar position="absolute">
@@ -285,7 +316,6 @@ function AttorneyCaseView() {
             <Button
               variant="contained "
               onClick={() => {
-                console.log("djfkdslj");
                 setIsOpenModal(true);
               }}
             >

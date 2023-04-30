@@ -17,8 +17,6 @@ function InputAndUpload({ onSendMessage }) {
   const MAX_ROWS = 5;
 
   const { clientId } = useContext(AuthContext);
-  // console.log("Text: ", text);
-  // console.log("ClientId: ", clientId);
 
   const handleTextChange = (event) => {
     setText(event.target.value);

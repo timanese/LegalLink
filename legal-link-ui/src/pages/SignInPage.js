@@ -36,8 +36,6 @@ export default function SignInPage() {
         password: data.get("password"),
       })
       .then((res) => {
-        console.log(res);
-        console.log(res.data.client._id);
         setClientId(res.data.client._id);
         setUserType("client");
         setIsLoggedIn(true);
@@ -51,8 +49,6 @@ export default function SignInPage() {
             password: data.get("password"),
           })
           .then((res) => {
-            console.log(res);
-            console.log(res.data.attorney._id);
             setClientId(res.data.attorney._id);
             setUserType("attorney");
             setIsLoggedIn(true);

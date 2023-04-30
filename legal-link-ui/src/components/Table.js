@@ -39,8 +39,6 @@ export default function CaseTable() {
     axios
       .get(`http://localhost:3001/api/cases/getAll/${clientId}`)
       .then((res) => {
-        console.log(res.data.data.cases);
-        console.log("ongoing cases are being called!!!!!!!!");
         setCases(res.data.data.cases);
       })
       .catch((err) => {

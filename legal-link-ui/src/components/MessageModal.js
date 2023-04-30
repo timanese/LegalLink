@@ -17,7 +17,22 @@ const style = {
 };
 
 export default function MessageModal(props) {
-  const { isOpen, setIsOpen } = props;
+  const {
+    isOpen,
+    setIsOpen,
+    setUpdateMessage,
+    updateMessage,
+    handleSendingMail,
+  } = props;
+
+  const handleInputChange = (event) => {
+    setUpdateMessage(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    handleSendingMail();
+    setIsOpen(false);
+  };
 
   return (
     <div>
@@ -41,6 +56,8 @@ export default function MessageModal(props) {
             maxRows={10}
             multiline
             sx={{ width: "100%" }}
+            value={updateMessage}
+            onChange={handleInputChange}
           ></TextField>
           <Box
             sx={{
@@ -50,7 +67,7 @@ export default function MessageModal(props) {
               pt: 4,
             }}
           >
-            <Button variant="contained" onClick={() => setIsOpen(false)}>
+            <Button variant="contained" onClick={() => handleSubmit()}>
               Send
             </Button>
           </Box>
