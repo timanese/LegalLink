@@ -38,6 +38,7 @@ const columns = [
   },
   { field: "clientName", headerName: "Name", width: 130 },
   { field: "status", headerName: "Status", width: 130 },
+  { field: "initialClaim", headerName: "Case Description", width: 600 },
 ];
 
 export default function FilteredTable() {
@@ -62,7 +63,7 @@ export default function FilteredTable() {
       });
   }, []);
   return (
-    <div style={{ height: 400, width: "100%" }}>
+    <div style={{ height: 800, width: "100%" }}>
       {rows ? (
         <DataGrid
           rows={rows}
@@ -76,9 +77,15 @@ export default function FilteredTable() {
           initialState={{
             pagination: {
               paginationModel: {
-                pageSize: 5,
+                pageSize: 10,
               },
             },
+            sortModel: [
+              {
+                field: "valueGrade",
+                sort: "asc",
+              },
+            ],
           }}
           pageSizeOptions={[5]}
         />

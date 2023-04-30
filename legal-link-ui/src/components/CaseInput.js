@@ -1,12 +1,12 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import LinearProgress from "@mui/material/LinearProgress";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 import * as React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import FileUploadManager from "./FileUploadManager";
-import LinearProgress from "@mui/material/LinearProgress";
 
 function InputAndUpload({ onSendMessage }) {
   const [message, setMessage] = React.useState("");
@@ -136,7 +136,7 @@ function InputAndUpload({ onSendMessage }) {
           <TextField
             label="Enter your description"
             multiline
-            rows={rows}
+            rows={5}
             value={text}
             onChange={handleTextChange}
             sx={{
