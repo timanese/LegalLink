@@ -9,7 +9,7 @@ const caseSchema = new mongoose.Schema({
     required: true,
   },
   clientName: String,
-  description: {
+  initialClaim: {
     type: String,
     required: true,
   },
