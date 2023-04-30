@@ -11,7 +11,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-async function generateText(caseDescription) {
+async function generateText ( caseDescription ) {
   const gradePrompt = `Based on the description provided, please grade the following legal case on a scale from 1 to 10, where 1 signifies the least likelihood of winning a court case or receiving a small settlement, and 10 represents the highest likelihood of winning a court case and obtaining a very large settlement.
 
 Case Description: '${caseDescription}'
@@ -105,7 +105,7 @@ Case Description: '${caseDescription}'`;
       temperature: 0.1,
     });
 
-    const generatedCaseDescription = `For the following legal case, prrovide a more in depth yet understandable description of the initial claim provided that describes it in a legal case sense.  This should include the facts of the case, the legal issues, and the legal arguments.  Please only provide the description and nothing else. If you feel that there was not enough information provided, never respond with unfortunately as an AI model sequence, instead say 'Not enough information provided'. Initial Claim: '${caseDescription}'`;
+    const generatedCaseDescription = `For the following legal case, in the role of a lawyer, provide a more in-depth yet understandable description of the initial claim provided that describes it in a legal case sense. This should include the facts of the case, the legal issues, and the legal arguments. Please only provide the description and nothing else. If you feel that there was not enough information provided, do not mention anything about being an AI model. Instead, say 'Not enough information provided'. Initial Claim: '${caseDescription}'`;
 
     const generatedCaseDescriptionMessages = [
       {
@@ -138,6 +138,8 @@ Case Description: '${caseDescription}'`;
 
 async function reevaluateCase(originalCase, newInformation) {
   console.log("In ReEvaluate Case");
+  originalCase = JSON.stringify(originalCase);
+  newInformation = JSON.stringify(newInformation);
   console.log(originalCase);
   console.log(newInformation);
 
@@ -210,15 +212,13 @@ If there is not enough infrormation to provide an accurate grade then just give 
     });
 
     const gradeExplanationPrompt = `Using this grade '${gradeResponse.data.choices[0].message.content.trim()}',
-    please explain the grade that was provided for the case reevaluation after reviewing the original case and the new information as if you are a lawyer on a scale from 1 to 10, 
+    please explain the grade that was provided for the following case reevaluation after reviewing the original case and the new information as if you are a lawyer on a scale from 1 to 10, 
     where 1 signifies the least likelihood of winning a court case or receiving a small settlement, 
     and 10 represents the highest likelihood of winning a court case and obtaining a very large settlement.
-    If you believe there is insufficient information to give a proper explanation never respond with 'As an AI language model...',
-    Instead respond with the original case's grade explanation.
+    If you believe there is insufficient information to give a proper explanation, respond with the original case's grade explanation. Do not mention anything about being an AI language model.
 
     Original Case: '${originalCase}'
-    New Information: '${newInformation}
-`;
+    New Information: '${newInformation}'`;
 
     const gradeExplanationMessages = [
       {
