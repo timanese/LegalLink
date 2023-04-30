@@ -38,8 +38,30 @@ const columns = [
   },
   { field: "clientName", headerName: "Name", width: 130 },
   { field: "status", headerName: "Status", width: 130 },
-  { field: "initialClaim", headerName: "Case Description", width: 600 },
+  { field: "initialClaim", headerName: "Case Description", width: 800 },
+  {
+    field: "createdAt",
+    headerName: "Created Date",
+    width: 600,
+    renderCell: (params) => <Typography>{formatDate(params.value)}</Typography>,
+  },
 ];
+
+function formatDate(unformattedDate) {
+  const date = new Date(unformattedDate);
+  const dateString = date.toLocaleDateString("en-US", {
+    month: "2-digit",
+    day: "2-digit",
+    year: "2-digit",
+  });
+  const timeString = date.toLocaleTimeString("en-US", {
+    hour12: true,
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  const formattedDateTime = `${dateString} ${timeString}`;
+  return formattedDateTime;
+}
 
 export default function FilteredTable() {
   const [rows, setRows] = useState();
@@ -49,14 +71,16 @@ export default function FilteredTable() {
     axios
       .get("http://localhost:3001/api/cases/getAll")
       .then((res) => {
-        setRows(
-          res.data.data.cases.map((item, index) => {
-            return {
-              id: item._id,
-              ...item,
-            };
-          })
-        );
+        let fetchedRows = res.data.data.cases.map((item, index) => {
+          return {
+            id: item._id,
+            ...item,
+          };
+        });
+
+        // Sort the fetched rows by valueGrade descending
+        fetchedRows.sort((a, b) => b.valueGrade - a.valueGrade);
+        setRows(fetchedRows);
       })
       .catch((err) => {
         console.log(err);
@@ -77,17 +101,11 @@ export default function FilteredTable() {
           initialState={{
             pagination: {
               paginationModel: {
-                pageSize: 10,
+                pageSize: 15,
               },
             },
           }}
           pageSizeOptions={[5]}
-          sortModel={[
-            {
-              field: "valueGrade",
-              sort: "desc",
-            },
-          ]}
         />
       ) : (
         <div></div>
