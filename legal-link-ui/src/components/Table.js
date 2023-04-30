@@ -35,12 +35,12 @@ export default function CaseTable() {
   const navigate = useNavigate();
 
   const [cases, setCases] = useState([]);
-  console.log(clientId);
   useEffect(() => {
     axios
       .get(`http://localhost:3001/api/cases/getAll/${clientId}`)
       .then((res) => {
         console.log(res.data.data.cases);
+        console.log("ongoing cases are being called!!!!!!!!");
         setCases(res.data.data.cases);
       })
       .catch((err) => {
@@ -72,7 +72,7 @@ export default function CaseTable() {
               className="table-row"
             >
               <TableCell component="th" scope="row">
-                {row.title}
+                {row._id}
               </TableCell>
               <TableCell align="right">{row.status}</TableCell>
               <TableCell align="right">{row.valueGrade}</TableCell>

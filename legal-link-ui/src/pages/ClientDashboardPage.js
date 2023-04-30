@@ -56,7 +56,6 @@ function DashboardContent() {
       .get(`http://localhost:3001/api/mail/getAllClientMail/${clientId}`)
       .then((res) => {
         setMail(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -118,16 +117,7 @@ function DashboardContent() {
                 >
                   <Typography variant="h4">Ongoing Cases</Typography>
 
-                  <CaseTable
-                    rows={[
-                      {
-                        id: 4,
-                        caseName: "Test Case",
-                        caseType: "Test Case Type",
-                        caseStatus: "Test Case Status",
-                      },
-                    ]}
-                  />
+                  <CaseTable />
                 </Paper>
               </Grid>
               {/* Recent Deposits */}

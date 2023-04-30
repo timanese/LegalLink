@@ -8,10 +8,8 @@ import ClientDashBoardPage from "./pages/ClientDashboardPage";
 import AttorneyDashBoardPage from "./pages/AttorneyDashBoardPage";
 import AttorneyCaseView from "./pages/AttorneyCaseView";
 import ClientCaseView from "./pages/ClientCaseView";
-import { useNavigate } from "react-router-dom";
 
 export default function App() {
-  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [clientId, setClientId] = useState(""); // TODO: Change to [userType, setUserType
   const [userType, setUserType] = useState("");
@@ -31,9 +29,9 @@ export default function App() {
           path="/"
           element={
             isLoggedIn && userType === "client" ? (
-              navigate("/clientDashBoard")
+              <ClientDashBoardPage />
             ) : isLoggedIn && userType === "attorney" ? (
-              navigate("/attorneyDashBoard")
+              <AttorneyDashBoardPage />
             ) : (
               <SignInPage />
             )

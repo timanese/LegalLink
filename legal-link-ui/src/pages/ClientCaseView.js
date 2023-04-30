@@ -19,7 +19,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import FileList from "../components/FileList";
 import FileUploadManager from "../components/FileUploadManager";
 import { AuthContext } from "../context/AuthContext";
-import { useContext } from "react";
+import { useContext, useCallback } from "react";
 import ProgressMeter from "../components/ProgressMeter";
 import { MOCK_CASE_STEPS } from "../mock-data/mockData";
 
@@ -60,45 +60,46 @@ function ClientCaseView() {
     setUserType("");
     navigate("/signin");
   };
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const caseRes = await axios.get(
-          `http://localhost:3001/api/cases/get/${location?.state?.value}`
-        );
-        const caseData = caseRes.data.data.getCase;
-        console.log(caseData);
-        setData(caseData);
 
-        const fileIds = caseData.fileIds;
-        setFileIds(fileIds);
-
-        const filesInfo = [];
-
-        for (let i = 0; i < fileIds.length; i++) {
-          console.log("File " + i + " ID: ", fileIds[i]);
-          try {
-            const fileRes = await axios.get(
-              `http://localhost:3001/api/cases/getFile/${fileIds[i]}`
-            );
-            console.log(fileRes.data);
-            filesInfo.push({
-              _id: fileIds[i],
-              filename: fileRes.data.fileName,
-            });
-          } catch (err) {
-            console.log(err);
-          }
-        }
-
-        setFileNames(filesInfo);
-      } catch (err) {
+  const fetchData = useCallback(() => {
+    console.log("popop");
+    axios
+      .get(`http://localhost:3001/api/cases/get/${location?.state?.value}`)
+      .then((res) => {
+        setData(res.data.data.getCase);
+        setFileIds(res.data.data.getCase.fileIds);
+      })
+      .catch((err) => {
         console.log(err);
-      }
-    };
-
-    fetchData();
+      });
   }, [location?.state?.value]);
+
+  const getFiles = useCallback(() => {
+    const filesInfo = [];
+
+    for (let i = 0; i < fileIds?.length; i++) {
+      // console.log("File " + i + " ID: ", fileIds[i]);
+
+      axios
+        .get(`http://localhost:3001/api/cases/getFile/${fileIds[i]}`)
+        .then((res) => {
+          console.log("files: ", res.data);
+          filesInfo.push({
+            _id: fileIds[i],
+            filename: res.data.fileName,
+          });
+        });
+    }
+
+    setFileNames(filesInfo);
+  }, [fileIds]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+  useEffect(() => {
+    getFiles();
+  }, [fileIds, getFiles]);
 
   const handleDownload = async (file) => {
     const response = await axios.get(
@@ -138,7 +139,6 @@ function ClientCaseView() {
     if (event.target.files.length === 0) {
       return;
     }
-    console.log(addFiles);
     setFiles([...files, ...addFiles]);
   };
 
@@ -189,7 +189,6 @@ function ClientCaseView() {
     const updatedFiles = files.filter((file, i) => i !== index);
     setFiles(updatedFiles);
   };
-  console.log(data);
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
