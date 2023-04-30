@@ -10,7 +10,8 @@ import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import * as React from "react";
 import { useContext } from "react";
-import DataGrid from "../components/DataGrid";
+import { useNavigate } from "react-router-dom";
+import FilteredTable from "../components/FilteredTable";
 import { AuthContext } from "../context/AuthContext";
 
 const drawerWidth = 240;
@@ -37,8 +38,15 @@ const AppBar = styled(MuiAppBar, {
 const mdTheme = createTheme();
 
 function DashboardContent() {
-  const { setIsLoggedIn, setClientId, clientId, setUserType } =
-    useContext(AuthContext);
+  const { setIsLoggedIn, setClientId, setUserType } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setClientId("");
+    setUserType("");
+    navigate("/signin");
+  };
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -58,9 +66,7 @@ function DashboardContent() {
             <Button
               variant="contained "
               onClick={() => {
-                setIsLoggedIn(false);
-                setClientId("");
-                setUserType("");
+                handleLogout();
               }}
             >
               Log Out
@@ -94,7 +100,7 @@ function DashboardContent() {
                   }}
                 >
                   <Typography variant="h4">Prospective Cases</Typography>
-                  <DataGrid />
+                  <FilteredTable />
                 </Paper>
               </Grid>
             </Grid>
