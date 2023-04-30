@@ -80,14 +80,14 @@ export default function FilteredTable() {
                 pageSize: 10,
               },
             },
-            sortModel: [
-              {
-                field: "valueGrade",
-                sort: "asc",
-              },
-            ],
           }}
           pageSizeOptions={[5]}
+          sortModel={[
+            {
+              field: "valueGrade",
+              sort: "desc",
+            },
+          ]}
         />
       ) : (
         <div></div>
