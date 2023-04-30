@@ -105,6 +105,8 @@ exports.createCase = async (req, res) => {
     const greenFlags = text.greenFlags.replaceAll("- ", "").split("\n");
     const redFlags = text.redFlags.replaceAll("- ", "").split("\n");
     const MNMProbability = text.MNMProbability;
+    const generatedCaseDescription = text.generatedCaseDescription;
+
     const client = await Client.findById(new ObjectId(req.body.clientID));
     body.clientName = client.name;
     console.log(client);

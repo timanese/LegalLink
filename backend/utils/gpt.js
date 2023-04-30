@@ -104,7 +104,22 @@ Case Description: '${caseDescription}'`;
       messages: MNMProbabilityMessages,
       temperature: 0.1,
     });
-    console.log(MNMProbabilityResponse.data.choices[0].message.content.trim());
+
+    const generatedCaseDescription = `For the following legal case, prrovide a more in depth yet understandable description of the case.  This should include the facts of the case, the legal issues, and the legal arguments.  Please only provide the description and nothing else. Case Description: '${caseDescription}'`;
+
+    const generatedCaseDescriptionMessages = [
+      {
+        role: "user",
+        content: generatedCaseDescription,
+      },
+    ];
+
+    const generatedCaseDescriptionResponse = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: generatedCaseDescriptionMessages,
+      temperature: 0.4,
+    });
+
     return {
       gradeValue: gradeResponse.data.choices[0].message.content.trim(),
       gradeExplanation:
@@ -112,6 +127,7 @@ Case Description: '${caseDescription}'`;
       greenFlags: greenFlagsResponse.data.choices[0].message.content.trim(),
       redFlags: redFlagsResponse.data.choices[0].message.content.trim(),
       MNMProbability: MNMProbabilityResponse.data.choices[0].message.content.trim(),
+      generatedCaseDescription: generatedCaseDescriptionResponse.data.choices[0].message.content.trim(),
     };
   } catch (error) {
     console.log("Error generating text:", error);

@@ -13,6 +13,7 @@ const caseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  generatedCaseDescription: String,
   status: {
     type: String,
     enum: ["Pre-Intake", "Intake", "Discovery", "Closed", "Archived"],

@@ -70,14 +70,14 @@ function AttorneyCaseView() {
   const handleAccept = async () => {
     try {
       const res = await axios
-        .patch(`http://localhost:3001/api/cases/acceptCase/${data._id}`)
+        .patch(`http://localhost:3001/api/cases/acceptCase/644dc69085b6b936f56b2c1f`)
         .then((res) => {
           console.log(res.data);
           // Send mail to client notifying them that their case has been accepted
           axios
-            .post("http://localhost:3001/api/mail/sendMail", {
-              caseId: data._id,
-              clientId: data.clientID,
+            .post("http://localhost:3001/api/mail/send", {
+              caseId: '644dc69085b6b936f56b2c1f',
+              clientId: '644ce98fec9f69bb663bc57a',
               title: "Case Advanced",
               description:
                 "Your case has been approved and moved forward by an attorney.",
@@ -149,10 +149,10 @@ function AttorneyCaseView() {
             const fileRes = await axios.get(
               `http://localhost:3001/api/cases/getFile/${fileIds[i]}`
             );
-            console.log(fileRes.data);
+            console.log(fileRes.data.data.file.filename);
             filesInfo.push({
               _id: fileIds[i],
-              filename: fileRes.data.fileName,
+              filename: fileRes.data.data.file.filename,
             });
           } catch (err) {
             console.log(err);
@@ -410,7 +410,7 @@ function AttorneyCaseView() {
                 >
                   <Typography variant="h4">Related Documentation</Typography>
                   <Box sx={{ overflow: "auto" }}>
-                    <FileList files={files} />
+                    <FileList files={fileNames} />
                   </Box>
                 </Paper>
               </Grid>
