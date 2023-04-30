@@ -61,30 +61,6 @@ function ClientCaseView() {
     navigate("/signin");
   };
 
-      //   const fileIds = caseData.fileIds;
-      //   setFileIds(fileIds);
-
-      //   const filesInfo = [];
-
-      //   for (let i = 0; i < fileIds.length; i++) {
-      //     console.log("File " + i + " ID: ", fileIds[i]);
-      //     try {
-      //       const fileRes = await axios.get(
-      //         `http://localhost:3001/api/cases/getFile/${fileIds[i]}`
-      //       );
-      //       console.log(fileRes.data.data.file.filename);
-      //       filesInfo.push({
-      //         _id: fileIds[i],
-      //         filename: fileRes.data.data.file.filename,
-      //       });
-      //     } catch (err) {
-      //       console.log(err);
-      //     }
-      //   }
-
-      //   setFileNames(filesInfo);
-      //   console.log(filesInfo);
-      // } catch (err) {
   const fetchData = useCallback(() => {
     console.log("popop");
     axios
@@ -98,24 +74,30 @@ function ClientCaseView() {
       });
   }, [location?.state?.value]);
 
-  const getFiles = useCallback(() => {
+  const getFiles = useCallback(async() => {
+    const fileIds = data.fileIds;
+    setFileIds(fileIds);
+
     const filesInfo = [];
 
-    for (let i = 0; i < fileIds?.length; i++) {
-      // console.log("File " + i + " ID: ", fileIds[i]);
-
-      axios
-        .get(`http://localhost:3001/api/cases/getFile/${fileIds[i]}`)
-        .then((res) => {
-          console.log("files: ", res.data);
-          filesInfo.push({
-            _id: fileIds[i],
-            filename: res.data.fileName,
-          });
+    for (let i = 0; i < fileIds.length; i++) {
+      console.log("File " + i + " ID: ", fileIds[i]);
+      try {
+        const fileRes = await axios.get(
+          `http://localhost:3001/api/cases/getFile/${fileIds[i]}`
+        );
+        console.log(fileRes.data.data.file.filename);
+        filesInfo.push({
+          _id: fileIds[i],
+          filename: fileRes.data.data.file.filename,
         });
+      } catch (err) {
+        console.log(err);
+      }
     }
 
     setFileNames(filesInfo);
+    console.log(filesInfo);
   }, [fileIds]);
 
   useEffect(() => {
