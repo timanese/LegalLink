@@ -60,7 +60,7 @@ function ClientCaseView() {
     setUserType("");
     navigate("/signin");
   };
-
+  console.log(data);
   const fetchData = useCallback(() => {
     axios
       .get(`http://localhost:3001/api/cases/get/${location?.state?.value}`)
@@ -69,13 +69,30 @@ function ClientCaseView() {
         if (res.data.data.getCase.fileIds === undefined) {
           return;
         }
-        
+
         setFileIds(res.data.data.getCase.fileIds);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [location?.state?.value]);
+
+  const determineStep = (status) => {
+    switch (status) {
+      case "Pre-Intake":
+        return 1;
+      case "Intake":
+        return 2;
+      case "Discovery":
+        return 3;
+      case "Closed":
+        return 4;
+      case "Archived":
+        return 5;
+      default:
+        return 0;
+    }
+  };
 
   const getFiles = useCallback(async () => {
     const fileIds = data.fileIds;
@@ -306,7 +323,10 @@ function ClientCaseView() {
                 >
                   <Typography variant="h4">Case Progress</Typography>
                   <Box sx={{ my: 2 }}>
-                    <ProgressMeter steps={MOCK_CASE_STEPS} activeStep={0} />
+                    <ProgressMeter
+                      steps={MOCK_CASE_STEPS}
+                      activeStep={determineStep(data?.status)}
+                    />
                   </Box>
                 </Paper>
               </Grid>
