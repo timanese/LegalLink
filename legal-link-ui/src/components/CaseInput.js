@@ -8,7 +8,9 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import FileUploadManager from "./FileUploadManager";
 
-function InputAndUpload({ onSendMessage }) {
+function InputAndUpload(props) {
+  const { setIsSnackbarVisible, setSnackbarMessage, handleSnackbarClose } =
+    props;
   const [message, setMessage] = React.useState("");
   const [files, setFiles] = React.useState([]);
   const [text, setText] = useState("");
@@ -22,12 +24,6 @@ function InputAndUpload({ onSendMessage }) {
     setText(event.target.value);
     // calculate the number of rows needed based on the length of the text
     if (rows < MAX_ROWS) setRows(Math.ceil(event.target.value.length / 200));
-  };
-
-  const handleSend = () => {
-    onSendMessage({ message, files });
-    setMessage("");
-    setFiles([]);
   };
 
   // const handleFileChange = (event) => {
@@ -96,7 +92,8 @@ function InputAndUpload({ onSendMessage }) {
             setText("");
             setFiles([]);
             setCreated(true);
-
+            setIsSnackbarVisible(true);
+            setSnackbarMessage("Your case has been created.");
             // Reload the case list
           })
           .catch((err) => {

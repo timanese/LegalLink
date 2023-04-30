@@ -14,13 +14,12 @@ import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import axios from "axios";
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FileList from "../components/FileList";
 import FileUploadManager from "../components/FileUploadManager";
-import { AuthContext } from "../context/AuthContext";
-import { useContext, useCallback } from "react";
 import ProgressMeter from "../components/ProgressMeter";
+import { AuthContext } from "../context/AuthContext";
 import { MOCK_CASE_STEPS } from "../mock-data/mockData";
 
 const drawerWidth = 240;
@@ -95,6 +94,7 @@ function ClientCaseView() {
   const getFiles = useCallback(async () => {
     const fileIds = data.fileIds;
     setFileIds(fileIds);
+    console.log("FETCHING NEW FILES");
 
     const filesInfo = [];
     if (fileIds !== undefined) {

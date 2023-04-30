@@ -1,8 +1,10 @@
 import "@github/file-attachment-element";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import { Alert, Snackbar } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
@@ -13,14 +15,18 @@ import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import axios from "axios";
 import * as React from "react";
-import { useContext, useEffect, useState, useCallback } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MessageInput from "../components/CaseInput";
 import InputAndUpload from "../components/List";
 import CaseTable from "../components/Table";
 import { AuthContext } from "../context/AuthContext";
+<<<<<<< Updated upstream
 import CircularProgress from "@mui/material/CircularProgress";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo-black-no-background.png";
+=======
+>>>>>>> Stashed changes
 
 const drawerWidth = 240;
 
@@ -54,6 +60,15 @@ function DashboardContent() {
   const [mail, setMail] = useState([]);
   const [reloadUpdates, setReloadUpdates] = useState(false);
   const [updateLoading, setUpdateLoading] = useState(true);
+
+  // Snackbar
+  const [isSnackbarVisible, setIsSnackbarVisible] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+
+  function handleSnackbarClose() {
+    setIsSnackbarVisible(false);
+    setSnackbarMessage("");
+  }
 
   const getUpdates = useCallback(() => {
     // axios request to get all mail for a client
@@ -92,6 +107,19 @@ function DashboardContent() {
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
+        <Snackbar
+          open={isSnackbarVisible}
+          autoHideDuration={6000}
+          onClose={handleSnackbarClose}
+        >
+          <Alert
+            onClose={handleSnackbarClose}
+            severity="success"
+            sx={{ width: "100%", color: "success.main" }}
+          >
+            {snackbarMessage}
+          </Alert>
+        </Snackbar>
         <CssBaseline />
         <AppBar position="absolute">
           <Toolbar>
@@ -193,7 +221,10 @@ function DashboardContent() {
                   }}
                 >
                   <Typography variant="h4">Create a New Case</Typography>
-                  <MessageInput />
+                  <MessageInput
+                    setIsSnackbarVisible={setIsSnackbarVisible}
+                    setSnackbarMessage={setSnackbarMessage}
+                  />
                 </Paper>
               </Grid>
             </Grid>
