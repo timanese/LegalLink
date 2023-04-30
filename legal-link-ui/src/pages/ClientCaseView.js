@@ -54,11 +54,18 @@ function ClientCaseView() {
   const [fileIds, setFileIds] = useState([]);
   const [fileNames, setFileNames] = useState([]);
   const [files, setFiles] = React.useState([]);
-
-    useEffect(() => {
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setClientId("");
+    setUserType("");
+    navigate("/signin");
+  };
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const caseRes = await axios.get(`http://localhost:3001/api/cases/get/${location?.state?.value}`);
+        const caseRes = await axios.get(
+          `http://localhost:3001/api/cases/get/${location?.state?.value}`
+        );
         const caseData = caseRes.data.data.getCase;
         console.log(caseData);
         setData(caseData);
@@ -71,9 +78,14 @@ function ClientCaseView() {
         for (let i = 0; i < fileIds.length; i++) {
           console.log("File " + i + " ID: ", fileIds[i]);
           try {
-            const fileRes = await axios.get(`http://localhost:3001/api/cases/getFile/${fileIds[i]}`);
+            const fileRes = await axios.get(
+              `http://localhost:3001/api/cases/getFile/${fileIds[i]}`
+            );
             console.log(fileRes.data);
-            filesInfo.push({ _id: fileIds[i], filename: fileRes.data.fileName });
+            filesInfo.push({
+              _id: fileIds[i],
+              filename: fileRes.data.fileName,
+            });
           } catch (err) {
             console.log(err);
           }
@@ -88,26 +100,27 @@ function ClientCaseView() {
     fetchData();
   }, [location?.state?.value]);
 
-    const handleDownload = async(file) => {
-      const response = await axios.get(`http://localhost:3001/downloadFile/${file._id}/${file.filename}`);
-      // Convert the hex string to a buffer
-      const buffer = Buffer.from(response.data.fileContents.data, 'hex')
-      // Convert the buffer to a Blob object
-      const blob = new Blob([buffer], {type: 'application/octet-stream'});
-      // Create a link element
-      const a = document.createElement('a');
-      // Set the href attribute of the link element to the URL for the Blob
-      a.href = URL.createObjectURL(blob);
-      // Set the download attribute of the link element
-      a.download = file.filename;
-      // Append the link element to the document
-      document.body.appendChild(a);
-      // Click the link element to initiate the download
-      a.click();
-      // Remove the link element from the document
-      document.body.removeChild(a);
-  }
-
+  const handleDownload = async (file) => {
+    const response = await axios.get(
+      `http://localhost:3001/downloadFile/${file._id}/${file.filename}`
+    );
+    // Convert the hex string to a buffer
+    const buffer = Buffer.from(response.data.fileContents.data, "hex");
+    // Convert the buffer to a Blob object
+    const blob = new Blob([buffer], { type: "application/octet-stream" });
+    // Create a link element
+    const a = document.createElement("a");
+    // Set the href attribute of the link element to the URL for the Blob
+    a.href = URL.createObjectURL(blob);
+    // Set the download attribute of the link element
+    a.download = file.filename;
+    // Append the link element to the document
+    document.body.appendChild(a);
+    // Click the link element to initiate the download
+    a.click();
+    // Remove the link element from the document
+    document.body.removeChild(a);
+  };
 
   const handleChange = (event) => {
     console.log(...event.target.files);
