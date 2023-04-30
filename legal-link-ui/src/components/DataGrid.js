@@ -101,12 +101,15 @@ export default function DataGrid() {
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((entry) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={entry._id}>
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={entry._id}
+                    className="MuiDataGrid-cell"
+                  >
                     {columns.map((column) => {
                       const value = entry[column.id];
-                      {
-                        console.log("ENTRY: ", column);
-                      }
                       return (
                         <TableCell
                           key={column.id}

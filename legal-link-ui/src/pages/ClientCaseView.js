@@ -18,6 +18,8 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FileList from "../components/FileList";
 import FileUploadManager from "../components/FileUploadManager";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 import ProgressMeter from "../components/ProgressMeter";
 import { MOCK_CASE_STEPS } from "../mock-data/mockData";
 
@@ -47,7 +49,15 @@ const mdTheme = createTheme();
 function ClientCaseView() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { setIsLoggedIn, setClientId, setUserType } = useContext(AuthContext);
   const [data, setData] = useState([]);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setClientId("");
+    setUserType("");
+    navigate("/signin");
+  };
 
   // location.state.value
   useEffect(() => {
@@ -114,7 +124,12 @@ function ClientCaseView() {
             >
               {data?.title} STATUS: {data?.status}
             </Typography>
-            <Button variant="contained" onClick={() => {}}>
+            <Button
+              variant="contained"
+              onClick={() => {
+                handleLogout();
+              }}
+            >
               Log Out
             </Button>
           </Toolbar>

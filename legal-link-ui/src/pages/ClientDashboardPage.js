@@ -18,6 +18,7 @@ import MessageInput from "../components/CaseInput";
 import MessageList from "../components/List";
 import CaseTable from "../components/Table";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -45,6 +46,7 @@ const mdTheme = createTheme();
 function DashboardContent() {
   const { setIsLoggedIn, setClientId, clientId, setUserType } =
     useContext(AuthContext);
+  const navigate = useNavigate();
 
   // Grab all mail for a client
   const [mail, setMail] = useState([]);
@@ -61,6 +63,13 @@ function DashboardContent() {
       });
   }, [clientId]);
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setClientId("");
+    setUserType("");
+    navigate("/signin");
+  };
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -76,14 +85,7 @@ function DashboardContent() {
             >
               Dashboard
             </Typography>
-            <Button
-              variant="contained "
-              onClick={() => {
-                setIsLoggedIn(false);
-                setClientId("");
-                setUserType("");
-              }}
-            >
+            <Button variant="contained " onClick={handleLogout}>
               Log Out
             </Button>
           </Toolbar>

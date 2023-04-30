@@ -20,6 +20,8 @@ import CardList from "../components/CardList";
 import CircularGauge from "../components/CircularGauge";
 import FileList from "../components/FileList";
 import MessageModal from "../components/MessageModal";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 
 const drawerWidth = 240;
 
@@ -47,6 +49,14 @@ const mdTheme = createTheme();
 function AttorneyCaseView() {
   const navigate = useNavigate();
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const { setIsLoggedIn, setClientId, setUserType } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setClientId("");
+    setUserType("");
+    navigate("/signin");
+  };
 
   const files = [
     {
@@ -122,7 +132,9 @@ function AttorneyCaseView() {
               Send Message to Client
             </Button>
 
-            <Button variant="contained ">Log Out</Button>
+            <Button variant="contained " onClick={handleLogout}>
+              Log Out
+            </Button>
           </Toolbar>
         </AppBar>
         <Box
