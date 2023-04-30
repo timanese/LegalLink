@@ -21,7 +21,7 @@ const columns = [
             params.value >= 8
               ? "green"
               : params.value >= 6
-              ? "yellow"
+              ? "orange"
               : params.value >= 4
               ? "orange"
               : "red",
@@ -68,7 +68,9 @@ export default function FilteredTable() {
           rows={rows}
           columns={columns}
           onRowClick={(params) =>
-            navigate("/attorneyCaseView", { state: { value: params.row, id: params._id } })
+            navigate("/attorneyCaseView", {
+              state: { value: params.row, id: params._id },
+            })
           }
           checkboxSelection
           initialState={{
