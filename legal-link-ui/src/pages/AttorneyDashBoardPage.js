@@ -13,6 +13,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import FilteredTable from "../components/FilteredTable";
 import { AuthContext } from "../context/AuthContext";
+import logo from "../assets/logo-black-no-background.png";
 
 const drawerWidth = 240;
 
@@ -54,21 +55,19 @@ function DashboardContent() {
         <CssBaseline />
         <AppBar position="absolute">
           <Toolbar>
+            <Box sx={{ flexGrow: 1 }}>
+              <img src={logo} alt="Logo" style={{ height: 50 }} />
+            </Box>
             <Typography
               component="h1"
-              variant="h6"
+              variant="h5"
               color="inherit"
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              Enterprise Dashboard
             </Typography>
-            <Button
-              variant="contained "
-              onClick={() => {
-                handleLogout();
-              }}
-            >
+            <Button variant="contained" onClick={() => handleLogout()}>
               Log Out
             </Button>
           </Toolbar>

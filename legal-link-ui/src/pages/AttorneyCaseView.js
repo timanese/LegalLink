@@ -1,5 +1,4 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import RefreshIcon from "@mui/icons-material/Refresh";
 import { Card } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -51,8 +50,7 @@ const mdTheme = createTheme();
 function AttorneyCaseView() {
   const navigate = useNavigate();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const { setIsLoggedIn, clientId, setClientId, setUserType } =
-    useContext(AuthContext);
+  const { setIsLoggedIn, setClientId, setUserType } = useContext(AuthContext);
   const [data, setData] = useState([]);
   const [fileIds, setFileIds] = useState([]);
   const [fileNames, setFileNames] = useState([]);
@@ -322,7 +320,7 @@ function AttorneyCaseView() {
               Send Message to Client
             </Button>
 
-            <Button variant="contained " onClick={handleLogout}>
+            <Button variant="contained" onClick={handleLogout}>
               Log Out
             </Button>
           </Toolbar>

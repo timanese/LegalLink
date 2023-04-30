@@ -44,8 +44,6 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const mdTheme = createTheme();
-
 function ClientCaseView() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -249,233 +247,223 @@ function ClientCaseView() {
     setFiles(updatedFiles);
   };
   return (
-    <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar position="absolute">
-          <Toolbar>
-            <IconButton
-              color="black"
-              aria-label="upload files"
-              component="span"
-              onClick={() => {
-                navigate("/clientDashBoard");
-              }}
-            >
-              <ArrowBackIcon />
-            </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              {data?.title} STATUS: {data?.status}
-            </Typography>
-            <Button
-              variant="contained"
-              onClick={() => {
-                handleLogout();
-              }}
-            >
-              Log Out
-            </Button>
-          </Toolbar>
-        </AppBar>
+    <Box sx={{ display: "flex" }}>
+      <AppBar position="absolute">
+        <Toolbar>
+          <IconButton
+            color="black"
+            aria-label="upload files"
+            component="span"
+            onClick={() => {
+              navigate("/clientDashBoard");
+            }}
+          >
+            <ArrowBackIcon />
+          </IconButton>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            sx={{ flexGrow: 1 }}
+          >
+            {data?.title} STATUS: {data?.status}
+          </Typography>
+          <Button
+            variant="contained"
+            onClick={() => {
+              handleLogout();
+            }}
+          >
+            Log Out
+          </Button>
+        </Toolbar>
+      </AppBar>
 
-        <Box
-          component="main"
-          sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            height: "100vh",
-            overflow: "auto",
-          }}
-        >
-          <Toolbar />
-          <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 200,
-                    overflow: "auto",
-                  }}
-                >
-                  <Typography variant="h4">Initial Claim</Typography>
-                  <Card
-                    sx={{ width: "100%", height: "100%", overflow: "auto" }}
-                  >
-                    <CardContent>
-                      <Typography variant="body2" color="text.secondary">
-                        {data?.initialClaim}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Paper>
-              </Grid>
-              <Grid item xs={12}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 200,
-                    overflow: "auto",
-                  }}
-                >
-                  <Typography variant="h4">Generative Description</Typography>
-                  <Card
-                    sx={{ width: "100%", height: "100%", overflow: "auto" }}
-                  >
-                    <CardContent>
-                      <Typography variant="body2" color="text.secondary">
-                        {data?.generatedCaseDescription}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Paper>
-              </Grid>
+      <Box
+        component="main"
+        sx={{
+          backgroundColor: (theme) =>
+            theme.palette.mode === "light"
+              ? theme.palette.grey[100]
+              : theme.palette.grey[900],
+          flexGrow: 1,
+          height: "100vh",
+          overflow: "auto",
+        }}
+      >
+        <Toolbar />
+        <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Paper
+                sx={{
+                  p: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  height: 200,
+                  overflow: "auto",
+                }}
+              >
+                <Typography variant="h4">Initial Claim</Typography>
+                <Card sx={{ width: "100%", height: "100%", overflow: "auto" }}>
+                  <CardContent>
+                    <Typography variant="body2" color="text.secondary">
+                      {data?.initialClaim}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Paper>
+            </Grid>
+            <Grid item xs={12}>
+              <Paper
+                sx={{
+                  p: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  height: 200,
+                  overflow: "auto",
+                }}
+              >
+                <Typography variant="h4">Generative Description</Typography>
+                <Card sx={{ width: "100%", height: "100%", overflow: "auto" }}>
+                  <CardContent>
+                    <Typography variant="body2" color="text.secondary">
+                      {data?.generatedCaseDescription}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Paper>
+            </Grid>
 
-              <Grid item xs={12}>
-                <Paper
+            <Grid item xs={12}>
+              <Paper
+                sx={{
+                  p: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  height: 400,
+                  overflow: "auto",
+                }}
+              >
+                <Typography variant="h4">Case Progress</Typography>
+                <Box sx={{ my: 2 }}>
+                  <ProgressMeter
+                    steps={MOCK_CASE_STEPS}
+                    activeStep={determineStep(data?.status)}
+                  />
+                </Box>
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={4} lg={6}>
+              <Paper
+                sx={{
+                  p: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  height: 400,
+                }}
+              >
+                <Box
                   sx={{
-                    p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 400,
+                  }}
+                >
+                  <Typography variant="h4" sx={{ mr: 1 }}>
+                    Download Files
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    height: "100%",
                     overflow: "auto",
                   }}
                 >
-                  <Typography variant="h4">Case Progress</Typography>
-                  <Box sx={{ my: 2 }}>
-                    <ProgressMeter
-                      steps={MOCK_CASE_STEPS}
-                      activeStep={determineStep(data?.status)}
+                  <FileList files={fileNames} />
+                </Box>
+              </Paper>
+            </Grid>
+            {/* Ongoing case Table */}
+
+            <Grid item xs={12} md={8} lg={6}>
+              <Paper
+                sx={{
+                  p: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  height: 400,
+                }}
+              >
+                <Typography variant="h4">Upload Files</Typography>
+
+                <Box
+                  className="file-attachment"
+                  sx={{
+                    height: "25%",
+                    overflow: "auto",
+                    backgroundColor: "grey.200",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    my: 1,
+                    borderRadius: 1,
+                  }}
+                >
+                  <file-attachment
+                    className="GitHubFileAttach"
+                    input="file"
+                    directory
+                  >
+                    <Box
+                      className="file-attachment-text"
+                      sx={{ color: "grey.700", marginBottom: 1 }}
+                    >
+                      Drag and drop folders/files or click here to select files.
+                    </Box>
+                    <input
+                      className="inputUploadFiles"
+                      type="file"
+                      onChange={handleChange}
+                      multiple
+                      sx={{ display: "none" }}
+                    />
+                  </file-attachment>
+                </Box>
+                {/* File Upload */}
+                {files.length > 0 && (
+                  <Box sx={{ width: "100%", overflow: "auto", maxHeight: 150 }}>
+                    <FileUploadManager
+                      files={files}
+                      handleDeleteFile={handleDeleteFile}
                     />
                   </Box>
-                </Paper>
-              </Grid>
-              <Grid item xs={12} md={4} lg={6}>
-                <Paper
+                )}
+                <Box
                   sx={{
-                    p: 2,
                     display: "flex",
-                    flexDirection: "column",
-                    height: 400,
+                    py: 2,
+                    width: "100%",
+                    justifyContent: "flex-end",
                   }}
                 >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
+                  <Button
+                    variant="outlined"
+                    onClick={() => handleUploadFiles()}
+                    sx={{ height: 40, alignSelf: "flex-end" }}
                   >
-                    <Typography variant="h4" sx={{ mr: 1 }}>
-                      Download Files
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      height: "100%",
-                      overflow: "auto",
-                    }}
-                  >
-                    <FileList files={fileNames} />
-                  </Box>
-                </Paper>
-              </Grid>
-              {/* Ongoing case Table */}
-
-              <Grid item xs={12} md={8} lg={6}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 400,
-                  }}
-                >
-                  <Typography variant="h4">Upload Files</Typography>
-
-                  <Box
-                    className="file-attachment"
-                    sx={{
-                      height: "25%",
-                      overflow: "auto",
-                      backgroundColor: "grey.200",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      my: 1,
-                      borderRadius: 1,
-                    }}
-                  >
-                    <file-attachment
-                      className="GitHubFileAttach"
-                      input="file"
-                      directory
-                    >
-                      <Box
-                        className="file-attachment-text"
-                        sx={{ color: "grey.700", marginBottom: 1 }}
-                      >
-                        Drag and drop folders/files or click here to select
-                        files.
-                      </Box>
-                      <input
-                        className="inputUploadFiles"
-                        type="file"
-                        onChange={handleChange}
-                        multiple
-                        sx={{ display: "none" }}
-                      />
-                    </file-attachment>
-                  </Box>
-                  {/* File Upload */}
-                  {files.length > 0 && (
-                    <Box
-                      sx={{ width: "100%", overflow: "auto", maxHeight: 150 }}
-                    >
-                      <FileUploadManager
-                        files={files}
-                        handleDeleteFile={handleDeleteFile}
-                      />
-                    </Box>
-                  )}
-                  <Box
-                    sx={{
-                      display: "flex",
-                      py: 2,
-                      width: "100%",
-                      justifyContent: "flex-end",
-                    }}
-                  >
-                    <Button
-                      variant="outlined"
-                      onClick={() => handleUploadFiles()}
-                      sx={{ height: 40, alignSelf: "flex-end" }}
-                    >
-                      Upload
-                    </Button>
-                  </Box>
-                </Paper>
-              </Grid>
+                    Upload
+                  </Button>
+                </Box>
+              </Paper>
             </Grid>
-          </Container>
-        </Box>
+          </Grid>
+        </Container>
       </Box>
-    </ThemeProvider>
+    </Box>
   );
 }
 
