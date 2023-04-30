@@ -12,11 +12,11 @@ export default function CardList(props) {
       items: [rowData?.gradeExplanation],
     },
     {
-      title: "Green",
+      title: "Green Flags",
       items: rowData?.greenFlags,
     },
     {
-      title: "Red",
+      title: "Red Flags",
       items: rowData?.redFlags,
     },
   ];
