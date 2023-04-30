@@ -60,7 +60,7 @@ function ClientCaseView() {
     setUserType("");
     navigate("/signin");
   };
-  console.log(data);
+  console.log(location?.state?.value);
   const fetchData = useCallback(() => {
     axios
       .get(`http://localhost:3001/api/cases/get/${location?.state?.value}`)
@@ -99,26 +99,28 @@ function ClientCaseView() {
     setFileIds(fileIds);
 
     const filesInfo = [];
-
-    for (let i = 0; i < fileIds.length; i++) {
-      console.log("File " + i + " ID: ", fileIds[i]);
-      try {
-        const fileRes = await axios.get(
-          `http://localhost:3001/api/cases/getFile/${fileIds[i]}`
-        );
-        console.log(fileRes.data.data.file.filename);
-        filesInfo.push({
-          _id: fileIds[i],
-          filename: fileRes.data.data.file.filename,
-        });
-      } catch (err) {
-        console.log(err);
+    if (fileIds !== undefined) {
+      for (let i = 0; i < fileIds.length; i++) {
+        console.log("File " + i + " ID: ", fileIds[i]);
+        try {
+          const fileRes = await axios.get(
+            `http://localhost:3001/api/cases/getFile/${fileIds[i]}`
+          );
+          console.log(fileRes.data.data.file.filename);
+          filesInfo.push({
+            _id: fileIds[i],
+            filename: fileRes.data.data.file.filename,
+          });
+        } catch (err) {
+          console.log(err);
+        }
       }
-    }
 
-    setFileNames(filesInfo);
-    console.log(filesInfo);
-  }, [fileIds]);
+      setFileNames(filesInfo);
+    } else {
+      setFileNames([]);
+    }
+  }, [data.fileIds]);
 
   useEffect(() => {
     fetchData();
@@ -181,7 +183,6 @@ function ClientCaseView() {
 
     var text = "";
 
-
     // Upload the files to the server
     axios
       .post("http://localhost:3001/api/cases/uploadFile", formData)
@@ -195,16 +196,22 @@ function ClientCaseView() {
         console.log(fileIds);
         // Add the file ids to the case
         axios
-          .put(`http://localhost:3001/api/cases/fileIds/644e36ff70b35e36acef52c7`, {
-            fileIds: fileIds,
-          })
+          .put(
+            `http://localhost:3001/api/cases/fileIds/${location?.state?.value}`,
+            {
+              fileIds: fileIds,
+            }
+          )
           .then((res) => {
             console.log(res.data);
 
             // Part of the reevaluation process
             // We need to parse these new documents and update the case in regards to the value grade, M&M probability, green/red flags and the generative description
             axios
-              .post("http://localhost:3001/api/cases/getFileAsPlainText", formData)
+              .post(
+                "http://localhost:3001/api/cases/getFileAsPlainText",
+                formData
+              )
               .then((res) => {
                 console.log(res.data);
                 text = res.data;
@@ -213,19 +220,16 @@ function ClientCaseView() {
                   .post(`http://localhost:3001/api/cases/reevaluateCase`, {
                     text: text,
                     case: data,
-                })
-                .then((res) => {
-                  console.log(res.data);
-                  // Now that we have the updated case, we need to update the view
-                  fetchData();
-                })
+                  })
+                  .then((res) => {
+                    console.log(res.data);
+                    // Now that we have the updated case, we need to update the view
+                    fetchData();
+                  });
               })
               .catch((err) => {
                 console.log("FOUND ERROR: " + err);
               });
-
-
-
           })
           .catch((err) => {
             console.log(err);
