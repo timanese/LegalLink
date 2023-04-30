@@ -192,7 +192,7 @@ function AttorneyCaseView() {
     document.body.removeChild(a);
   };
 
-  const { rowData } = location.state.value;
+  const rowData = location?.state?.value;
 
   const handleUploadFiles = () => {
     // Create form data object to send files and metadata to the server
@@ -315,10 +315,10 @@ function AttorneyCaseView() {
                   >
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
-                        {rowData.clientName}
+                        {rowData?.clientName}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        {rowData.description}
+                        {rowData?.description}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -346,7 +346,7 @@ function AttorneyCaseView() {
                       height: "100%",
                     }}
                   >
-                    <CircularGauge value={rowData.valueGrade * 10} />
+                    <CircularGauge value={rowData?.valueGrade * 10} />
                   </Box>
                 </Paper>
                 <Paper

@@ -9,36 +9,40 @@ export default function CardList(props) {
   const cards = [
     {
       title: "Description",
-      items: [rowData.gradeExplanation],
+      items: [rowData?.gradeExplanation],
     },
     {
       title: "Green",
-      items: rowData.greenFlags,
+      items: rowData?.greenFlags,
     },
     {
       title: "Red",
-      items: rowData.redFlags,
+      items: rowData?.redFlags,
     },
   ];
 
   return (
     <Stack direction="row" spacing={2}>
-      {cards.map((card, index) => (
-        <Card key={index} sx={{ width: "33%" }}>
-          <CardContent>
-            <Typography variant="h5" component="div">
-              {card.title}
-            </Typography>
-            <Typography sx={{ mt: 1 }} variant="body2" color="text.secondary">
-              <ul>
-                {card.items.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </Typography>
-          </CardContent>
-        </Card>
-      ))}
+      {rowData === undefined ? (
+        <p>Currently Unavailable</p>
+      ) : (
+        cards.map((card, index) => (
+          <Card key={index} sx={{ width: "33%" }}>
+            <CardContent>
+              <Typography variant="h5" component="div">
+                {card.title}
+              </Typography>
+              <Typography sx={{ mt: 1 }} variant="body2" color="text.secondary">
+                <ul>
+                  {card.items.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </Typography>
+            </CardContent>
+          </Card>
+        ))
+      )}
     </Stack>
   );
 }
