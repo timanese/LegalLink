@@ -66,6 +66,10 @@ function ClientCaseView() {
       .get(`http://localhost:3001/api/cases/get/${location?.state?.value}`)
       .then((res) => {
         setData(res.data.data.getCase);
+        if (res.data.data.getCase.fileIds === undefined) {
+          return;
+        }
+        
         setFileIds(res.data.data.getCase.fileIds);
       })
       .catch((err) => {

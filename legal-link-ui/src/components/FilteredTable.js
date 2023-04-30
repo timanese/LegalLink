@@ -48,11 +48,10 @@ export default function FilteredTable() {
     axios
       .get("http://localhost:3001/api/cases/getAll")
       .then((res) => {
-        console.log(res.data);
         setRows(
           res.data.data.cases.map((item, index) => {
             return {
-              id: index + 1,
+              id: item._id,
               ...item,
             };
           })
@@ -69,7 +68,7 @@ export default function FilteredTable() {
           rows={rows}
           columns={columns}
           onRowClick={(params) =>
-            navigate("/attorneyCaseView", { state: { value: params.row } })
+            navigate("/attorneyCaseView", { state: { value: params.row, id: params._id } })
           }
           checkboxSelection
           initialState={{

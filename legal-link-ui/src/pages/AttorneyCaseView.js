@@ -51,12 +51,16 @@ const mdTheme = createTheme();
 function AttorneyCaseView() {
   const navigate = useNavigate();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const { setIsLoggedIn, setClientId, setUserType } = useContext(AuthContext);
+  const { setIsLoggedIn, clientId, setClientId, setUserType } = useContext(AuthContext);
   const [data, setData] = useState([]);
   const [fileIds, setFileIds] = useState([]);
   const [fileNames, setFileNames] = useState([]);
   const [files, setFiles] = useState([]);
   const location = useLocation();
+
+  const rowData = location?.state?.value;
+
+  console.log(rowData.id);
 
   // const [files, setFiles] = React.useState([]);
 
@@ -71,15 +75,15 @@ function AttorneyCaseView() {
     try {
       const res = await axios
         .patch(
-          `http://localhost:3001/api/cases/acceptCase/644dc69085b6b936f56b2c1f`
+          `http://localhost:3001/api/cases/acceptCase/${rowData._id}`
         )
         .then((res) => {
           console.log(res.data);
           // Send mail to client notifying them that their case has been accepted
           axios
             .post("http://localhost:3001/api/mail/send", {
-              caseId: "644dc69085b6b936f56b2c1f",
-              clientId: "644ce98fec9f69bb663bc57a",
+              caseId: rowData.id,
+              clientId: clientId,
               title: "Case Advanced",
               description:
                 "Your case has been approved and moved forward by an attorney.",
@@ -121,7 +125,7 @@ function AttorneyCaseView() {
   const handleReject = async () => {
     try {
       const res = await axios.patch(
-        `http://localhost:3001/api/cases/rejectCase/${data._id}`
+        `http://localhost:3001/api/cases/rejectCase/${rowData.id}`
       );
       console.log(res.data);
       navigate("/attorneyDashBoard");
@@ -134,7 +138,7 @@ function AttorneyCaseView() {
     const fetchData = async () => {
       try {
         const caseRes = await axios.get(
-          `http://localhost:3001/api/cases/get/${location?.state?.value}`
+          `http://localhost:3001/api/cases/get/${rowData.id}`
         );
         const caseData = caseRes.data.data.getCase;
         console.log(caseData);
@@ -192,7 +196,21 @@ function AttorneyCaseView() {
     document.body.removeChild(a);
   };
 
-  const rowData = location?.state?.value;
+
+
+  // useEffect (() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await axios.get(`http://localhost:3001/api/cases/get/${rowData.id}`);
+  //       console.log(res.data.data.getCase);
+  //       setData(res.data.data.getCase);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  //   fetchData();
+  // }, [rowData.id]);
+
 
   const handleUploadFiles = () => {
     // Create form data object to send files and metadata to the server
@@ -318,11 +336,11 @@ function AttorneyCaseView() {
                         Client Name: {rowData?.clientName}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Initial Claim: {rowData.description}
+                        Initial Claim: {data.initialClaim}
                       </Typography>
-                      {/* <Typography variant="body2" color="text.secondary">
-                        Generative Description: {rowData.generatedCaseDescription}
-                      </Typography> */}
+                      <Typography variant="body2" color="text.secondary">
+                        Generative Description: {data.generatedCaseDescription}
+                      </Typography>
                     </CardContent>
                   </Card>
                 </Paper>
