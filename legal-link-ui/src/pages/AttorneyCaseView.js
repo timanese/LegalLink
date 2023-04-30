@@ -414,9 +414,10 @@ function AttorneyCaseView() {
                       height: "100%",
                     }}
                   >
-                    {rowData?.status === "Closed" ? (
+                    {rowData?.status === "Closed" ||
+                    rowData?.status === "Archived" ? (
                       <Typography variant="h5" sx={{ mr: 1 }}>
-                        Case Closed{" "}
+                        Case Closed
                       </Typography>
                     ) : (
                       <>
