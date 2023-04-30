@@ -55,7 +55,7 @@ export default function CaseTable() {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Title</TableCell>
+            <TableCell>Ticket Number</TableCell>
             <TableCell align="right">Status</TableCell>
             <TableCell align="right">Value Grade</TableCell>
             <TableCell align="right">M&M Probability</TableCell>
